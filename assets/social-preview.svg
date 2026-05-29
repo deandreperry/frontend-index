@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Frontend Index</title>
+  <desc id="desc">A visual reference system for modern frontend engineering.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#08080a" />
+      <stop offset="0.55" stop-color="#111827" />
+      <stop offset="1" stop-color="#102a43" />
+    </linearGradient>
+    <linearGradient id="mark" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#4f9dff" />
+      <stop offset="0.55" stop-color="#a98bfa" />
+      <stop offset="1" stop-color="#5cd1ff" />
+    </linearGradient>
+    <radialGradient id="glow" cx="70%" cy="18%" r="68%">
+      <stop stop-color="#4f9dff" stop-opacity="0.38" />
+      <stop offset="0.55" stop-color="#4f9dff" stop-opacity="0.08" />
+      <stop offset="1" stop-color="#4f9dff" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)" />
+  <rect width="1200" height="630" fill="url(#glow)" />
+  <g opacity="0.16" stroke="#ffffff" stroke-width="1">
+    <path d="M0 120h1200M0 240h1200M0 360h1200M0 480h1200" />
+    <path d="M160 0v630M320 0v630M480 0v630M640 0v630M800 0v630M960 0v630" />
+  </g>
+  <g transform="translate(84 78)">
+    <rect width="104" height="104" rx="24" fill="#0d0d10" stroke="#ffffff" stroke-opacity="0.14" />
+    <path d="M26 40h18l8-12 8 12h18M26 64h18l8-12 8 12h18" fill="none" stroke="url(#mark)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
+  </g>
+  <g transform="translate(84 238)">
+    <text fill="#f8fafc" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="84" font-weight="760" letter-spacing="-3">Frontend Index</text>
+    <text y="76" fill="#cbd5e1" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="30" font-weight="450">A visual reference system for modern frontend engineering.</text>
+  </g>
+  <g transform="translate(84 468)" fill="none" stroke-width="2">
+    <rect width="168" height="44" rx="10" fill="#111827" stroke="#4f9dff" stroke-opacity="0.45" />
+    <text x="24" y="29" fill="#93c5fd" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16">browser</text>
+    <rect x="188" width="188" height="44" rx="10" fill="#111827" stroke="#a98bfa" stroke-opacity="0.45" />
+    <text x="212" y="29" fill="#ddd6fe" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16">frameworks</text>
+    <rect x="396" width="144" height="44" rx="10" fill="#111827" stroke="#5cd1ff" stroke-opacity="0.45" />
+    <text x="420" y="29" fill="#bae6fd" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16">tooling</text>
+    <rect x="560" width="186" height="44" rx="10" fill="#111827" stroke="#5be39a" stroke-opacity="0.45" />
+    <text x="584" y="29" fill="#bbf7d0" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16">production</text>
+  </g>
+</svg>

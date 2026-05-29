@@ -1,0 +1,23 @@
+{
+  "name": "frontend-index",
+  "version": "2.0.0",
+  "private": true,
+  "description": "A visual reference system for modern frontend engineering.",
+  "homepage": "https://deandreperry.github.io/frontend-index/",
+  "type": "module",
+  "scripts": {
+    "check": "node scripts/validate-index.mjs",
+    "dev": "python3 -m http.server 4173",
+    "preview": "python3 -m http.server 4173"
+  },
+  "keywords": [
+    "frontend",
+    "web-development",
+    "javascript",
+    "css",
+    "html",
+    "education"
+  ],
+  "author": "De'Andre Perry",
+  "license": "UNLICENSED"
+}

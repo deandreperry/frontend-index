@@ -2,129 +2,42 @@
 
 A visual reference system for modern frontend engineering.
 
-Frontend Index is an interactive educational platform that helps developers understand how modern frontend technologies fit together. Instead of learning tools in isolation, users can explore the relationships between browsers, frameworks, development tooling, Git workflows, AI-assisted development, and production engineering concepts through visual diagrams and interactive learning experiences.
+Frontend Index is an interactive map for understanding how the modern frontend stack fits together: browsers, HTML, CSS, JavaScript, frameworks, build tooling, architecture, performance, Git workflows, AI-assisted development, and production patterns.
 
-Built with HTML, CSS, and JavaScript, Frontend Index serves as both a learning resource and a reference guide for developers at every stage of their frontend journey.
-
----
-
-## Why Frontend Index Exists
-
-Frontend development has evolved into a complex ecosystem of technologies, tools, and workflows.
-
-Developers are expected to understand:
-
-* HTML, CSS, and JavaScript
-* Browsers and rendering engines
-* Development environments
-* Package managers and build tools
-* Git and collaboration workflows
-* Accessibility and performance
-* AI-assisted development
-* Deployment and production systems
-
-Most resources teach these topics separately.
-
-Frontend Index focuses on helping developers understand how everything connects.
+[Open the live site](https://deandreperry.github.io/frontend-index/)
 
 ---
 
-## Features
+## What Is Included
 
-### Interactive Frontend Roadmap
-
-Explore the major disciplines of frontend engineering through a visual learning experience.
-
-### Browser Fundamentals
-
-Understand how browsers process HTML, CSS, JavaScript, networking requests, and rendering.
-
-### Developer Tooling
-
-Learn essential frontend development tools including:
-
-* Terminal fundamentals
-* Package managers
-* Development workflows
-* Project structure concepts
-
-### VS Code Environment
-
-Visual guides covering:
-
-* Explorer
-* Command Palette
-* Extensions
-* Workspace organization
-* Productivity workflows
-
-### Git & Collaboration
-
-Learn the foundations of modern software development:
-
-* Repositories
-* Branches
-* Commits
-* Pull Requests
-* CI/CD concepts
-
-### AI-Assisted Development
-
-Explore modern developer workflows using:
-
-* Claude Code
-* OpenAI Codex
-* Prompt-driven development
-* Human-AI collaboration
-
-### Frontend Ecosystem Mapping
-
-Visual diagrams that show how frontend technologies connect across the development stack.
-
-### Interactive Learning Labs
-
-Hands-on demonstrations covering:
-
-* Flexbox
-* CSS Grid
-* CSS Specificity
-* Layout systems
-* Modern UI concepts
+- A guided frontend roadmap from browser fundamentals through AI-assisted workflows.
+- Interactive labs for Flexbox, CSS Grid, the JavaScript event loop, and CSS specificity.
+- A technology stack map with searchable, clickable entries.
+- Visual explainers for browser rendering, Git flow, VS Code workflows, terminal commands, performance, and production UI patterns.
+- Dark and light themes with local preference storage.
+- Static-site metadata for GitHub Pages, social previews, search crawlers, and installable web app metadata.
 
 ---
 
-## Technology Stack
-
-### Core Technologies
-
-* HTML5
-* CSS3
-* Vanilla JavaScript
-
-### Design System
-
-* Geist
-* Geist Mono
-* Instrument Serif
-
-### Principles
-
-* Responsive Design
-* Theme-Aware UI
-* Interactive Learning
-* Accessibility-Conscious Experiences
-* Visual Knowledge Mapping
-
----
-
-## Current Repository Structure
+## Repository Structure
 
 ```text
 frontend-index/
+├── assets/
+│   └── social-preview.svg
+├── scripts/
+│   └── validate-index.mjs
+├── .editorconfig
+├── .gitignore
+├── .nojekyll
+├── favicon.svg
 ├── index.html
-├── README.md
 ├── LICENSE
-└── Favicon.svg
+├── package.json
+├── README.md
+├── robots.txt
+├── sitemap.xml
+└── site.webmanifest
 ```
 
 ---
@@ -134,55 +47,64 @@ frontend-index/
 Clone the repository:
 
 ```bash
-git clone https://github.com/YOUR-USERNAME/frontend-index.git
-```
-
-Navigate into the project:
-
-```bash
+git clone https://github.com/deandreperry/frontend-index.git
 cd frontend-index
 ```
 
-Open the application:
+Run the static site locally:
 
 ```bash
-open index.html
+npm run dev
 ```
 
-Or run a local server:
+Then open:
+
+```text
+http://localhost:4173
+```
+
+Run the repo checks:
 
 ```bash
-npx serve .
+npm run check
 ```
+
+The check verifies required static files, key SEO/social metadata, valid inline JavaScript syntax, the manifest JSON, and the favicon SVG.
 
 ---
 
-## Future Roadmap
+## Built With
 
-Planned areas for expansion:
+- HTML5
+- CSS3
+- Vanilla JavaScript
+- SVG
+- GitHub Pages
 
-* Design Systems
-* Accessibility Engineering
-* Performance Engineering
-* React Ecosystem
-* Next.js Architecture
-* State Management
-* Frontend Testing
-* API Integration Patterns
-* Frontend Security
-* Advanced AI Development Workflows
+The app is intentionally dependency-light. The core experience lives in `index.html` so it can be hosted as a plain static site.
+
+---
+
+## Roadmap
+
+Planned expansion areas:
+
+- Accessibility engineering
+- Frontend testing
+- API integration patterns
+- Frontend security
+- Advanced performance diagnostics
+- React and Next.js architecture
+- State management tradeoffs
+- Design system governance
 
 ---
 
 ## License
 
-Copyright © 2026 De'Andre Perry. All rights reserved.
+Copyright (c) 2026 De'Andre Perry. All rights reserved.
 
-This project is proprietary software and is provided for educational and informational purposes only.
-
-No permission is granted to copy, modify, distribute, sublicense, sell, or commercially use this software or any derivative works without explicit written permission from the author.
-
-Unauthorized reproduction or redistribution of this software, in whole or in part, is prohibited.
+This project is proprietary software provided for educational and informational purposes only. No permission is granted to copy, modify, distribute, sublicense, sell, or commercially use this software or derivative works without explicit written permission from the author.
 
 ---
 

@@ -1,3 +1,11 @@
+# Operating system
+.DS_Store
+Thumbs.db
+
+# Local workspace artifacts
+work/
+outputs/
+
 # Logs
 logs
 *.log
