@@ -1,0 +1,1795 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Frontend Index — A Visual Reference for Modern Frontend Engineering</title>
+<meta name="description" content="Frontend Index is a visual reference system for modern frontend engineering — the browser, frameworks, tooling, architecture, performance, and the patterns teams ship in production." />
+<meta name="theme-color" content="#08080a" />
+<meta property="og:title" content="Frontend Index" />
+<meta property="og:description" content="A visual reference for modern frontend engineering." />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root {
+  --font-display: 'Geist', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'Geist', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'Geist Mono', 'SF Mono', Menlo, monospace;
+  --font-serif: 'Instrument Serif', Georgia, serif;
+  --bg: #08080a; --bg-elev-1: #0d0d10; --bg-elev-2: #131318; --bg-elev-3: #1a1a21;
+  --bg-overlay: rgba(10, 10, 14, 0.72); --bg-glass: rgba(20, 20, 26, 0.55);
+  --border: rgba(255, 255, 255, 0.06); --border-strong: rgba(255, 255, 255, 0.12); --border-active: rgba(255, 255, 255, 0.22);
+  --text: #ededf0; --text-2: #a8a8b3; --text-3: #6b6b76; --text-4: #444450;
+  --accent: #4f9dff; --accent-2: #7ab6ff; --accent-glow: rgba(79, 157, 255, 0.18);
+  --violet: #a98bfa; --cyan: #5cd1ff; --pink: #ff8fb4; --green: #5be39a; --amber: #ffb86b; --red: #ff7a7a;
+  --grid-line: rgba(255, 255, 255, 0.025);
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.4); --shadow-md: 0 4px 24px rgba(0,0,0,0.35); --shadow-lg: 0 24px 60px rgba(0,0,0,0.55);
+  --radius-sm: 6px; --radius: 10px; --radius-lg: 14px; --radius-xl: 20px;
+  --sidebar-width: 264px; --topbar-height: 56px; --drawer-width: 460px;
+}
+html[data-theme="light"] {
+  --bg: #fafafa; --bg-elev-1: #ffffff; --bg-elev-2: #f4f4f6; --bg-elev-3: #ededf0;
+  --bg-overlay: rgba(255, 255, 255, 0.78); --bg-glass: rgba(255, 255, 255, 0.65);
+  --border: rgba(0, 0, 0, 0.07); --border-strong: rgba(0, 0, 0, 0.12); --border-active: rgba(0, 0, 0, 0.22);
+  --text: #111114; --text-2: #57575e; --text-3: #87878f; --text-4: #b2b2b9;
+  --accent: #1f6feb; --accent-2: #1158c7; --accent-glow: rgba(31, 111, 235, 0.12);
+  --grid-line: rgba(0, 0, 0, 0.04);
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.05); --shadow-md: 0 6px 24px rgba(0,0,0,0.08); --shadow-lg: 0 24px 60px rgba(0,0,0,0.12);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body { font-family: var(--font-body); background: var(--bg); color: var(--text); line-height: 1.55; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-feature-settings: "ss01", "cv11"; letter-spacing: -0.005em; overflow-x: hidden; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; background: none; border: none; cursor: pointer; }
+input, select, textarea { font: inherit; color: inherit; }
+img, svg { display: block; max-width: 100%; }
+::selection { background: var(--accent); color: white; }
+:focus { outline: none; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+.skip-link { position: fixed; top: -60px; left: 12px; z-index: 400; background: var(--accent); color: #fff; padding: 10px 16px; border-radius: 8px; font-size: 13px; font-weight: 500; transition: top .2s; }
+.skip-link:focus { top: 12px; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; } }
+body::before { content: ''; position: fixed; inset: 0; background-image: linear-gradient(var(--grid-line) 1px, transparent 1px), linear-gradient(90deg, var(--grid-line) 1px, transparent 1px); background-size: 56px 56px; pointer-events: none; z-index: 0; mask-image: radial-gradient(ellipse at top, black 30%, transparent 80%); }
+body::after { content: ''; position: fixed; top: -300px; left: 50%; transform: translateX(-50%); width: 1200px; height: 800px; background: radial-gradient(ellipse at center, var(--accent-glow) 0%, transparent 60%); pointer-events: none; z-index: 0; opacity: 0.8; }
+.topbar { position: fixed; top: 0; left: 0; right: 0; height: var(--topbar-height); background: var(--bg-overlay); backdrop-filter: saturate(180%) blur(20px); -webkit-backdrop-filter: saturate(180%) blur(20px); border-bottom: 1px solid var(--border); z-index: 100; display: flex; align-items: center; padding: 0 20px; gap: 16px; }
+.menu-btn { display: none; width: 32px; height: 32px; place-items: center; border-radius: 8px; color: var(--text-2); }
+.menu-btn:hover { background: var(--bg-elev-2); color: var(--text); }
+.menu-btn svg { width: 18px; height: 18px; }
+.brand { display: flex; align-items: center; gap: 10px; font-weight: 600; font-size: 14.5px; letter-spacing: -0.02em; }
+.brand-mark { width: 24px; height: 24px; border-radius: 6px; background: linear-gradient(135deg, var(--accent), var(--violet)); display: grid; place-items: center; box-shadow: 0 0 0 1px rgba(255,255,255,0.08), 0 4px 12px rgba(79,157,255,0.35); }
+.brand-mark svg { width: 14px; height: 14px; color: white; }
+.brand-version { font-size: 10.5px; color: var(--text-3); padding: 2px 6px; border: 1px solid var(--border); border-radius: 4px; font-family: var(--font-mono); margin-left: 6px; }
+.top-nav { display: flex; gap: 4px; margin-left: 8px; }
+.top-nav a { font-size: 13px; color: var(--text-2); padding: 6px 10px; border-radius: 6px; transition: all .15s; }
+.top-nav a:hover { color: var(--text); background: var(--bg-elev-2); }
+.top-spacer { flex: 1; }
+.search-trigger { display: flex; align-items: center; gap: 10px; background: var(--bg-elev-2); border: 1px solid var(--border); border-radius: 8px; padding: 6px 8px 6px 12px; font-size: 12.5px; color: var(--text-3); min-width: 240px; transition: all .15s; }
+.search-trigger:hover { border-color: var(--border-strong); color: var(--text-2); }
+.search-trigger .search-icon { width: 14px; height: 14px; }
+.search-trigger .kbd { margin-left: auto; font-family: var(--font-mono); font-size: 10.5px; background: var(--bg-elev-3); border: 1px solid var(--border); padding: 2px 6px; border-radius: 4px; color: var(--text-3); }
+.icon-btn { width: 32px; height: 32px; display: grid; place-items: center; border-radius: 8px; color: var(--text-2); transition: all .15s; }
+.icon-btn:hover { background: var(--bg-elev-2); color: var(--text); }
+.icon-btn svg { width: 16px; height: 16px; }
+.app { position: relative; z-index: 1; display: grid; grid-template-columns: var(--sidebar-width) 1fr; padding-top: var(--topbar-height); min-height: 100vh; }
+.sidebar { position: sticky; top: var(--topbar-height); height: calc(100vh - var(--topbar-height)); overflow-y: auto; padding: 28px 12px 80px 20px; border-right: 1px solid var(--border); background: linear-gradient(180deg, transparent, var(--bg) 100px); }
+.sidebar::-webkit-scrollbar { width: 6px; }
+.sidebar::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 4px; }
+.side-section { margin-bottom: 22px; }
+.side-section-title { font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-3); margin-bottom: 8px; padding: 0 10px; }
+.side-link { display: flex; align-items: center; gap: 10px; padding: 6px 10px; font-size: 13px; color: var(--text-2); border-radius: 6px; margin-bottom: 1px; transition: all .12s; cursor: pointer; position: relative; }
+.side-link:hover { background: var(--bg-elev-2); color: var(--text); }
+.side-link.active { color: var(--text); background: var(--bg-elev-2); }
+.side-link.active::before { content: ''; position: absolute; left: -20px; top: 50%; transform: translateY(-50%); width: 3px; height: 18px; background: var(--accent); border-radius: 0 2px 2px 0; }
+.side-link .side-icon { width: 14px; height: 14px; color: var(--text-3); flex-shrink: 0; }
+.side-link.active .side-icon { color: var(--accent); }
+.sidebar-backdrop { display: none; }
+.main { padding: 0 0 120px; position: relative; min-width: 0; }
+.container { max-width: 1080px; margin: 0 auto; padding: 0 48px; }
+.hero { position: relative; padding: 80px 0 60px; overflow: hidden; }
+.hero-inner { max-width: 1080px; margin: 0 auto; padding: 0 48px; position: relative; z-index: 2; }
+.hero-eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 12.5px; font-family: var(--font-mono); color: var(--text-2); padding: 5px 12px; border: 1px solid var(--border-strong); border-radius: 100px; background: var(--bg-glass); backdrop-filter: blur(20px); margin-bottom: 28px; }
+.hero-eyebrow .pulse { width: 6px; height: 6px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 0 var(--green); animation: pulse 2s infinite; }
+@keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(91,227,154,0.6); } 70% { box-shadow: 0 0 0 8px rgba(91,227,154,0); } 100% { box-shadow: 0 0 0 0 rgba(91,227,154,0); } }
+.hero h1 { font-family: var(--font-display); font-size: clamp(40px, 6vw, 72px); line-height: 0.98; letter-spacing: -0.04em; font-weight: 600; margin-bottom: 24px; max-width: 900px; }
+.hero h1 .accent { background: linear-gradient(180deg, var(--text) 0%, var(--text-3) 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; font-family: var(--font-serif); font-style: italic; font-weight: 400; }
+.hero p.lede { font-size: 18px; color: var(--text-2); max-width: 620px; line-height: 1.55; margin-bottom: 36px; }
+.hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; font-size: 13.5px; font-weight: 500; border-radius: 8px; transition: all .15s; border: 1px solid var(--border-strong); background: var(--bg-elev-2); color: var(--text); }
+.btn:hover { border-color: var(--border-active); background: var(--bg-elev-3); transform: translateY(-1px); }
+.btn svg { width: 14px; height: 14px; }
+.btn-primary { background: var(--text); color: var(--bg); border-color: var(--text); }
+.btn-primary:hover { background: var(--text); opacity: 0.9; transform: translateY(-1px); box-shadow: 0 6px 24px rgba(0,0,0,0.3); }
+.hero-viz { position: relative; margin-top: 60px; height: 360px; border: 1px solid var(--border); border-radius: var(--radius-xl); background: radial-gradient(ellipse at 50% 50%, var(--accent-glow), transparent 70%), var(--bg-elev-1); overflow: hidden; }
+.hero-viz svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.hero-viz-label { position: absolute; bottom: 20px; left: 24px; font-size: 11px; color: var(--text-3); font-family: var(--font-mono); display: flex; gap: 6px; align-items: center; }
+.hero-viz-label .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+section[id] { scroll-margin-top: 80px; padding: 64px 0; position: relative; }
+section[id] + section[id] { border-top: 1px solid var(--border); }
+.section-head { margin-bottom: 48px; max-width: 800px; }
+.section-eyebrow { font-size: 11.5px; font-family: var(--font-mono); color: var(--accent); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 14px; display: flex; align-items: center; gap: 10px; }
+.section-eyebrow::before { content: ''; width: 24px; height: 1px; background: var(--accent); display: inline-block; }
+.section-head h2 { font-family: var(--font-display); font-size: clamp(28px, 4vw, 44px); line-height: 1.05; letter-spacing: -0.03em; font-weight: 600; margin-bottom: 14px; }
+.section-head p { font-size: 16px; color: var(--text-2); line-height: 1.65; max-width: 640px; }
+.roadmap { position: relative; display: flex; flex-direction: column; gap: 0; }
+.roadmap-node { position: relative; display: grid; grid-template-columns: 120px 1fr; gap: 24px; padding: 20px 0; }
+.roadmap-node:not(:last-child)::after { content: ''; position: absolute; left: 50px; top: 56px; bottom: -4px; width: 1px; background: linear-gradient(180deg, var(--border-strong), transparent); }
+.roadmap-step { display: flex; flex-direction: column; align-items: center; gap: 8px; z-index: 2; position: relative; }
+.roadmap-step .step-circle { width: 36px; height: 36px; border-radius: 50%; background: var(--bg-elev-2); border: 1px solid var(--border-strong); display: grid; place-items: center; font-family: var(--font-mono); font-size: 12px; font-weight: 500; color: var(--text-2); transition: all .2s; }
+.roadmap-node:hover .step-circle { border-color: var(--accent); color: var(--accent); background: var(--accent-glow); }
+.roadmap-node.visited .step-circle { border-color: var(--green); color: var(--green); background: rgba(91,227,154,0.1); }
+.roadmap-step .step-label { font-size: 11px; color: var(--text-3); font-family: var(--font-mono); }
+.roadmap-card { background: var(--bg-elev-1); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 20px 24px; transition: all .2s; cursor: pointer; text-align: left; width: 100%; display: block; }
+.roadmap-card:hover { border-color: var(--border-strong); background: var(--bg-elev-2); transform: translateY(-1px); }
+.roadmap-card h3 { font-size: 18px; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 6px; display: flex; align-items: center; gap: 10px; }
+.roadmap-card h3 .ico { width: 24px; height: 24px; border-radius: 6px; background: var(--bg-elev-3); display: grid; place-items: center; color: var(--accent); }
+.roadmap-card h3 .ico svg { width: 14px; height: 14px; }
+.roadmap-card h3 .drill { margin-left: auto; font-size: 11px; font-family: var(--font-mono); color: var(--text-3); display: flex; align-items: center; gap: 4px; }
+.roadmap-card h3 .drill svg { width: 12px; height: 12px; }
+.roadmap-card p { font-size: 13.5px; color: var(--text-2); line-height: 1.6; margin-bottom: 12px; }
+.roadmap-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.tag { font-size: 11px; font-family: var(--font-mono); padding: 3px 8px; border-radius: 4px; border: 1px solid var(--border); color: var(--text-2); background: var(--bg-elev-2); }
+.tag.tag-accent { color: var(--accent); border-color: var(--accent-glow); background: var(--accent-glow); }
+.pipeline { background: var(--bg-elev-1); border: 1px solid var(--border); border-radius: var(--radius-xl); padding: 32px; position: relative; overflow: hidden; }
+.pipeline-stages { display: grid; grid-template-columns: repeat(6, 1fr); gap: 0; position: relative; margin-bottom: 28px; }
+.pipeline-stage { position: relative; padding: 16px 12px; text-align: center; cursor: pointer; transition: all .2s; background: none; border: none; width: 100%; }
+.pipeline-stage::after { content: ''; position: absolute; right: -1px; top: 30%; bottom: 30%; width: 1px; background: var(--border); }
+.pipeline-stage:last-child::after { display: none; }
+.pipeline-stage .stage-icon { width: 44px; height: 44px; margin: 0 auto 10px; border-radius: 10px; background: var(--bg-elev-2); border: 1px solid var(--border); display: grid; place-items: center; color: var(--text-2); transition: all .2s; }
+.pipeline-stage .stage-icon svg { width: 18px; height: 18px; }
+.pipeline-stage:hover .stage-icon, .pipeline-stage.active .stage-icon { border-color: var(--accent); color: var(--accent); background: var(--accent-glow); }
+.pipeline-stage .stage-name { font-size: 12.5px; font-weight: 500; margin-bottom: 2px; }
+.pipeline-stage .stage-sub { font-size: 10.5px; color: var(--text-3); font-family: var(--font-mono); }
+.pipeline-detail { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 20px 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; min-height: 120px; }
+.pipeline-detail h4 { font-size: 15px; font-weight: 600; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+.pipeline-detail h4 .kbd-tag { font-size: 10px; font-family: var(--font-mono); background: var(--accent-glow); color: var(--accent); padding: 2px 6px; border-radius: 4px; font-weight: 500; }
+.pipeline-detail p { font-size: 13px; color: var(--text-2); line-height: 1.65; }
+.code-block { background: var(--bg-elev-2); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 12px 14px; font-family: var(--font-mono); font-size: 12px; line-height: 1.6; color: var(--text-2); overflow-x: auto; white-space: pre; }
+.code-block .k { color: var(--violet); } .code-block .s { color: var(--green); } .code-block .c { color: var(--text-3); font-style: italic; } .code-block .t { color: var(--cyan); } .code-block .f { color: var(--amber); }
+.tech-tabs { display: flex; gap: 4px; background: var(--bg-elev-1); border: 1px solid var(--border); border-radius: 100px; padding: 4px; width: fit-content; margin-bottom: 32px; }
+.tech-tab { padding: 6px 16px; font-size: 13px; border-radius: 100px; color: var(--text-2); transition: all .15s; font-family: var(--font-mono); }
+.tech-tab.active { background: var(--text); color: var(--bg); }
+.tech-tab:not(.active):hover { color: var(--text); }
+.tech-panel { display: none; }
+.tech-panel.active { display: block; animation: fadeIn .3s; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+.feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+.feature-card { background: var(--bg-elev-1); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 18px 20px; transition: all .2s; }
+.feature-card:hover { border-color: var(--border-strong); background: var(--bg-elev-2); }
+.feature-card .fc-icon { width: 30px; height: 30px; border-radius: 8px; background: var(--bg-elev-3); display: grid; place-items: center; color: var(--accent); margin-bottom: 14px; }
+.feature-card .fc-icon svg { width: 16px; height: 16px; }
+.feature-card h4 { font-size: 14.5px; font-weight: 600; margin-bottom: 5px; letter-spacing: -0.01em; }
+.feature-card p { font-size: 12.5px; color: var(--text-2); line-height: 1.55; }
+.lab { background: var(--bg-elev-1); border: 1px solid var(--border); border-radius: var(--radius-xl); overflow: hidden; margin-top: 24px; }
+.lab-header { padding: 14px 20px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 10px; background: var(--bg-elev-2); }
+.lab-header .lab-title { font-size: 13px; font-weight: 500; flex: 1; }
+.lab-header .lab-dots { display: flex; gap: 6px; }
+.lab-header .lab-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--bg-elev-3); }
+.lab-header .lab-dot.red { background: rgba(255,122,122,0.5); }
+.lab-header .lab-dot.amber { background: rgba(255,184,107,0.5); }
+.lab-header .lab-dot.green { background: rgba(91,227,154,0.5); }
+.lab-header .lab-tag { font-family: var(--font-mono); font-size: 11px; color: var(--text-3); padding: 3px 8px; background: var(--bg-elev-3); border-radius: 4px; }
+.lab-body { display: grid; grid-template-columns: 240px 1fr; min-height: 320px; }
+.lab-controls { background: var(--bg-elev-2); border-right: 1px solid var(--border); padding: 18px 20px; display: flex; flex-direction: column; gap: 18px; }
+.lab-control label { display: block; font-size: 11px; font-family: var(--font-mono); color: var(--text-3); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; }
+.lab-control label .lab-val { color: var(--accent); float: right; }
+.lab-control select, .lab-control input[type="range"], .lab-control input[type="text"] { width: 100%; background: var(--bg); border: 1px solid var(--border); border-radius: 6px; padding: 6px 10px; font-size: 12.5px; color: var(--text); font-family: var(--font-mono); }
+.lab-control select:focus, .lab-control input:focus { outline: none; border-color: var(--accent); }
+.lab-control .seg { display: grid; grid-template-columns: repeat(auto-fit, minmax(50px, 1fr)); gap: 4px; background: var(--bg); border: 1px solid var(--border); border-radius: 6px; padding: 3px; }
+.lab-control .seg-btn { padding: 5px 8px; font-size: 11px; font-family: var(--font-mono); color: var(--text-3); border-radius: 4px; text-align: center; transition: all .12s; cursor: pointer; background: none; border: none; }
+.lab-control .seg-btn:hover { color: var(--text); }
+.lab-control .seg-btn.active { background: var(--bg-elev-3); color: var(--text); }
+.lab-preview { padding: 24px; background: radial-gradient(circle at 20% 20%, var(--accent-glow), transparent 60%), var(--bg); position: relative; display: flex; align-items: center; justify-content: center; }
+.flex-stage { width: 100%; height: 100%; min-height: 240px; background: var(--bg-elev-1); border: 1px dashed var(--border-strong); border-radius: var(--radius); display: flex; padding: 14px; gap: 10px; transition: all .25s ease; }
+.flex-item { background: linear-gradient(135deg, var(--accent), var(--violet)); color: white; border-radius: 8px; padding: 14px 20px; font-family: var(--font-mono); font-size: 13px; font-weight: 500; box-shadow: 0 4px 16px rgba(79,157,255,0.25); display: flex; align-items: center; justify-content: center; min-width: 48px; min-height: 48px; transition: all .25s ease; }
+.flex-item:nth-child(2) { background: linear-gradient(135deg, var(--violet), var(--pink)); }
+.flex-item:nth-child(3) { background: linear-gradient(135deg, var(--pink), var(--amber)); }
+.flex-item:nth-child(4) { background: linear-gradient(135deg, var(--amber), var(--green)); }
+.lab-code { border-top: 1px solid var(--border); padding: 16px 20px; font-family: var(--font-mono); font-size: 12.5px; line-height: 1.7; background: var(--bg); color: var(--text-2); overflow-x: auto; white-space: pre; }
+/* grid lab */
+.grid-stage { width: 100%; min-height: 260px; background: var(--bg-elev-1); border: 1px dashed var(--border-strong); border-radius: var(--radius); display: grid; padding: 12px; gap: 8px; }
+.grid-cell { background: linear-gradient(135deg, var(--accent), var(--violet)); color: #fff; border-radius: 6px; display: grid; place-items: center; font-family: var(--font-mono); font-size: 12px; font-weight: 500; min-height: 40px; opacity: 0.9; }
+.grid-cell:nth-child(3n+2) { background: linear-gradient(135deg, var(--violet), var(--pink)); }
+.grid-cell:nth-child(3n) { background: linear-gradient(135deg, var(--cyan), var(--accent)); }
+/* specificity lab */
+.spec-input-row { display: flex; flex-direction: column; gap: 10px; }
+.spec-output { display: flex; align-items: center; justify-content: center; gap: 16px; padding: 30px; }
+.spec-pill { text-align: center; }
+.spec-pill .sp-val { font-size: 40px; font-weight: 600; letter-spacing: -0.03em; font-family: var(--font-mono); line-height: 1; }
+.spec-pill .sp-label { font-size: 11px; font-family: var(--font-mono); color: var(--text-3); text-transform: uppercase; letter-spacing: 0.06em; margin-top: 8px; }
+.spec-pill.a .sp-val { color: var(--red); } .spec-pill.b .sp-val { color: var(--amber); } .spec-pill.c .sp-val { color: var(--cyan); }
+.spec-sep { font-size: 30px; color: var(--text-4); font-weight: 300; }
+.spec-breakdown { padding: 0 20px 20px; }
+.spec-token { display: inline-block; font-family: var(--font-mono); font-size: 12px; padding: 3px 8px; border-radius: 5px; margin: 3px; border: 1px solid var(--border); }
+.spec-token.a { color: var(--red); border-color: rgba(255,122,122,0.3); background: rgba(255,122,122,0.08); }
+.spec-token.b { color: var(--amber); border-color: rgba(255,184,107,0.3); background: rgba(255,184,107,0.08); }
+.spec-token.c { color: var(--cyan); border-color: rgba(92,209,255,0.3); background: rgba(92,209,255,0.08); }
+.framework-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; }
+.framework-card { background: var(--bg-elev-1); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px 24px; transition: all .25s; position: relative; overflow: hidden; cursor: pointer; text-align: left; width: 100%; }
+.framework-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--fw-color, var(--accent)), transparent); opacity: 0; transition: opacity .25s; }
+.framework-card:hover::before { opacity: 1; }
+.framework-card:hover { border-color: var(--border-strong); transform: translateY(-2px); }
+.framework-card .fw-head { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+.framework-card .fw-logo { width: 36px; height: 36px; border-radius: 8px; display: grid; place-items: center; background: var(--bg-elev-2); border: 1px solid var(--border); color: var(--fw-color, var(--accent)); font-weight: 600; font-family: var(--font-mono); font-size: 14px; }
+.framework-card .fw-name { font-size: 16px; font-weight: 600; letter-spacing: -0.02em; display: flex; align-items: center; gap: 8px; }
+.framework-card .fw-meta { font-size: 11px; color: var(--text-3); font-family: var(--font-mono); }
+.framework-card .fw-desc { font-size: 13px; color: var(--text-2); line-height: 1.6; margin-bottom: 14px; }
+.framework-card .fw-traits { display: grid; gap: 6px; margin-bottom: 4px; }
+.framework-card .fw-trait { display: grid; grid-template-columns: 90px 1fr; align-items: center; font-size: 11.5px; gap: 8px; }
+.framework-card .fw-trait-label { color: var(--text-3); font-family: var(--font-mono); }
+.framework-card .fw-bar { height: 4px; background: var(--bg-elev-3); border-radius: 2px; overflow: hidden; }
+.framework-card .fw-bar-fill { height: 100%; background: var(--fw-color, var(--accent)); border-radius: 2px; }
+.drill-hint { font-size: 11px; font-family: var(--font-mono); color: var(--text-3); display: inline-flex; align-items: center; gap: 4px; margin-top: 12px; }
+.drill-hint svg { width: 12px; height: 12px; }
+.stack-map { background: var(--bg-elev-1); border: 1px solid var(--border); border-radius: var(--radius-xl); overflow: hidden; position: relative; }
+.stack-map-toolbar { display: flex; align-items: center; gap: 8px; padding: 12px 16px; border-bottom: 1px solid var(--border); background: var(--bg-elev-2); flex-wrap: wrap; }
+.stack-chip { font-size: 11.5px; font-family: var(--font-mono); padding: 4px 10px; border-radius: 100px; border: 1px solid var(--border); color: var(--text-2); background: var(--bg); cursor: pointer; transition: all .12s; display: inline-flex; align-items: center; gap: 6px; }
+.stack-chip:hover { color: var(--text); border-color: var(--border-strong); }
+.stack-chip.active { background: var(--text); color: var(--bg); border-color: var(--text); }
+.stack-chip .chip-dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; opacity: 0.6; }
+.stack-canvas-wrap { position: relative; height: 560px; background: radial-gradient(ellipse at 30% 30%, rgba(79,157,255,0.08), transparent 60%), radial-gradient(ellipse at 70% 70%, rgba(169,139,250,0.06), transparent 60%), var(--bg); overflow: hidden; }
+.stack-canvas-wrap svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.stack-node { cursor: pointer; transition: opacity .2s; }
+.stack-node:focus-visible { outline: none; }
+.stack-node:focus-visible circle:nth-of-type(2) { stroke-width: 3; }
+.stack-node.dim { opacity: 0.2; }
+.stack-node text { pointer-events: none; user-select: none; }
+.stack-hint { position: absolute; top: 14px; left: 16px; font-size: 11px; font-family: var(--font-mono); color: var(--text-3); pointer-events: none; }
+.stack-tooltip { position: absolute; bottom: 16px; right: 16px; background: var(--bg-glass); backdrop-filter: blur(20px); border: 1px solid var(--border-strong); border-radius: var(--radius-lg); padding: 14px 18px; min-width: 220px; max-width: 280px; font-size: 12.5px; pointer-events: none; opacity: 0; transform: translateY(8px); transition: all .2s; }
+.stack-tooltip.show { opacity: 1; transform: translateY(0); }
+.stack-tooltip .tip-name { font-weight: 600; font-size: 14px; margin-bottom: 4px; display: flex; align-items: center; gap: 8px; }
+.stack-tooltip .tip-cat { font-family: var(--font-mono); font-size: 10.5px; color: var(--text-3); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; }
+.stack-tooltip .tip-desc { color: var(--text-2); line-height: 1.5; margin-bottom: 10px; }
+.stack-tooltip .tip-cta { font-family: var(--font-mono); font-size: 10.5px; color: var(--accent); }
+.card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; }
+.glass-card { background: var(--bg-elev-1); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px 24px; transition: all .2s; }
+.glass-card:hover { border-color: var(--border-strong); transform: translateY(-2px); }
+.glass-card .card-num { font-family: var(--font-mono); font-size: 11px; color: var(--text-3); margin-bottom: 12px; }
+.glass-card h4 { font-size: 16px; font-weight: 600; letter-spacing: -0.015em; margin-bottom: 8px; }
+.glass-card p { font-size: 13px; color: var(--text-2); line-height: 1.6; }
+.glass-card .card-list { margin-top: 14px; display: flex; flex-direction: column; gap: 6px; }
+.glass-card .card-list-item { font-size: 12px; font-family: var(--font-mono); color: var(--text-2); display: flex; align-items: center; gap: 8px; }
+.glass-card .card-list-item::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: var(--accent); }
+.eventloop-stage { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+.eventloop-zone { background: var(--bg-elev-2); border: 1px solid var(--border); border-radius: var(--radius); padding: 12px 14px; min-height: 140px; }
+.eventloop-zone .zone-title { font-size: 11px; font-family: var(--font-mono); color: var(--text-3); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+.eventloop-zone .zone-title .zone-dot { width: 6px; height: 6px; border-radius: 50%; }
+.eventloop-zone .zone-items { display: flex; flex-direction: column; gap: 5px; }
+.eventloop-zone .zone-items.stack { flex-direction: column-reverse; }
+.eventloop-item { font-family: var(--font-mono); font-size: 11.5px; background: var(--bg); border: 1px solid var(--border); border-radius: 5px; padding: 5px 10px; color: var(--text); transition: all .25s; animation: itemIn .2s; }
+@keyframes itemIn { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
+.eventloop-zone[data-zone="stack"] .zone-title .zone-dot { background: var(--cyan); }
+.eventloop-zone[data-zone="queue"] .zone-title .zone-dot { background: var(--amber); }
+.eventloop-zone[data-zone="microqueue"] .zone-title .zone-dot { background: var(--violet); }
+.eventloop-log { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 18px; font-family: var(--font-mono); font-size: 12px; color: var(--text-2); min-height: 80px; max-height: 200px; overflow-y: auto; margin-bottom: 12px; }
+.eventloop-log .log-line { padding: 2px 0; }
+.eventloop-log .log-line .step { color: var(--text-3); margin-right: 8px; }
+.eventloop-controls { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.folder-tree { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px 22px; font-family: var(--font-mono); font-size: 12.5px; line-height: 1.85; }
+.folder-tree .ft-folder { color: var(--accent); } .folder-tree .ft-file { color: var(--text-2); } .folder-tree .ft-comment { color: var(--text-3); }
+.metric-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px; margin-bottom: 24px; }
+.metric { background: var(--bg-elev-1); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px 18px; }
+.metric .m-label { font-size: 11px; font-family: var(--font-mono); color: var(--text-3); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px; }
+.metric .m-value { font-size: 24px; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 4px; }
+.metric .m-value .m-unit { font-size: 13px; color: var(--text-3); font-weight: 400; margin-left: 3px; }
+.metric .m-trend { font-size: 11px; color: var(--green); font-family: var(--font-mono); }
+.metric .m-trend.warn { color: var(--amber); } .metric .m-trend.bad { color: var(--red); }
+.career-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; }
+.career-card { background: var(--bg-elev-1); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px 24px; position: relative; overflow: hidden; transition: all .25s; }
+.career-card::before { content: ''; position: absolute; top: 0; right: 0; width: 80px; height: 80px; background: radial-gradient(circle at top right, var(--ct-color, var(--accent)), transparent 60%); opacity: 0.15; transition: opacity .25s; }
+.career-card:hover::before { opacity: 0.3; }
+.career-card:hover { border-color: var(--border-strong); transform: translateY(-2px); }
+.career-card .ct-icon { width: 36px; height: 36px; border-radius: 9px; background: var(--bg-elev-3); display: grid; place-items: center; color: var(--ct-color, var(--accent)); margin-bottom: 14px; }
+.career-card .ct-icon svg { width: 18px; height: 18px; }
+.career-card .ct-name { font-size: 16px; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 4px; }
+.career-card .ct-tagline { font-size: 12px; color: var(--text-3); font-family: var(--font-mono); margin-bottom: 14px; }
+.career-card .ct-desc { font-size: 13px; color: var(--text-2); line-height: 1.6; margin-bottom: 14px; }
+.career-card .ct-stack { display: flex; flex-wrap: wrap; gap: 4px; }
+.pattern-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
+.pattern-card { background: var(--bg-elev-1); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; transition: all .25s; }
+.pattern-card:hover { border-color: var(--border-strong); transform: translateY(-2px); }
+.pattern-preview { height: 140px; background: var(--bg-elev-2); border-bottom: 1px solid var(--border); display: grid; place-items: center; position: relative; overflow: hidden; }
+.pattern-info { padding: 14px 18px; }
+.pattern-info h4 { font-size: 14px; font-weight: 600; margin-bottom: 3px; }
+.pattern-info p { font-size: 12px; color: var(--text-3); }
+.pattern-modal { width: 75%; background: var(--bg-elev-3); border: 1px solid var(--border-strong); border-radius: 8px; padding: 12px 14px; box-shadow: var(--shadow-md); font-size: 10px; }
+.pattern-modal .pm-title { font-weight: 600; margin-bottom: 8px; font-size: 11px; }
+.pattern-modal .pm-row { height: 6px; background: var(--bg); border-radius: 3px; margin-bottom: 5px; }
+.pattern-modal .pm-row.short { width: 60%; }
+.pattern-modal .pm-actions { display: flex; gap: 4px; margin-top: 10px; }
+.pattern-modal .pm-btn { height: 18px; padding: 0 8px; border-radius: 4px; background: var(--accent); font-size: 9px; color: white; display: grid; place-items: center; }
+.pattern-modal .pm-btn.sec { background: var(--bg); color: var(--text-2); border: 1px solid var(--border); }
+.pattern-dropdown { width: 65%; background: var(--bg-elev-3); border: 1px solid var(--border-strong); border-radius: 6px; padding: 6px; box-shadow: var(--shadow-md); font-size: 10px; }
+.pattern-dropdown .pd-item { padding: 4px 8px; border-radius: 3px; display: flex; align-items: center; gap: 6px; color: var(--text-2); }
+.pattern-dropdown .pd-item.active { background: var(--accent-glow); color: var(--accent); }
+.pattern-dropdown .pd-item .pd-dot { width: 5px; height: 5px; border-radius: 50%; background: currentColor; }
+.pattern-tabs { width: 70%; font-size: 10px; }
+.pattern-tabs .pt-bar { display: flex; gap: 0; border-bottom: 1px solid var(--border); margin-bottom: 8px; }
+.pattern-tabs .pt-tab { padding: 6px 10px; color: var(--text-3); border-bottom: 2px solid transparent; margin-bottom: -1px; }
+.pattern-tabs .pt-tab.active { color: var(--text); border-bottom-color: var(--accent); }
+.pattern-tabs .pt-body { color: var(--text-2); padding: 4px 8px; }
+.pattern-cmd { width: 75%; background: var(--bg); border: 1px solid var(--border-strong); border-radius: 6px; padding: 8px; font-size: 10px; box-shadow: var(--shadow-md); }
+.pattern-cmd .pc-input { background: var(--bg-elev-3); padding: 5px 8px; border-radius: 4px; color: var(--text-3); margin-bottom: 6px; }
+.pattern-cmd .pc-item { padding: 4px 8px; color: var(--text-2); }
+.pattern-cmd .pc-item.active { background: var(--accent-glow); color: var(--accent); border-radius: 3px; }
+.pattern-tip { position: relative; }
+.pattern-tip .pt-trigger { width: 40px; height: 24px; background: var(--bg-elev-3); border-radius: 4px; }
+.pattern-tip .pt-bubble { position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); margin-bottom: 8px; background: var(--text); color: var(--bg); padding: 4px 8px; border-radius: 4px; font-size: 10px; font-family: var(--font-mono); white-space: nowrap; }
+.pattern-toggle .pt-row { display: flex; align-items: center; justify-content: space-between; width: 70%; font-size: 10px; margin-bottom: 6px; color: var(--text-2); }
+.pattern-toggle .pt-switch { width: 24px; height: 14px; background: var(--bg); border-radius: 100px; position: relative; border: 1px solid var(--border); }
+.pattern-toggle .pt-switch::after { content: ''; position: absolute; top: 1px; left: 1px; width: 10px; height: 10px; background: var(--text-3); border-radius: 50%; }
+.pattern-toggle .pt-switch.on { background: var(--accent); border-color: var(--accent); }
+.pattern-toggle .pt-switch.on::after { left: 11px; background: white; }
+.pattern-accord { width: 70%; font-size: 10px; }
+.pattern-accord .pa-row { border-bottom: 1px solid var(--border); padding: 6px 0; color: var(--text-2); display: flex; align-items: center; justify-content: space-between; }
+.pattern-accord .pa-row .pa-arrow { color: var(--text-3); font-family: var(--font-mono); }
+.pattern-accord .pa-content { padding: 6px 0; color: var(--text-3); font-size: 9px; }
+.pattern-nav { width: 80%; font-size: 10px; }
+.pattern-nav .pn-bar { display: flex; gap: 12px; padding: 6px 10px; border-radius: 6px; background: var(--bg-elev-3); border: 1px solid var(--border); }
+.pattern-nav .pn-item { color: var(--text-2); }
+.pattern-nav .pn-item.active { color: var(--accent); }
+.resource-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; }
+.resource-card { display: flex; align-items: center; gap: 12px; padding: 14px 16px; background: var(--bg-elev-1); border: 1px solid var(--border); border-radius: var(--radius); transition: all .15s; }
+.resource-card:hover { border-color: var(--border-strong); background: var(--bg-elev-2); }
+.resource-card .res-icon { width: 32px; height: 32px; border-radius: 7px; background: var(--bg-elev-3); display: grid; place-items: center; color: var(--accent); flex-shrink: 0; }
+.resource-card .res-icon svg { width: 16px; height: 16px; }
+.resource-card .res-meta { min-width: 0; }
+.resource-card .res-name { font-size: 13px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.resource-card .res-sub { font-size: 11.5px; color: var(--text-3); font-family: var(--font-mono); }
+/* command palette + about (shared backdrop) */
+.cmdk-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,0.55); backdrop-filter: blur(8px); z-index: 200; display: none; align-items: flex-start; justify-content: center; padding-top: 14vh; }
+.cmdk-backdrop.open { display: flex; animation: fadeIn .15s; }
+.cmdk { width: 100%; max-width: 580px; background: var(--bg-elev-1); border: 1px solid var(--border-strong); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); overflow: hidden; animation: slideUp .2s; }
+@keyframes slideUp { from { opacity: 0; transform: translateY(8px) scale(0.99); } to { opacity: 1; transform: none; } }
+.cmdk-input-wrap { display: flex; align-items: center; gap: 10px; padding: 14px 18px; border-bottom: 1px solid var(--border); }
+.cmdk-input-wrap svg { width: 16px; height: 16px; color: var(--text-3); }
+.cmdk-input { flex: 1; background: none; border: none; outline: none; font-size: 14.5px; color: var(--text); }
+.cmdk-input::placeholder { color: var(--text-3); }
+.cmdk-results { max-height: 400px; overflow-y: auto; padding: 8px; }
+.cmdk-group-label { font-size: 10.5px; text-transform: uppercase; font-family: var(--font-mono); color: var(--text-3); padding: 10px 12px 4px; letter-spacing: 0.08em; }
+.cmdk-item { display: flex; align-items: center; gap: 12px; padding: 9px 12px; border-radius: 7px; font-size: 13.5px; cursor: pointer; }
+.cmdk-item:hover, .cmdk-item.selected { background: var(--bg-elev-2); }
+.cmdk-item .item-icon { width: 26px; height: 26px; border-radius: 6px; background: var(--bg-elev-3); display: grid; place-items: center; color: var(--text-2); flex-shrink: 0; }
+.cmdk-item .item-icon svg { width: 13px; height: 13px; }
+.cmdk-item .item-text { flex: 1; min-width: 0; }
+.cmdk-item .item-name { color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.cmdk-item .item-name mark { background: var(--accent-glow); color: var(--accent); border-radius: 2px; padding: 0 1px; }
+.cmdk-item .item-sub { font-size: 11.5px; color: var(--text-3); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.cmdk-item .item-shortcut { font-family: var(--font-mono); font-size: 11px; color: var(--text-3); background: var(--bg-elev-3); padding: 2px 6px; border-radius: 4px; }
+.cmdk-footer { border-top: 1px solid var(--border); padding: 8px 18px; font-size: 11px; font-family: var(--font-mono); color: var(--text-3); display: flex; gap: 16px; align-items: center; }
+.cmdk-footer .footer-key { background: var(--bg-elev-3); padding: 1px 6px; border-radius: 3px; margin-right: 4px; }
+.about-popover { width: 100%; max-width: 460px; background: var(--bg-elev-1); border: 1px solid var(--border-strong); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); overflow: hidden; animation: slideUp .2s; }
+.about-head { display: flex; align-items: center; gap: 12px; padding: 18px 20px; border-bottom: 1px solid var(--border); }
+.about-head .brand-mark { width: 32px; height: 32px; border-radius: 8px; }
+.about-head .brand-mark svg { width: 18px; height: 18px; }
+.about-head-text { flex: 1; min-width: 0; }
+.about-title { font-size: 16px; font-weight: 600; letter-spacing: -0.02em; }
+.about-sub { font-family: var(--font-mono); font-size: 11px; color: var(--text-3); margin-top: 2px; }
+.about-body { padding: 20px; }
+.about-body p { font-size: 13.5px; color: var(--text-2); line-height: 1.6; margin-bottom: 18px; }
+.about-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 18px; }
+.about-stat { background: var(--bg-elev-2); border: 1px solid var(--border); border-radius: var(--radius); padding: 12px 10px; text-align: center; }
+.about-stat .as-value { font-size: 20px; font-weight: 600; letter-spacing: -0.02em; }
+.about-stat .as-label { font-size: 10.5px; font-family: var(--font-mono); color: var(--text-3); text-transform: uppercase; letter-spacing: 0.05em; margin-top: 2px; }
+.about-shortcuts { display: flex; flex-direction: column; gap: 6px; }
+.about-sc-row { display: flex; align-items: center; justify-content: space-between; font-size: 12.5px; color: var(--text-2); padding: 6px 10px; background: var(--bg-elev-2); border: 1px solid var(--border); border-radius: 6px; }
+.about-sc-row .kbd-pair { display: flex; gap: 3px; }
+.about-sc-row .kbd-pair span { font-family: var(--font-mono); font-size: 10.5px; background: var(--bg); border: 1px solid var(--border); padding: 2px 6px; border-radius: 4px; color: var(--text-2); }
+.about-foot { display: flex; align-items: center; justify-content: space-between; padding: 14px 20px; border-top: 1px solid var(--border); background: var(--bg-elev-2); font-size: 12px; color: var(--text-3); }
+.about-foot a { color: var(--text-2); } .about-foot a:hover { color: var(--text); }
+.about-foot .btn-sm { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 500; padding: 6px 12px; border-radius: 6px; border: 1px solid var(--border-strong); color: var(--text); background: var(--bg-elev-3); transition: all .15s; }
+.about-foot .btn-sm:hover { border-color: var(--border-active); background: var(--bg); transform: translateY(-1px); }
+/* DETAIL DRAWER */
+.drawer-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,0.5); backdrop-filter: blur(4px); z-index: 250; opacity: 0; pointer-events: none; transition: opacity .25s; }
+.drawer-backdrop.open { opacity: 1; pointer-events: auto; }
+.drawer { position: fixed; top: 0; right: 0; height: 100vh; width: var(--drawer-width); max-width: 92vw; background: var(--bg-elev-1); border-left: 1px solid var(--border-strong); box-shadow: var(--shadow-lg); z-index: 251; transform: translateX(100%); transition: transform .3s cubic-bezier(.4,0,.2,1); display: flex; flex-direction: column; }
+.drawer.open { transform: translateX(0); }
+.drawer-head { padding: 22px 24px 18px; border-bottom: 1px solid var(--border); position: relative; }
+.drawer-close { position: absolute; top: 18px; right: 18px; }
+.drawer-cat { font-size: 11px; font-family: var(--font-mono); color: var(--text-3); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+.drawer-cat .cat-dot { width: 8px; height: 8px; border-radius: 50%; }
+.drawer-title-row { display: flex; align-items: center; gap: 14px; }
+.drawer-logo { width: 44px; height: 44px; border-radius: 10px; display: grid; place-items: center; font-family: var(--font-mono); font-weight: 600; font-size: 18px; background: var(--bg-elev-2); border: 1px solid var(--border); }
+.drawer-title { font-size: 24px; font-weight: 600; letter-spacing: -0.03em; }
+.drawer-maturity { font-size: 11px; font-family: var(--font-mono); color: var(--text-3); margin-top: 3px; }
+.drawer-bookmark { margin-top: 4px; }
+.drawer-bookmark .bm-btn { display: inline-flex; align-items: center; gap: 6px; font-size: 11.5px; font-family: var(--font-mono); padding: 5px 10px; border: 1px solid var(--border); border-radius: 100px; color: var(--text-3); transition: all .15s; }
+.drawer-bookmark .bm-btn:hover { border-color: var(--border-strong); color: var(--text-2); }
+.drawer-bookmark .bm-btn.on { color: var(--amber); border-color: rgba(255,184,107,0.3); background: rgba(255,184,107,0.08); }
+.drawer-bookmark .bm-btn svg { width: 13px; height: 13px; }
+.drawer-body { flex: 1; overflow-y: auto; padding: 24px; }
+.drawer-body::-webkit-scrollbar { width: 8px; }
+.drawer-body::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 4px; }
+.drawer-section { margin-bottom: 26px; }
+.drawer-section h4 { font-size: 11px; font-family: var(--font-mono); color: var(--text-3); text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+.drawer-section h4::before { content: ''; width: 14px; height: 1px; background: var(--text-4); }
+.drawer-section p { font-size: 14px; color: var(--text-2); line-height: 1.65; }
+.drawer-when { display: flex; flex-direction: column; gap: 8px; }
+.drawer-when .when-item { display: flex; gap: 10px; font-size: 13.5px; color: var(--text-2); line-height: 1.5; }
+.drawer-when .when-item .when-ic { color: var(--green); flex-shrink: 0; margin-top: 2px; }
+.drawer-when .when-item .when-ic svg { width: 14px; height: 14px; }
+.drawer-when .when-item.avoid .when-ic { color: var(--red); }
+.drawer-competes { display: flex; flex-wrap: wrap; gap: 6px; }
+.drawer-competes .compete-chip { font-size: 12px; font-family: var(--font-mono); padding: 5px 10px; border-radius: 6px; border: 1px solid var(--border); color: var(--text-2); background: var(--bg-elev-2); cursor: pointer; transition: all .15s; }
+.drawer-competes .compete-chip:hover { border-color: var(--accent); color: var(--accent); }
+.drawer-code { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; font-family: var(--font-mono); font-size: 12.5px; line-height: 1.65; color: var(--text-2); overflow-x: auto; white-space: pre; }
+.drawer-related { display: flex; flex-wrap: wrap; gap: 6px; }
+.drawer-related .rel-chip { font-size: 12px; font-family: var(--font-mono); padding: 5px 10px; border-radius: 6px; border: 1px solid var(--border); color: var(--text-2); background: var(--bg-elev-2); cursor: pointer; transition: all .15s; display: inline-flex; align-items: center; gap: 6px; }
+.drawer-related .rel-chip:hover { border-color: var(--border-strong); color: var(--text); transform: translateY(-1px); }
+.drawer-related .rel-chip .rel-dot { width: 6px; height: 6px; border-radius: 50%; }
+.drawer-links { display: flex; flex-direction: column; gap: 8px; }
+.drawer-links a { display: flex; align-items: center; gap: 10px; padding: 10px 14px; border: 1px solid var(--border); border-radius: var(--radius); font-size: 13px; color: var(--text-2); transition: all .15s; }
+.drawer-links a:hover { border-color: var(--border-strong); color: var(--text); background: var(--bg-elev-2); }
+.drawer-links a .link-arrow { margin-left: auto; color: var(--text-3); }
+.drawer-links a .link-arrow svg { width: 13px; height: 13px; }
+.floating-toc { position: fixed; right: 24px; top: 50%; transform: translateY(-50%); z-index: 50; display: flex; flex-direction: column; gap: 2px; padding: 6px; background: var(--bg-glass); backdrop-filter: blur(20px); border: 1px solid var(--border); border-radius: 100px; }
+.toc-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--text-4); transition: all .2s; cursor: pointer; position: relative; padding: 0; border: none; display: block; }
+.toc-dot:hover { background: var(--text-2); }
+.toc-dot.active { background: var(--accent); transform: scale(1.4); }
+.toc-dot .toc-label { position: absolute; right: calc(100% + 14px); top: 50%; transform: translateY(-50%); font-size: 11px; font-family: var(--font-mono); color: var(--text-2); background: var(--bg-glass); backdrop-filter: blur(20px); border: 1px solid var(--border); padding: 4px 10px; border-radius: 6px; white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity .15s; }
+.toc-dot:hover .toc-label { opacity: 1; }
+.footer { padding: 60px 48px 40px; border-top: 1px solid var(--border); margin-top: 80px; }
+.footer-inner { max-width: 1080px; margin: 0 auto; display: grid; grid-template-columns: 1.4fr repeat(3, 1fr); gap: 36px; }
+.footer h5 { font-size: 11.5px; font-family: var(--font-mono); color: var(--text-3); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 14px; }
+.footer ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.footer ul a { font-size: 13px; color: var(--text-2); }
+.footer ul a:hover { color: var(--text); }
+.footer .footer-brand { display: flex; align-items: center; gap: 10px; font-weight: 600; margin-bottom: 12px; }
+.footer .footer-blurb { font-size: 13px; color: var(--text-2); line-height: 1.6; margin-bottom: 18px; max-width: 280px; }
+@media (max-width: 1280px) { .floating-toc { display: none; } }
+@media (max-width: 960px) {
+  .app { grid-template-columns: 1fr; }
+  .menu-btn { display: grid; }
+  .sidebar { position: fixed; top: var(--topbar-height); left: 0; bottom: 0; width: 280px; z-index: 150; transform: translateX(-100%); transition: transform .25s; background: var(--bg-elev-1); }
+  .sidebar.open { transform: translateX(0); }
+  .sidebar-backdrop { display: block; position: fixed; inset: var(--topbar-height) 0 0 0; background: rgba(0,0,0,0.5); backdrop-filter: blur(4px); z-index: 140; opacity: 0; pointer-events: none; transition: opacity .25s; }
+  .sidebar-backdrop.open { opacity: 1; pointer-events: auto; }
+  .container, .hero-inner { padding: 0 24px; }
+  .footer { padding: 60px 24px 40px; }
+  .footer-inner { grid-template-columns: 1fr 1fr; }
+  .pipeline-stages { grid-template-columns: repeat(3, 1fr); }
+  .lab-body { grid-template-columns: 1fr; }
+  .lab-controls { border-right: none; border-bottom: 1px solid var(--border); }
+  .pipeline-detail { grid-template-columns: 1fr; }
+  .eventloop-stage { grid-template-columns: 1fr; }
+  .top-nav { display: none; }
+  .search-trigger { min-width: 0; padding: 6px 8px; }
+  .search-trigger span:not(.kbd) { display: none; }
+  #arch-row { grid-template-columns: 1fr !important; }
+  #res-row { grid-template-columns: 1fr !important; }
+}
+@media (max-width: 600px) {
+  .pipeline-stages { grid-template-columns: repeat(2, 1fr); }
+  .hero { padding: 48px 0 32px; }
+  .hero h1 { font-size: 36px; }
+  .footer-inner { grid-template-columns: 1fr; }
+  .about-stats { grid-template-columns: repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to content</a>
+
+<header class="topbar">
+  <button class="menu-btn" id="menu-btn" aria-label="Open navigation menu" aria-expanded="false">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+  </button>
+  <a href="#hero" class="brand">
+    <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12 L9 6 L15 12 L21 6" /><path d="M3 18 L9 12 L15 18 L21 12" /></svg></span>
+    Frontend Index
+    <span class="brand-version">v2.0</span>
+  </a>
+  <nav class="top-nav" aria-label="Primary">
+    <a href="#roadmap">Roadmap</a><a href="#stack">Stack Map</a><a href="#labs">Labs</a><a href="#patterns">Patterns</a>
+  </nav>
+  <div class="top-spacer"></div>
+  <button class="search-trigger" id="search-trigger" aria-label="Open search">
+    <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+    <span>Search the index...</span><span class="kbd" aria-hidden="true">⌘K</span>
+  </button>
+  <button class="icon-btn" id="theme-toggle" aria-label="Toggle theme">
+    <svg id="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+  </button>
+  <button class="icon-btn" id="about-trigger" aria-label="About Frontend Index">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+  </button>
+</header>
+
+<div class="sidebar-backdrop" id="sidebar-backdrop"></div>
+
+<div class="app">
+  <aside class="sidebar" id="sidebar" aria-label="Section navigation"></aside>
+  <main class="main" id="main">
+
+    <section id="hero" class="hero">
+      <div class="hero-inner">
+        <div class="hero-eyebrow"><span class="pulse"></span> <span id="hero-count">A living index of frontend engineering</span></div>
+        <h1>Understand modern<br>frontend <span class="accent">development</span></h1>
+        <p class="lede">A visual reference system for modern frontend engineering — frameworks, tooling, architecture, and the production systems that ship the modern web. Click anything to go deep.</p>
+        <div class="hero-ctas">
+          <a href="#stack" class="btn btn-primary">Explore the ecosystem<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+          <a href="#roadmap" class="btn">Start the roadmap</a>
+        </div>
+        <div class="hero-viz" id="hero-viz">
+          <svg viewBox="0 0 960 360" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+            <defs>
+              <radialGradient id="nodeGlow" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="rgba(79,157,255,0.6)" /><stop offset="100%" stop-color="rgba(79,157,255,0)" /></radialGradient>
+              <linearGradient id="lineGrad" x1="0" x2="1"><stop offset="0%" stop-color="rgba(79,157,255,0)" /><stop offset="50%" stop-color="rgba(79,157,255,0.6)" /><stop offset="100%" stop-color="rgba(79,157,255,0)" /></linearGradient>
+            </defs>
+            <g id="hero-nodes"></g>
+          </svg>
+          <div class="hero-viz-label"><span class="dot"></span> LIVE · ecosystem graph</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="roadmap"><div class="container">
+      <div class="section-head"><div class="section-eyebrow">01 · Roadmap</div><h2>From the network up. The full progression.</h2><p>Frontend isn't a stack — it's a sequence of layers, each built on what came before. Click any layer to open the full entry. Visited layers are remembered.</p></div>
+      <div class="roadmap" id="roadmap-list"></div>
+    </div></section>
+
+    <section id="browser"><div class="container">
+      <div class="section-head"><div class="section-eyebrow">02 · The Browser</div><h2>The rendering pipeline, frame by frame.</h2><p>Every pixel you see was once HTML, then DOM, then a layout tree, then painted pixels, then composited layers. Understanding this pipeline is the difference between writing CSS and writing fast CSS.</p></div>
+      <div class="pipeline"><div class="pipeline-stages" id="pipeline-stages" role="tablist" aria-label="Rendering pipeline stages"></div><div class="pipeline-detail" id="pipeline-detail" role="tabpanel"></div></div>
+    </div></section>
+
+    <section id="core"><div class="container">
+      <div class="section-head"><div class="section-eyebrow">03 · Core Web Technologies</div><h2>HTML, CSS, JavaScript — the immutable trio.</h2><p>Frameworks come and go. These three never have. Every abstraction you'll ever use compiles down to them.</p></div>
+      <div class="tech-tabs" role="tablist" aria-label="Core technologies">
+        <button class="tech-tab active" data-tab="html" role="tab" aria-selected="true">HTML</button>
+        <button class="tech-tab" data-tab="css" role="tab" aria-selected="false">CSS</button>
+        <button class="tech-tab" data-tab="js" role="tab" aria-selected="false">JavaScript</button>
+      </div>
+      <div class="tech-panel active" data-panel="html" role="tabpanel"><div class="feature-grid" id="grid-html"></div></div>
+      <div class="tech-panel" data-panel="css" role="tabpanel"><div class="feature-grid" id="grid-css"></div></div>
+      <div class="tech-panel" data-panel="js" role="tabpanel"><div class="feature-grid" id="grid-js"></div></div>
+    </div></section>
+
+    <section id="frameworks"><div class="container">
+      <div class="section-head"><div class="section-eyebrow">04 · Frameworks</div><h2>Different answers to the same question: how does UI update?</h2><p>Every framework is a position on rendering, reactivity, and tradeoffs. None is universally best. All are right for something. Click a card for the full entry.</p></div>
+      <div class="framework-grid" id="framework-grid"></div>
+    </div></section>
+
+    <section id="stack"><div class="container">
+      <div class="section-head"><div class="section-eyebrow">05 · Stack Map</div><h2>The whole ecosystem on one canvas.</h2><p>Every library, framework, and tool — clustered by category, connected by usage patterns. Hover for a summary, click (or focus + Enter) any node to open the full entry.</p></div>
+      <div class="stack-map">
+        <div class="stack-map-toolbar" id="stack-toolbar"></div>
+        <div class="stack-canvas-wrap">
+          <span class="stack-hint">click a node for details · arrow-key + Enter works too</span>
+          <svg id="stack-canvas" viewBox="0 0 1000 560" preserveAspectRatio="xMidYMid meet" role="group" aria-label="Technology ecosystem map"></svg>
+          <div class="stack-tooltip" id="stack-tooltip" role="status" aria-live="polite"></div>
+        </div>
+      </div>
+    </div></section>
+
+    <section id="tooling"><div class="container">
+      <div class="section-head"><div class="section-eyebrow">06 · Tooling Ecosystem</div><h2>The invisible 90%. Tools shape how teams ship.</h2><p>Bundlers, package managers, linters, test runners, deploy pipelines. The dev experience is a product itself.</p></div>
+      <div class="card-grid" id="tooling-grid"></div>
+    </div></section>
+
+    <section id="architecture"><div class="container">
+      <div class="section-head"><div class="section-eyebrow">07 · Architecture</div><h2>Structure is a feature.</h2><p>The folder layout, the boundary between components and features, the discipline of the design system — these decide whether your team can still ship in year three.</p></div>
+      <div style="display: grid; grid-template-columns: 1.1fr 1fr; gap: 16px;" id="arch-row">
+        <div class="glass-card">
+          <div class="card-num">01 · Feature-based structure</div>
+          <h4>Organize by what, not how</h4>
+          <p>Group code by feature, not by file type. A "checkout" folder contains its component, its hooks, its tests, its types. Move one folder, move one feature.</p>
+          <div class="folder-tree" style="margin-top: 14px;"><span class="ft-folder">src/</span>
+  <span class="ft-folder">app/</span>            <span class="ft-comment"># routing, providers</span>
+  <span class="ft-folder">features/</span>
+    <span class="ft-folder">checkout/</span>
+      <span class="ft-file">CheckoutForm.tsx</span>
+      <span class="ft-file">useCheckout.ts</span>
+      <span class="ft-file">checkout.test.ts</span>
+      <span class="ft-file">types.ts</span>
+    <span class="ft-folder">cart/</span>
+      <span class="ft-file">CartDrawer.tsx</span>
+      <span class="ft-file">useCart.ts</span>
+  <span class="ft-folder">shared/</span>          <span class="ft-comment"># cross-feature</span>
+    <span class="ft-folder">ui/</span>            <span class="ft-comment"># design system</span>
+    <span class="ft-folder">lib/</span>           <span class="ft-comment"># utilities</span></div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 16px;">
+          <div class="glass-card"><div class="card-num">02 · Atomic design</div><h4>Atoms, molecules, organisms</h4><p>A discipline, not a rule. Components compose from primitive to complex. Stop one level too soon and you ship a button library — stop the right amount and you ship a system.</p></div>
+          <div class="glass-card"><div class="card-num">03 · Monorepos</div><h4>One repo, many surfaces</h4><p>Turborepo, Nx, pnpm workspaces. Share types, design tokens, and config across web, mobile, and docs without publishing internal packages.</p></div>
+          <div class="glass-card"><div class="card-num">04 · Design system layer</div><h4>Tokens → primitives → patterns</h4><p>Color, type, spacing as tokens. Buttons, inputs as primitives. Search, dialogs, navigation as patterns. The whole UI flows from this pyramid.</p></div>
+        </div>
+      </div>
+    </div></section>
+
+    <section id="performance"><div class="container">
+      <div class="section-head"><div class="section-eyebrow">08 · Performance Engineering</div><h2>Speed is the most underrated UX.</h2><p>Every millisecond costs conversion. Every kilobyte costs power. Performance is engineering you can measure — and ignore at your peril.</p></div>
+      <div class="metric-grid" id="metric-grid"></div>
+      <div class="card-grid" id="perf-grid"></div>
+    </div></section>
+
+    <section id="careers"><div class="container">
+      <div class="section-head"><div class="section-eyebrow">09 · Career Paths</div><h2>Six directions. One ecosystem.</h2><p>Frontend has fragmented into specialties. Each track optimizes for a different intersection of design, engineering, and product.</p></div>
+      <div class="career-grid" id="career-grid"></div>
+    </div></section>
+
+    <section id="labs"><div class="container">
+      <div class="section-head"><div class="section-eyebrow">10 · Interactive Labs</div><h2>Manipulate the platform directly.</h2><p>Four working labs. Read about the event loop, sure — better to watch tasks drain in real time, then change them and see what breaks.</p></div>
+
+      <div class="lab" id="flex-lab">
+        <div class="lab-header"><div class="lab-dots"><span class="lab-dot red"></span><span class="lab-dot amber"></span><span class="lab-dot green"></span></div><div class="lab-title">Flexbox playground</div><div class="lab-tag">/labs/flexbox</div></div>
+        <div class="lab-body">
+          <div class="lab-controls">
+            <div class="lab-control"><label>flex-direction</label><div class="seg" data-prop="direction"><button class="seg-btn active" data-val="row">row</button><button class="seg-btn" data-val="row-reverse">row-rev</button><button class="seg-btn" data-val="column">column</button><button class="seg-btn" data-val="column-reverse">col-rev</button></div></div>
+            <div class="lab-control"><label>justify-content</label><select id="flex-justify"><option>flex-start</option><option>center</option><option>flex-end</option><option>space-between</option><option>space-around</option><option>space-evenly</option></select></div>
+            <div class="lab-control"><label>align-items</label><select id="flex-align"><option>stretch</option><option>flex-start</option><option>center</option><option>flex-end</option><option>baseline</option></select></div>
+            <div class="lab-control"><label>gap <span class="lab-val" id="flex-gap-val">10px</span></label><input type="range" id="flex-gap" min="0" max="40" value="10" step="1"></div>
+            <div class="lab-control"><label>flex-wrap</label><div class="seg" data-prop="wrap"><button class="seg-btn active" data-val="nowrap">nowrap</button><button class="seg-btn" data-val="wrap">wrap</button></div></div>
+          </div>
+          <div class="lab-preview"><div class="flex-stage" id="flex-stage"><div class="flex-item">1</div><div class="flex-item">2</div><div class="flex-item">3</div><div class="flex-item">4</div></div></div>
+        </div>
+        <div class="lab-code" id="flex-code"></div>
+      </div>
+
+      <div class="lab" id="grid-lab">
+        <div class="lab-header"><div class="lab-dots"><span class="lab-dot red"></span><span class="lab-dot amber"></span><span class="lab-dot green"></span></div><div class="lab-title">CSS Grid generator</div><div class="lab-tag">/labs/grid</div></div>
+        <div class="lab-body">
+          <div class="lab-controls">
+            <div class="lab-control"><label>columns <span class="lab-val" id="grid-cols-val">3</span></label><input type="range" id="grid-cols" min="1" max="6" value="3" step="1"></div>
+            <div class="lab-control"><label>rows <span class="lab-val" id="grid-rows-val">2</span></label><input type="range" id="grid-rows" min="1" max="5" value="2" step="1"></div>
+            <div class="lab-control"><label>gap <span class="lab-val" id="grid-gap-val">8px</span></label><input type="range" id="grid-gap" min="0" max="32" value="8" step="1"></div>
+            <div class="lab-control"><label>column sizing</label><div class="seg" data-prop="colmode"><button class="seg-btn active" data-val="1fr">equal</button><button class="seg-btn" data-val="auto">auto</button><button class="seg-btn" data-val="minmax">minmax</button></div></div>
+            <div class="lab-control"><label>justify-items</label><select id="grid-justify"><option>stretch</option><option>start</option><option>center</option><option>end</option></select></div>
+          </div>
+          <div class="lab-preview"><div class="grid-stage" id="grid-stage"></div></div>
+        </div>
+        <div class="lab-code" id="grid-code"></div>
+      </div>
+
+      <div class="lab" id="eventloop-lab">
+        <div class="lab-header"><div class="lab-dots"><span class="lab-dot red"></span><span class="lab-dot amber"></span><span class="lab-dot green"></span></div><div class="lab-title">Event loop simulator</div><div class="lab-tag">/labs/event-loop</div></div>
+        <div style="padding: 20px;">
+          <div class="eventloop-stage">
+            <div class="eventloop-zone" data-zone="stack"><div class="zone-title"><span class="zone-dot"></span> Call stack</div><div class="zone-items stack" id="zone-stack"></div></div>
+            <div class="eventloop-zone" data-zone="microqueue"><div class="zone-title"><span class="zone-dot"></span> Microtask queue</div><div class="zone-items" id="zone-microqueue"></div></div>
+            <div class="eventloop-zone" data-zone="queue"><div class="zone-title"><span class="zone-dot"></span> Task queue</div><div class="zone-items" id="zone-queue"></div></div>
+          </div>
+          <div class="eventloop-log" id="eventloop-log" aria-live="polite"></div>
+          <div class="eventloop-controls">
+            <button class="btn" id="ev-step">Step <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></button>
+            <button class="btn" id="ev-auto">Auto-run</button>
+            <button class="btn" id="ev-reset">Reset</button>
+            <span style="font-family: var(--font-mono); font-size: 11.5px; color: var(--text-3); margin-left: auto;" id="ev-status">Ready</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="lab" id="spec-lab">
+        <div class="lab-header"><div class="lab-dots"><span class="lab-dot red"></span><span class="lab-dot amber"></span><span class="lab-dot green"></span></div><div class="lab-title">CSS specificity calculator</div><div class="lab-tag">/labs/specificity</div></div>
+        <div style="padding: 20px;">
+          <div class="lab-control"><label>type a CSS selector</label><input type="text" id="spec-input" value="#nav ul li.active a:hover" spellcheck="false" autocomplete="off"></div>
+          <div class="spec-output" id="spec-output"></div>
+          <div class="spec-breakdown" id="spec-breakdown"></div>
+        </div>
+      </div>
+    </div></section>
+
+    <section id="patterns"><div class="container">
+      <div class="section-head"><div class="section-eyebrow">11 · Production Patterns</div><h2>The UI primitives every app ends up shipping.</h2><p>Modal, dropdown, tabs, command palette. Boring on the surface — full of edge cases underneath. Each pattern below is a small system.</p></div>
+      <div class="pattern-grid" id="pattern-grid"></div>
+    </div></section>
+
+    <section id="resources"><div class="container">
+      <div class="section-head"><div class="section-eyebrow">12 · Resource Hub</div><h2>Where to go after the map.</h2><p>Curated, opinionated, kept current. Read these and you'll stay ahead of the curve without drinking from the firehose.</p></div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;" id="res-row">
+        <div>
+          <h5 style="font-size: 11px; font-family: var(--font-mono); color: var(--text-3); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 14px;">References &amp; specs</h5>
+          <div class="resource-grid" id="res-refs"></div>
+          <h5 style="font-size: 11px; font-family: var(--font-mono); color: var(--text-3); text-transform: uppercase; letter-spacing: 0.08em; margin: 28px 0 14px;">Tooling docs</h5>
+          <div class="resource-grid" id="res-tools"></div>
+        </div>
+        <div>
+          <h5 style="font-size: 11px; font-family: var(--font-mono); color: var(--text-3); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 14px;">Accessibility Resources</h5>
+          <div class="resource-grid" id="res-people"></div>
+          <h5 style="font-size: 11px; font-family: var(--font-mono); color: var(--text-3); text-transform: uppercase; letter-spacing: 0.08em; margin: 28px 0 14px;">Inspiration</h5>
+          <div class="resource-grid" id="res-inspo"></div>
+        </div>
+      </div>
+    </div></section>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        <div>
+          <div class="footer-brand"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12 L9 6 L15 12 L21 6" /><path d="M3 18 L9 12 L15 18 L21 12" /></svg></span>Frontend Index</div>
+          <p class="footer-blurb">A visual reference for modern frontend engineering. Built to be read once, referenced forever.</p>
+          <a href="https://github.com/deandreperry" target="_blank" rel="noopener noreferrer" style="font-family: var(--font-mono); font-size: 11px; color: var(--text-3); transition: color .15s;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--text-3)'">© 2026 De&rsquo;Andre Perry. All rights reserved.</a>
+        </div>
+        <div><h5>Index</h5><ul><li><a href="#roadmap">Roadmap</a></li><li><a href="#browser">The Browser</a></li><li><a href="#frameworks">Frameworks</a></li><li><a href="#stack">Stack Map</a></li></ul></div>
+        <div><h5>Practice</h5><ul><li><a href="#labs">Labs</a></li><li><a href="#patterns">Patterns</a></li><li><a href="#performance">Performance</a></li><li><a href="#careers">Career paths</a></li></ul></div>
+        <div><h5>Meta</h5><ul><li><a href="#resources">Resources</a></li><li><a href="https://github.com/deandreperry" target="_blank" rel="noopener noreferrer">Contribute on GitHub</a></li><li><a href="#" id="footer-about">About this project</a></li></ul></div>
+      </div>
+    </footer>
+
+  </main>
+</div>
+
+<nav class="floating-toc" id="floating-toc" aria-label="Section quick-nav"></nav>
+
+<div class="drawer-backdrop" id="drawer-backdrop"></div>
+<aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="drawer-title" tabindex="-1">
+  <div class="drawer-head">
+    <button class="icon-btn drawer-close" id="drawer-close" aria-label="Close details">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+    </button>
+    <div id="drawer-head-content"></div>
+  </div>
+  <div class="drawer-body" id="drawer-body"></div>
+</aside>
+
+<div class="cmdk-backdrop" id="about-backdrop" role="presentation">
+  <div class="about-popover" role="dialog" aria-modal="true" aria-labelledby="about-title">
+    <div class="about-head">
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12 L9 6 L15 12 L21 6" /><path d="M3 18 L9 12 L15 18 L21 12" /></svg></span>
+      <div class="about-head-text"><div class="about-title" id="about-title">Frontend Index</div><div class="about-sub">v2.0 · visual reference</div></div>
+      <button class="icon-btn" id="about-close" aria-label="Close about dialog"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+    </div>
+    <div class="about-body">
+      <p>A visual reference system for modern frontend engineering. Not a tutorial — a map. Click any technology to open its full entry: what it is, when to use it, what it competes with, and where to go next.</p>
+      <div class="about-stats">
+        <div class="about-stat"><div class="as-value">13</div><div class="as-label">Sections</div></div>
+        <div class="about-stat"><div class="as-value">38+</div><div class="as-label">Entries</div></div>
+        <div class="about-stat"><div class="as-value">4</div><div class="as-label">Live labs</div></div>
+        <div class="about-stat"><div class="as-value">8</div><div class="as-label">Patterns</div></div>
+      </div>
+      <div class="about-shortcuts">
+        <div class="about-sc-row"><span>Search the index</span><span class="kbd-pair"><span>⌘</span><span>K</span></span></div>
+        <div class="about-sc-row"><span>Toggle theme</span><span class="kbd-pair"><span>⌘</span><span>T</span></span></div>
+      </div>
+    </div>
+    <div class="about-foot">
+      <span>Built by <a href="https://github.com/deandreperry" target="_blank" rel="noopener noreferrer">De&rsquo;Andre Perry</a></span>
+      <a href="https://github.com/deandreperry" target="_blank" rel="noopener noreferrer" class="btn-sm">View on GitHub<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:12px;height:12px" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></a>
+    </div>
+  </div>
+</div>
+
+<div class="cmdk-backdrop" id="cmdk-backdrop">
+  <div class="cmdk">
+    <div class="cmdk-input-wrap">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      <input type="text" class="cmdk-input" id="cmdk-input" placeholder="Search sections, technologies, concepts..." autocomplete="off" spellcheck="false" aria-label="Search Frontend Index">
+      <button class="icon-btn" id="cmdk-close" aria-label="Close search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+    </div>
+    <div class="cmdk-results" id="cmdk-results"></div>
+    <div class="cmdk-footer"><span><span class="footer-key">↑↓</span>navigate</span><span><span class="footer-key">↵</span>open</span><span><span class="footer-key">esc</span>close</span><span style="margin-left: auto;">Frontend Index search</span></div>
+  </div>
+</div>
+
+<script>
+/* =============================================================================
+   FRONTEND INDEX v2 — APPLICATION SCRIPT
+   ============================================================================= */
+(() => {
+'use strict';
+
+/* ---------- SAFE STORAGE SHIM (localStorage with in-memory fallback) ---------- */
+const store = (() => {
+  const mem = {}; let ok = false;
+  try { const k='__fi_test__'; localStorage.setItem(k,'1'); localStorage.removeItem(k); ok=true; } catch(e){ ok=false; }
+  return {
+    get(k){ try { return ok ? localStorage.getItem(k) : (k in mem ? mem[k] : null); } catch { return mem[k] ?? null; } },
+    set(k,v){ try { ok ? localStorage.setItem(k,v) : (mem[k]=v); } catch { mem[k]=v; } },
+    getJSON(k,def){ const v=this.get(k); if(!v) return def; try { return JSON.parse(v); } catch { return def; } },
+    setJSON(k,v){ this.set(k, JSON.stringify(v)); }
+  };
+})();
+
+/* ---------- HELPERS ---------- */
+const $ = (s,c=document) => c.querySelector(s);
+const $$ = (s,c=document) => Array.from(c.querySelectorAll(s));
+const el = (tag, attrs={}, ...kids) => {
+  const e = document.createElement(tag);
+  for (const [k,v] of Object.entries(attrs)) {
+    if (v == null) continue;
+    if (k === 'class') e.className = v;
+    else if (k.startsWith('on') && typeof v === 'function') e.addEventListener(k.slice(2), v);
+    else if (k === 'html') e.innerHTML = v;
+    else e.setAttribute(k, v);
+  }
+  for (const k of kids.flat()) { if (k == null) continue; e.append(k.nodeType ? k : document.createTextNode(k)); }
+  return e;
+};
+const svgNS = 'http://www.w3.org/2000/svg';
+const mkSVG = (tag, attrs={}) => { const e = document.createElementNS(svgNS, tag); for (const [k,v] of Object.entries(attrs)) if (v != null) e.setAttribute(k, v); return e; };
+const escapeHTML = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+/* ---------- ICONS ---------- */
+const ICONS = {
+  globe:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20 15 15 0 0 1 0-20"/></svg>',
+  browser:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="5" rx="2"/><path d="M2 10h20M6 7.5h.01"/></svg>',
+  file:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v4a1 1 0 0 0 1 1h4"/><path d="M17 21H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7l5 5v11a2 2 0 0 1-2 2z"/></svg>',
+  palette:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r=".5"/><circle cx="17.5" cy="10.5" r=".5"/><circle cx="8.5" cy="7.5" r=".5"/><circle cx="6.5" cy="12.5" r=".5"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/></svg>',
+  code:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>',
+  tree:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="3" r="2"/><circle cx="5" cy="13" r="2"/><circle cx="19" cy="13" r="2"/><circle cx="12" cy="21" r="2"/><path d="M12 5v3M7 13l-2 2M17 13l2 2M12 17v-3"/></svg>',
+  plug:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22v-5M9 7V2M15 7V2M6 13V8a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v5a6 6 0 0 1-12 0z"/></svg>',
+  grid:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg>',
+  tool:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>',
+  layers:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 9 5-9 5-9-5 9-5z"/><path d="m3 12 9 5 9-5M3 17l9 5 9-5"/></svg>',
+  gauge:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-6.2-8.55"/><path d="m12 12 4-6"/><circle cx="12" cy="12" r="1"/></svg>',
+  rocket:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg>',
+  parse:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v4a1 1 0 0 0 1 1h4"/><path d="M17 21H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7l5 5v11a2 2 0 0 1-2 2z"/><path d="m9 13 2 2 4-4"/></svg>',
+  style:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22a10 10 0 1 1 10-10c0 4.5-3.5 5-5 5h-1a2 2 0 0 0-2 2v.5a2.5 2.5 0 0 1-2 2.5z"/></svg>',
+  layout:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18M9 21V9"/></svg>',
+  paint:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="6" x="3" y="2" rx="2"/><path d="M19 8v3a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V8M12 13v3"/><rect width="8" height="6" x="8" y="16" rx="1"/></svg>',
+  compose:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 9 5-9 5-9-5 9-5z"/><path d="m3 12 9 5 9-5"/></svg>',
+  book:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>',
+  star:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>',
+  a11y:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="7.5" r="1.2" fill="currentColor"/><path d="M7.5 10.5h9"/><path d="M12 11v3.5"/><path d="m9.5 18 2.5-3.5L14.5 18"/></svg>',
+  check:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>',
+  x:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>',
+  bookmark:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>',
+  bookmarkFill:'<svg viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>',
+  arrow:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>',
+  ext:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"/></svg>',
+  ui:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/></svg>',
+  engineer:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>',
+  ux:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="9" r="7"/><circle cx="15" cy="15" r="7"/></svg>',
+  creative:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r=".5"/><circle cx="17.5" cy="10.5" r=".5"/><circle cx="8.5" cy="7.5" r=".5"/><circle cx="6.5" cy="12.5" r=".5"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/></svg>',
+  design:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 19 21 12 17 5 21 12 2"/></svg>',
+  full:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/></svg>'
+};
+
+/* ---------- CATEGORY META ---------- */
+const STACK_CATS = [
+  { id:'all', label:'All', color:'#a8a8b3' }, { id:'lang', label:'Languages', color:'#f7df1e' },
+  { id:'framework', label:'Frameworks', color:'#61dafb' }, { id:'meta', label:'Meta-frameworks', color:'#ededf0' },
+  { id:'style', label:'Styling', color:'#06b6d4' }, { id:'state', label:'State', color:'#a98bfa' },
+  { id:'build', label:'Build tools', color:'#646cff' }, { id:'test', label:'Testing', color:'#6e9f18' },
+  { id:'deploy', label:'Deploy', color:'#00ad9f' }, { id:'baas', label:'Backend services', color:'#3ecf8e' },
+  { id:'motion', label:'Animation', color:'#0055ff' }, { id:'3d', label:'3D / WebGL', color:'#ffb86b' }
+];
+const catLabel = id => (STACK_CATS.find(c => c.id === id) || {}).label || id;
+const catColor = id => (STACK_CATS.find(c => c.id === id) || {}).color || 'var(--accent)';
+
+/* ---------- TECH REGISTRY (drillable entries) ---------- */
+const TECH = {
+  js:{ name:'JavaScript', cat:'lang', x:500,y:280,r:30, color:'#f7df1e', logo:'JS', maturity:'Standard · ECMAScript yearly cadence',
+    summary:'The language of the web. ECMAScript runs everywhere a browser does — and many places it does not.',
+    what:'JavaScript is a dynamic, single-threaded, prototype-based language with first-class functions and an event-loop concurrency model. It is the only language browsers execute natively, which is why every frontend abstraction ultimately compiles to it.',
+    when:['You are building anything that runs in a browser','You want one language across client, server (Node), and tooling','You need the largest package ecosystem in existence (npm)'],
+    avoid:['You need compile-time type guarantees out of the box — reach for TypeScript','CPU-bound heavy computation on the main thread — offload to Web Workers or WASM'],
+    competes:['ts'], related:['ts','react','vue'],
+    code:'<span class="k">const</span> add = (a, b) => a + b;\n<span class="k">const</span> nums = [1, 2, 3];\n<span class="k">const</span> total = nums.<span class="f">reduce</span>(add, 0); <span class="c">// 6</span>',
+    links:[['MDN — JavaScript','https://developer.mozilla.org/en-US/docs/Web/JavaScript'],['ECMAScript spec','https://tc39.es/ecma262/']] },
+  ts:{ name:'TypeScript', cat:'lang', x:600,y:200,r:26, color:'#3178c6', logo:'TS', maturity:'Mature · Microsoft · ~monthly releases',
+    summary:'JavaScript with static types. Type inference, generics, structural typing. Almost universal for new projects.',
+    what:'TypeScript is a typed superset of JavaScript that compiles to plain JS. Its structural type system catches whole classes of bugs at build time and powers the editor autocomplete that makes large codebases navigable.',
+    when:['Any codebase past a few thousand lines or more than one engineer','You want refactors the compiler can verify','You consume libraries that ship types (most now do)'],
+    avoid:['A throwaway prototype where setup cost is not worth it','You cannot add a build step at all (rare today)'],
+    competes:['js'], related:['js','react','next','angular'],
+    code:'<span class="k">interface</span> <span class="t">User</span> { id: <span class="t">number</span>; name: <span class="t">string</span> }\n<span class="k">const</span> greet = (u: <span class="t">User</span>) => <span class="s">`Hi ${u.name}`</span>;',
+    links:[['TypeScript handbook','https://www.typescriptlang.org/docs/'],['Type challenges','https://github.com/type-challenges/type-challenges']] },
+  react:{ name:'React', cat:'framework', x:380,y:200,r:32, color:'#61dafb', logo:'R', maturity:'Mature · Meta · v19',
+    summary:'Component model, virtual DOM diffing, hooks. The de facto choice for teams — and the largest ecosystem on earth.',
+    what:'React is a library for building UIs from composable components. You describe what the UI should look like for a given state; React reconciles the virtual DOM against the real DOM to apply the minimum set of changes. Hooks added state and side effects to function components.',
+    when:['You want the largest talent pool and ecosystem','You are hiring and need people productive on day one','You need React Native to share concepts with mobile'],
+    avoid:['You want the smallest possible bundle with zero runtime — consider Svelte/Solid','You dislike re-render-by-default and want fine-grained reactivity'],
+    competes:['vue','svelte','solid','angular'], related:['ts','next','redux','tailwind','tanstack'],
+    code:'<span class="k">function</span> <span class="f">Counter</span>() {\n  <span class="k">const</span> [n, setN] = <span class="f">useState</span>(0);\n  <span class="k">return</span> &lt;button onClick={() => setN(n + 1)}&gt;{n}&lt;/button&gt;;\n}',
+    links:[['react.dev','https://react.dev'],['React on MDN','https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Frameworks_libraries/React_getting_started']] },
+  vue:{ name:'Vue', cat:'framework', x:270,y:290,r:26, color:'#42b883', logo:'V', maturity:'Mature · Evan You · v3',
+    summary:'A reactive system with single-file components. Approachable like Svelte, structured like Angular.',
+    what:'Vue pairs a fine-grained reactivity system with single-file components (.vue) that colocate template, logic, and styles. The Composition API brought hooks-like ergonomics while keeping the gentle learning curve Vue is known for.',
+    when:['You want a gentle on-ramp without a build-tool PhD','You like template syntax over JSX','Progressive adoption — drop it into one page of an existing app'],
+    avoid:['You need the absolute largest hiring pool (React still leads)','Your org has standardized on a different ecosystem'],
+    competes:['react','svelte','angular'], related:['nuxt','pinia'],
+    code:'&lt;script setup&gt;\n<span class="k">import</span> { ref } <span class="k">from</span> <span class="s">\'vue\'</span>\n<span class="k">const</span> n = <span class="f">ref</span>(0)\n&lt;/script&gt;\n&lt;template&gt;&lt;button @click="n++"&gt;{{ n }}&lt;/button&gt;&lt;/template&gt;',
+    links:[['vuejs.org','https://vuejs.org']] },
+  svelte:{ name:'Svelte', cat:'framework', x:200,y:380,r:24, color:'#ff3e00', logo:'S', maturity:'Mature · Rich Harris · v5 (runes)',
+    summary:'Compiles to surgical DOM updates — no virtual DOM, no runtime. Smaller bundles, simpler mental model.',
+    what:'Svelte is a compiler: your components are transformed at build time into imperative code that surgically updates the DOM. There is no virtual DOM diffing at runtime, so bundles are small and updates are fast. v5 introduced runes for explicit reactivity.',
+    when:['Bundle size and runtime performance are priorities','You want less boilerplate than React','Content sites, widgets, embedded UI'],
+    avoid:['You need the very largest ecosystem of pre-built components','Your team is already deep in React and switching is costly'],
+    competes:['react','vue','solid'], related:['sveltekit'],
+    code:'&lt;script&gt;\n  <span class="k">let</span> n = <span class="f">$state</span>(0);\n&lt;/script&gt;\n&lt;button onclick={() => n++}&gt;{n}&lt;/button&gt;',
+    links:[['svelte.dev','https://svelte.dev']] },
+  solid:{ name:'Solid', cat:'framework', x:320,y:430,r:22, color:'#4287cf', logo:'◆', maturity:'Stable · Ryan Carniato · v1',
+    summary:'React-like syntax with fine-grained reactivity. Updates only the exact node that changed.',
+    what:'Solid looks like React (JSX, components) but its reactivity is fine-grained: components run once, and signals update only the precise DOM nodes that depend on them. No virtual DOM, no re-render-by-default.',
+    when:['You like JSX but want top-tier runtime performance','You want signals as a first-class primitive','Performance-critical dashboards and data UIs'],
+    avoid:['You need React Native or React\'s ecosystem','Your team expects React\'s exact mental model (effects differ)'],
+    competes:['react','svelte'], related:['ts'],
+    code:'<span class="k">function</span> <span class="f">Counter</span>() {\n  <span class="k">const</span> [n, setN] = <span class="f">createSignal</span>(0);\n  <span class="k">return</span> &lt;button onClick={() => setN(n() + 1)}&gt;{n()}&lt;/button&gt;;\n}',
+    links:[['solidjs.com','https://www.solidjs.com']] },
+  angular:{ name:'Angular', cat:'framework', x:170,y:200,r:24, color:'#dd0031', logo:'A', maturity:'Mature · Google · v18+ (signals)',
+    summary:'Full-platform: routing, DI, forms, HTTP — all in the box. TypeScript-first, RxJS-native.',
+    what:'Angular is a batteries-included framework: dependency injection, routing, forms, HTTP, and testing all ship together with strong conventions. It is TypeScript-first and historically RxJS-heavy; recent versions add signals and standalone components.',
+    when:['Large enterprise apps that benefit from strong conventions','Teams that want one official way to do everything','Long-lived apps where consistency beats flexibility'],
+    avoid:['Small projects where the framework weight is overkill','You want maximum freedom in architectural choices'],
+    competes:['react','vue'], related:['ts'],
+    code:'@<span class="f">Component</span>({ template: <span class="s">`&lt;button (click)="n++"&gt;{{ n }}&lt;/button&gt;`</span> })\n<span class="k">export class</span> <span class="t">Counter</span> { n = 0; }',
+    links:[['angular.dev','https://angular.dev']] },
+  next:{ name:'Next.js', cat:'meta', x:460,y:110,r:26, color:'#ededf0', logo:'N', maturity:'Mature · Vercel · App Router + RSC',
+    summary:'React with the answers pre-filled: routing, SSR, image optimization, streaming, RSC.',
+    what:'Next.js is the default production framework for React. It provides file-based routing, server-side rendering, static generation, incremental regeneration, React Server Components, and image/font optimization — turning React from a library into a full app platform.',
+    when:['You are building production React and want SSR/SEO solved','You want server components and streaming out of the box','You deploy to Vercel or any Node/edge host'],
+    avoid:['A simple SPA with no SEO or SSR needs — plain Vite + React is lighter','You want framework-agnostic portability'],
+    competes:['remix','astro','nuxt'], related:['react','ts','vercel'],
+    code:'<span class="c">// app/page.tsx — a React Server Component</span>\n<span class="k">export default async function</span> <span class="f">Page</span>() {\n  <span class="k">const</span> data = <span class="k">await</span> <span class="f">getPosts</span>();\n  <span class="k">return</span> &lt;Feed posts={data} /&gt;;\n}',
+    links:[['nextjs.org/docs','https://nextjs.org/docs']] },
+  nuxt:{ name:'Nuxt', cat:'meta', x:190,y:320,r:22, color:'#00dc82', logo:'Nu', maturity:'Mature · v3',
+    summary:'Vue meta-framework. SSR, file routing, modules, auto-imports.',
+    what:'Nuxt is to Vue what Next is to React: file-based routing, server rendering, auto-imports, and a rich module ecosystem, with deploy adapters for most hosts.',
+    when:['You build with Vue and need SSR/SSG','You want auto-imports and conventions','Content-heavy Vue sites'],
+    avoid:['You are not using Vue','You want a minimal hand-rolled setup'],
+    competes:['next','sveltekit'], related:['vue'],
+    code:'<span class="c">// pages/index.vue — auto-routed</span>\n&lt;script setup&gt;\n<span class="k">const</span> { data } = <span class="k">await</span> <span class="f">useFetch</span>(<span class="s">\'/api/posts\'</span>)\n&lt;/script&gt;',
+    links:[['nuxt.com','https://nuxt.com']] },
+  sveltekit:{ name:'SvelteKit', cat:'meta', x:120,y:380,r:20, color:'#ff3e00', logo:'SK', maturity:'Stable · v2',
+    summary:'Svelte meta-framework with adapters for any deploy target.',
+    what:'SvelteKit adds routing, server endpoints, form actions, and SSR to Svelte, with adapters that target Node, static hosts, Cloudflare, Vercel, and more.',
+    when:['You build with Svelte and need a full app framework','You want flexible deploy targets via adapters'],
+    avoid:['You are not using Svelte'], competes:['next','nuxt'], related:['svelte'],
+    code:'<span class="c">// +page.server.js</span>\n<span class="k">export function</span> <span class="f">load</span>() {\n  <span class="k">return</span> { posts: <span class="f">getPosts</span>() };\n}',
+    links:[['kit.svelte.dev','https://kit.svelte.dev']] },
+  astro:{ name:'Astro', cat:'meta', x:560,y:70,r:22, color:'#ff5d01', logo:'As', maturity:'Stable · islands',
+    summary:'Islands architecture for content sites. Ship zero JS by default.',
+    what:'Astro renders to static HTML by default and only hydrates the interactive islands you opt into — and those islands can be React, Vue, Svelte, or Solid. Ideal for content where most of the page is static.',
+    when:['Content sites, blogs, docs, marketing','You want near-zero JS shipped by default','You want to mix UI frameworks in one project'],
+    avoid:['Highly interactive app shells — a full app framework fits better'],
+    competes:['next','remix'], related:['react','vue','svelte'],
+    code:'---\n<span class="c">// component frontmatter runs at build</span>\n<span class="k">const</span> posts = <span class="k">await</span> <span class="f">getPosts</span>();\n---\n&lt;Feed client:visible posts={posts} /&gt;',
+    links:[['astro.build','https://astro.build']] },
+  remix:{ name:'Remix', cat:'meta', x:370,y:60,r:22, color:'#ededf0', logo:'Rx', maturity:'Stable · now React Router 7',
+    summary:'React framework focused on web fundamentals, loaders, and nested routing.',
+    what:'Remix leans into web standards: data loaders and actions per route, progressive enhancement, and nested routing. Its ideas have merged into React Router 7.',
+    when:['You value web fundamentals and progressive enhancement','You want data loading colocated with routes'],
+    avoid:['You want the largest plugin ecosystem (Next leads)'],
+    competes:['next','astro'], related:['react','ts'],
+    code:'<span class="k">export async function</span> <span class="f">loader</span>() {\n  <span class="k">return</span> <span class="f">json</span>(<span class="k">await</span> <span class="f">getPosts</span>());\n}',
+    links:[['remix.run','https://remix.run']] },
+  tailwind:{ name:'Tailwind', cat:'style', x:690,y:290,r:28, color:'#06b6d4', logo:'TW', maturity:'Mature · v4',
+    summary:'Utility-first CSS framework. The default for most new React projects.',
+    what:'Tailwind is a utility-first CSS framework: you compose designs from small single-purpose classes in your markup. A compiler scans your files and emits only the classes you use, keeping production CSS tiny.',
+    when:['You want to style without leaving your markup','You want a constrained design-token system by default','Rapid prototyping that scales to production'],
+    avoid:['You strongly prefer semantic class names and separation of concerns','Tiny projects where a few lines of plain CSS suffice'],
+    competes:['css','sass','styled','cssmod'], related:['react','next'],
+    code:'&lt;button class=<span class="s">"px-4 py-2 rounded-lg bg-blue-500\n  text-white hover:bg-blue-600 transition"</span>&gt;\n  Click\n&lt;/button&gt;',
+    links:[['tailwindcss.com','https://tailwindcss.com']] },
+  css:{ name:'CSS', cat:'style', x:720,y:380,r:24, color:'#264de4', logo:'C', maturity:'Standard · evolving fast',
+    summary:'The styling language of the web. Modern CSS is dramatically more powerful than its reputation.',
+    what:'CSS describes how documents look: layout (Grid, Flexbox), typography, color, motion, and responsiveness. Modern CSS adds container queries, cascade layers, nesting, custom properties, and subgrid — much of what once required preprocessors or JS.',
+    when:['Always — every visual web project uses it','You want layout and motion the platform handles natively','You want theming via custom properties'],
+    avoid:['Nothing — but a framework like Tailwind can speed authoring'],
+    competes:['tailwind','sass'], related:['tailwind','sass'],
+    code:'.card {\n  display: <span class="t">grid</span>;\n  gap: <span class="s">1rem</span>;\n  container-type: <span class="t">inline-size</span>;\n}',
+    links:[['MDN — CSS','https://developer.mozilla.org/en-US/docs/Web/CSS'],['web.dev CSS','https://web.dev/learn/css']] },
+  sass:{ name:'Sass', cat:'style', x:810,y:340,r:20, color:'#cf649a', logo:'Sa', maturity:'Mature · stable',
+    summary:'CSS preprocessor with variables, nesting, mixins, and partials.',
+    what:'Sass extends CSS with variables, nesting, mixins, functions, and file partials, compiling to plain CSS. Native CSS has absorbed many features, but Sass mixins and loops still earn their place in large stylesheets.',
+    when:['Large hand-authored stylesheets','You want mixins and loops native CSS lacks'],
+    avoid:['Utility-first workflows (Tailwind) or CSS-in-JS setups'],
+    competes:['css','tailwind'], related:['css'],
+    code:'$brand: <span class="s">#4f9dff</span>;\n.btn {\n  background: $brand;\n  &amp;:hover { background: <span class="f">darken</span>($brand, 8%); }\n}',
+    links:[['sass-lang.com','https://sass-lang.com']] },
+  cssmod:{ name:'CSS Modules', cat:'style', x:790,y:230,r:18, color:'#264de4', logo:'CM', maturity:'Stable',
+    summary:'Scoped CSS via build-time class hashing.',
+    what:'CSS Modules scope class names locally by hashing them at build time, eliminating global-namespace collisions while keeping you in plain CSS files.',
+    when:['You want plain CSS but scoped per component','You want to avoid global class collisions'],
+    avoid:['You prefer utilities (Tailwind) or runtime CSS-in-JS'],
+    competes:['tailwind','styled'], related:['css'],
+    code:'<span class="c">/* Button.module.css */</span>\n.root { color: <span class="s">white</span>; }\n<span class="c">// import styles; className={styles.root}</span>',
+    links:[['CSS Modules','https://github.com/css-modules/css-modules']] },
+  styled:{ name:'styled-components', cat:'style', x:780,y:140,r:20, color:'#db7093', logo:'SC', maturity:'Mature · runtime CSS-in-JS',
+    summary:'CSS-in-JS via tagged template literals.',
+    what:'styled-components lets you write actual CSS in tagged template literals that produce styled React components, with props-driven styling and theming. Note the runtime cost — RSC-era projects often prefer zero-runtime options.',
+    when:['You want colocated, props-driven styles in React','Dynamic theming at runtime'],
+    avoid:['React Server Components / performance-critical paths — prefer zero-runtime CSS'],
+    competes:['tailwind','cssmod'], related:['react'],
+    code:'<span class="k">const</span> <span class="t">Btn</span> = styled.button<span class="s">`\n  padding: 10px 16px;\n  background: ${p => p.theme.brand};\n`</span>;',
+    links:[['styled-components.com','https://styled-components.com']] },
+  redux:{ name:'Redux', cat:'state', x:280,y:100,r:22, color:'#764abc', logo:'Rd', maturity:'Mature · Redux Toolkit',
+    summary:'Predictable global state via reducers and actions.',
+    what:'Redux centralizes app state in a single store updated by pure reducers in response to dispatched actions. Redux Toolkit cut the boilerplate dramatically and is the recommended modern approach.',
+    when:['Large apps with complex shared state and many writers','You want time-travel debugging and strict predictability'],
+    avoid:['Simple apps — local state or a small store (Zustand) is lighter','Server state — use TanStack Query instead'],
+    competes:['zustand','jotai'], related:['react'],
+    code:'<span class="k">const</span> slice = <span class="f">createSlice</span>({\n  name: <span class="s">\'counter\'</span>, initialState: 0,\n  reducers: { inc: s => s + 1 }\n});',
+    links:[['redux-toolkit.js.org','https://redux-toolkit.js.org']] },
+  zustand:{ name:'Zustand', cat:'state', x:180,y:110,r:18, color:'#ededf0', logo:'Zu', maturity:'Popular · minimal',
+    summary:'Minimal store with hooks. The popular choice over Redux today.',
+    what:'Zustand is a tiny state library: create a store with a hook, read slices with selectors, update without reducers or providers. Minimal ceremony, great ergonomics.',
+    when:['You want global state without Redux boilerplate','Small-to-medium client state'],
+    avoid:['You need strict action logs/time-travel across a huge team','Server cache — use TanStack Query'],
+    competes:['redux','jotai'], related:['react'],
+    code:'<span class="k">const</span> useStore = <span class="f">create</span>(set => ({\n  n: 0, inc: () => set(s => ({ n: s.n + 1 }))\n}));',
+    links:[['zustand docs','https://zustand.docs.pmnd.rs']] },
+  jotai:{ name:'Jotai', cat:'state', x:90,y:140,r:16, color:'#ededf0', logo:'Jo', maturity:'Stable · atomic',
+    summary:'Atomic state model for React.',
+    what:'Jotai models state as small composable atoms; components subscribe only to the atoms they read, giving fine-grained updates with a minimal API.',
+    when:['You want bottom-up atomic state','Fine-grained subscriptions matter'],
+    avoid:['You prefer a single central store (Redux/Zustand)'],
+    competes:['redux','zustand'], related:['react'],
+    code:'<span class="k">const</span> countAtom = <span class="f">atom</span>(0);\n<span class="k">const</span> [n, setN] = <span class="f">useAtom</span>(countAtom);',
+    links:[['jotai.org','https://jotai.org']] },
+  pinia:{ name:'Pinia', cat:'state', x:130,y:270,r:18, color:'#ffd859', logo:'Pi', maturity:'Official Vue store',
+    summary:'Vue state management. The successor to Vuex.',
+    what:'Pinia is the official Vue store: typed, modular, devtools-friendly, with a simple setup-style API that fits the Composition API.',
+    when:['You build with Vue and need shared state'], avoid:['You are not using Vue'],
+    competes:['redux','zustand'], related:['vue'],
+    code:'<span class="k">export const</span> useCounter = <span class="f">defineStore</span>(<span class="s">\'c\'</span>, {\n  state: () => ({ n: 0 }),\n  actions: { inc() { this.n++ } }\n});',
+    links:[['pinia.vuejs.org','https://pinia.vuejs.org']] },
+  tanstack:{ name:'TanStack Query', cat:'state', x:380,y:150,r:22, color:'#ff4154', logo:'TQ', maturity:'Mature · framework-agnostic',
+    summary:'Server-state caching and synchronization. Framework-agnostic.',
+    what:'TanStack Query manages server state: fetching, caching, background refetching, deduping, and invalidation. It replaces hand-rolled loading/error/cache logic and works with React, Vue, Svelte, and Solid.',
+    when:['You fetch and cache server data (almost every app)','You want background refetch, retries, and dedupe for free'],
+    avoid:['Purely local UI state — use a client store instead'],
+    competes:['redux'], related:['react','vue','solid'],
+    code:'<span class="k">const</span> { data, isLoading } = <span class="f">useQuery</span>({\n  queryKey: [<span class="s">\'posts\'</span>], queryFn: getPosts\n});',
+    links:[['tanstack.com/query','https://tanstack.com/query/latest']] },
+  vite:{ name:'Vite', cat:'build', x:630,y:440,r:26, color:'#646cff', logo:'Vi', maturity:'Mature · the new default',
+    summary:'ESM-native dev server. Near-instant HMR. The default new build tool.',
+    what:'Vite serves source over native ES modules in dev (no bundling, instant startup) and bundles with Rollup for production. Its speed and simple config made it the default for most new frontend projects.',
+    when:['Almost any new SPA or library','You want instant dev server start and fast HMR'],
+    avoid:['You are locked into a Webpack-specific plugin ecosystem'],
+    competes:['webpack','turbo','esbuild'], related:['react','vue','svelte','vitest'],
+    code:'<span class="c">// vite.config.ts</span>\n<span class="k">export default</span> { plugins: [<span class="f">react</span>()] };',
+    links:[['vite.dev','https://vite.dev']] },
+  webpack:{ name:'Webpack', cat:'build', x:740,y:480,r:22, color:'#8dd6f9', logo:'Wp', maturity:'Mature · legacy default',
+    summary:'The original bundler. Still ubiquitous in legacy stacks.',
+    what:'Webpack builds a dependency graph from any asset and bundles it with a vast loader/plugin ecosystem. Powerful and configurable, but slower and heavier than modern ESM-native tools.',
+    when:['Maintaining existing Webpack apps','You need a niche loader only Webpack has'],
+    avoid:['Greenfield projects — Vite is faster and simpler'],
+    competes:['vite','turbo','esbuild'], related:[],
+    code:'<span class="c">// webpack.config.js</span>\nmodule.exports = { entry: <span class="s">\'./src/index.js\'</span> };',
+    links:[['webpack.js.org','https://webpack.js.org']] },
+  turbo:{ name:'Turbopack', cat:'build', x:540,y:490,r:22, color:'#ededf0', logo:'Tp', maturity:'Beta · Rust',
+    summary:'Rust-based bundler. Powers Next.js dev mode.',
+    what:'Turbopack is a Rust-based incremental bundler from Vercel, designed as a successor to Webpack and currently powering Next.js dev mode with very fast updates on large apps.',
+    when:['Large Next.js apps wanting faster dev builds'],
+    avoid:['You need a fully stable, framework-agnostic bundler today (use Vite)'],
+    competes:['vite','webpack','esbuild'], related:['next'],
+    code:'<span class="c"># next.js uses turbopack in dev</span>\nnext dev --turbo',
+    links:[['turbo.build/pack','https://turbo.build/pack']] },
+  esbuild:{ name:'esbuild', cat:'build', x:680,y:510,r:20, color:'#ffcf00', logo:'eb', maturity:'Mature · Go',
+    summary:'Go-based bundler/transpiler. The benchmark for raw speed.',
+    what:'esbuild is an extremely fast bundler and transpiler written in Go. It often runs as the engine inside other tools (including Vite\'s dev transform) more than as a standalone build system.',
+    when:['You need the fastest possible transpile/bundle step','Library builds and tooling pipelines'],
+    avoid:['You need a rich plugin ecosystem and framework integration'],
+    competes:['vite','webpack'], related:['vite'],
+    code:'esbuild app.ts --bundle --minify --outfile=out.js',
+    links:[['esbuild.github.io','https://esbuild.github.io']] },
+  vitest:{ name:'Vitest', cat:'test', x:830,y:420,r:20, color:'#6e9f18', logo:'Vt', maturity:'Mature · Vite-native',
+    summary:'Vite-native test runner with Jest-compatible API.',
+    what:'Vitest runs unit and component tests using your existing Vite config and transform pipeline, with a Jest-compatible API, watch mode, and fast TypeScript/ESM support.',
+    when:['Your app uses Vite','You want fast unit/component tests with a familiar API'],
+    avoid:['Non-Vite projects deeply invested in Jest'],
+    competes:['jest'], related:['vite'],
+    code:'<span class="f">test</span>(<span class="s">\'adds\'</span>, () => {\n  <span class="f">expect</span>(<span class="f">add</span>(1, 2)).<span class="f">toBe</span>(3);\n});',
+    links:[['vitest.dev','https://vitest.dev']] },
+  playwright:{ name:'Playwright', cat:'test', x:850,y:500,r:22, color:'#45ba4b', logo:'Pw', maturity:'Mature · Microsoft',
+    summary:'E2E testing across all major browsers.',
+    what:'Playwright drives Chromium, Firefox, and WebKit with one API for end-to-end tests: auto-waiting, network interception, tracing, and parallel execution.',
+    when:['Cross-browser end-to-end and integration tests','You want reliable auto-waiting and tracing'],
+    avoid:['Pure unit tests — a unit runner is lighter'],
+    competes:['jest'], related:[],
+    code:'<span class="k">await</span> page.<span class="f">goto</span>(<span class="s">\'/\'</span>);\n<span class="k">await</span> <span class="f">expect</span>(page.<span class="f">getByRole</span>(<span class="s">\'button\'</span>)).<span class="f">toBeVisible</span>();',
+    links:[['playwright.dev','https://playwright.dev']] },
+  jest:{ name:'Jest', cat:'test', x:890,y:360,r:18, color:'#c63d14', logo:'Je', maturity:'Mature · classic',
+    summary:'The classic JS unit test framework.',
+    what:'Jest is a long-standing test framework with snapshot testing, mocking, and a large ecosystem. Still common, though Vite projects increasingly choose Vitest.',
+    when:['Existing Jest suites','Non-Vite toolchains'], avoid:['New Vite projects (Vitest integrates better)'],
+    competes:['vitest','playwright'], related:[],
+    code:'<span class="f">describe</span>(<span class="s">\'math\'</span>, () => {\n  <span class="f">it</span>(<span class="s">\'adds\'</span>, () => <span class="f">expect</span>(1 + 2).<span class="f">toBe</span>(3));\n});',
+    links:[['jestjs.io','https://jestjs.io']] },
+  vercel:{ name:'Vercel', cat:'deploy', x:460,y:30,r:22, color:'#ededf0', logo:'▲', maturity:'Mature · edge platform',
+    summary:'Edge platform optimized for Next.js. Preview deploys, edge functions.',
+    what:'Vercel is a deployment platform built around frontend frameworks (especially Next.js): git-based deploys, instant preview URLs per pull request, edge functions, and global CDN.',
+    when:['You ship Next.js or other frontend frameworks','You want preview deploys per PR with zero config'],
+    avoid:['You need a full traditional backend/VM environment'],
+    competes:['netlify','cf'], related:['next','remix'],
+    code:'<span class="c"># deploy from the CLI</span>\nvercel --prod',
+    links:[['vercel.com/docs','https://vercel.com/docs']] },
+  netlify:{ name:'Netlify', cat:'deploy', x:600,y:30,r:20, color:'#00ad9f', logo:'Nf', maturity:'Mature',
+    summary:'JAMstack hosting with edge functions and forms.',
+    what:'Netlify pioneered git-based JAMstack hosting: build-on-push, atomic deploys, edge functions, forms, and split testing for static and hybrid sites.',
+    when:['Static and hybrid sites','You want forms/identity/edge functions bundled'],
+    avoid:['Deep Next.js-specific optimizations (Vercel leads there)'],
+    competes:['vercel','cf'], related:[],
+    code:'<span class="c"># netlify.toml</span>\n[build]\n  command = <span class="s">"npm run build"</span>',
+    links:[['netlify.com','https://www.netlify.com']] },
+  cf:{ name:'Cloudflare', cat:'deploy', x:280,y:30,r:22, color:'#f38020', logo:'CF', maturity:'Mature · edge-first',
+    summary:'Workers run at the edge. Pages for static. R2 for storage.',
+    what:'Cloudflare runs code at the network edge via Workers, hosts static/hybrid sites with Pages, and offers storage (R2, KV, D1) — all close to users, with a generous free tier.',
+    when:['You want compute at the edge, globally','Cost-sensitive projects wanting a strong free tier'],
+    avoid:['You need long-running stateful servers'],
+    competes:['vercel','netlify'], related:[],
+    code:'<span class="k">export default</span> {\n  <span class="f">fetch</span>(req) { <span class="k">return new</span> <span class="f">Response</span>(<span class="s">\'Hi from the edge\'</span>); }\n};',
+    links:[['developers.cloudflare.com','https://developers.cloudflare.com']] },
+  supabase:{ name:'Supabase', cat:'baas', x:900,y:90,r:22, color:'#3ecf8e', logo:'Sb', maturity:'Mature · Postgres BaaS',
+    summary:'Postgres-based BaaS. Auth, storage, realtime, edge functions.',
+    what:'Supabase wraps a real Postgres database with auth, row-level security, autogenerated APIs, realtime subscriptions, storage, and edge functions — an open-source Firebase alternative.',
+    when:['You want a backend without running servers','You prefer SQL/Postgres and want to own your data'],
+    avoid:['You need a document database model specifically'],
+    competes:['firebase'], related:['next','react'],
+    code:'<span class="k">const</span> { data } = <span class="k">await</span> supabase\n  .<span class="f">from</span>(<span class="s">\'posts\'</span>).<span class="f">select</span>(<span class="s">\'*\'</span>);',
+    links:[['supabase.com/docs','https://supabase.com/docs']] },
+  firebase:{ name:'Firebase', cat:'baas', x:900,y:170,r:22, color:'#ffca28', logo:'Fb', maturity:'Mature · Google',
+    summary:'Google\'s BaaS. Auth, Firestore, hosting, functions.',
+    what:'Firebase is Google\'s backend-as-a-service: Firestore (document DB), authentication, hosting, cloud functions, and realtime sync — fast to start, with a NoSQL data model.',
+    when:['You want auth + realtime DB + hosting quickly','Mobile + web sharing one backend'],
+    avoid:['You need relational queries — consider Supabase/Postgres'],
+    competes:['supabase'], related:['react'],
+    code:'<span class="k">await</span> <span class="f">setDoc</span>(<span class="f">doc</span>(db, <span class="s">\'posts\'</span>, id), data);',
+    links:[['firebase.google.com/docs','https://firebase.google.com/docs']] },
+  framer:{ name:'Framer Motion', cat:'motion', x:50,y:290,r:22, color:'#0055ff', logo:'FM', maturity:'Mature · React',
+    summary:'Production-ready motion library for React (now "Motion").',
+    what:'Framer Motion (now Motion) provides declarative animations for React: spring physics, gestures, layout animations, and shared-element transitions with a concise API.',
+    when:['You animate React UIs','You want layout/shared-element transitions easily'],
+    avoid:['Non-React projects — use GSAP or Web Animations'],
+    competes:['gsap'], related:['react'],
+    code:'&lt;motion.div animate={{ x: 100 }}\n  transition={{ type: <span class="s">\'spring\'</span> }} /&gt;',
+    links:[['motion.dev','https://motion.dev']] },
+  gsap:{ name:'GSAP', cat:'motion', x:50,y:380,r:22, color:'#88ce02', logo:'GS', maturity:'Mature · framework-agnostic',
+    summary:'Battle-tested timeline animation library.',
+    what:'GSAP is a high-performance, framework-agnostic animation engine with a powerful timeline, scroll triggers, and broad browser support — a staple of award-winning sites.',
+    when:['Complex sequenced/scroll-driven animation','Creative, framework-agnostic work'],
+    avoid:['Simple React state transitions (Motion is more ergonomic)'],
+    competes:['framer'], related:[],
+    code:'gsap.<span class="f">to</span>(<span class="s">\'.box\'</span>, { x: 200, duration: 1,\n  scrollTrigger: <span class="s">\'.box\'</span> });',
+    links:[['gsap.com','https://gsap.com']] },
+  three:{ name:'Three.js', cat:'3d', x:900,y:550,r:22, color:'#ededf0', logo:'3', maturity:'Mature · WebGL',
+    summary:'WebGL library. Powers most 3D on the web.',
+    what:'Three.js abstracts WebGL into scenes, cameras, meshes, materials, and lights, making real-time 3D on the web approachable. The foundation for most browser 3D.',
+    when:['Interactive 3D, product viewers, data viz, games'], avoid:['Simple 2D UI — overkill'],
+    competes:['r3f'], related:['r3f'],
+    code:'<span class="k">const</span> scene = <span class="k">new</span> THREE.<span class="f">Scene</span>();\nscene.<span class="f">add</span>(<span class="k">new</span> THREE.<span class="f">Mesh</span>(geo, mat));',
+    links:[['threejs.org','https://threejs.org']] },
+  r3f:{ name:'R3F', cat:'3d', x:810,y:555,r:20, color:'#ededf0', logo:'R3', maturity:'Mature · React + Three',
+    summary:'React renderer for Three.js. Declarative 3D.',
+    what:'React Three Fiber renders a Three.js scene with React components, so you build 3D declaratively and compose it with the rest of your React app and its ecosystem (drei, etc.).',
+    when:['You build 3D inside a React app','You want declarative scene composition'],
+    avoid:['Non-React projects (use Three directly)'],
+    competes:['three'], related:['react','three'],
+    code:'&lt;Canvas&gt;&lt;mesh&gt;&lt;boxGeometry /&gt;&lt;meshStandardMaterial /&gt;&lt;/mesh&gt;&lt;/Canvas&gt;',
+    links:[['R3F docs','https://r3f.docs.pmnd.rs']] }
+};
+const TECH_IDS = Object.keys(TECH);
+TECH_IDS.forEach(id => { TECH[id].id = id; });
+
+/* ---------- ROADMAP ---------- */
+const ROADMAP = [
+  { id:'internet', title:'The Internet', icon:'globe', desc:'TCP/IP, DNS, HTTP — the substrate everything runs on. Before you ship, learn what a request actually is.', tags:['HTTP/3','DNS','TLS','CDN'], detail:'The web rides on layered protocols: IP routes packets, TCP/QUIC makes them reliable, TLS encrypts them, HTTP frames them as requests and responses, and DNS turns names into addresses. Every performance and security decision upstream of your code lives here.' },
+  { id:'browser-layer', title:'The Browser', icon:'browser', desc:'A rendering engine, a JavaScript VM, and a sandbox. Knowing how it parses, lays out, and paints is half the job.', tags:['Rendering','Event loop','Sandbox'], detail:'A browser is several engines in a trench coat: a parser building the DOM, a style engine building the CSSOM, a layout engine computing geometry, a paint/compositor stage, and a JavaScript VM — all coordinated by the event loop on one main thread.' },
+  { id:'html-layer', title:'HTML', icon:'file', desc:'Structure and semantics. Every framework you will ever use compiles down to this tree.', tags:['Semantics','Forms','Metadata'], detail:'HTML is the document model: semantic elements describe meaning, forms capture input with native validation, and metadata controls indexing and sharing. Get the tree right and accessibility plus SEO largely follow.' },
+  { id:'css-layer', title:'CSS', icon:'palette', desc:'Layout, typography, motion. Modern CSS is dramatically more powerful than the CSS that scared you in 2015.', tags:['Grid','Flexbox','Container queries','@layer'], techId:'css' },
+  { id:'js-layer', title:'JavaScript', icon:'code', desc:'The language. Closures, prototypes, async, modules. Master this and frameworks become easy.', tags:['ES2024','Async','Modules','Closures'], techId:'js' },
+  { id:'dom', title:'The DOM', icon:'tree', desc:'The live object model the browser exposes. Where parsing ends and interaction begins.', tags:['Querying','Events','Mutation'], detail:'The DOM is the live, mutable object representation of the parsed HTML. JavaScript reads and writes it; the browser re-runs layout and paint in response. Frameworks exist largely to make these mutations efficient and declarative.' },
+  { id:'apis', title:'Web APIs', icon:'plug', desc:'fetch, IntersectionObserver, Web Workers, WebSockets, Storage. The platform is enormous and mostly underused.', tags:['fetch','Observer APIs','Workers'], detail:'The platform ships hundreds of APIs: fetch for networking, the Observer family for scroll/resize/visibility, Web Workers for off-main-thread work, WebSocket for realtime, IndexedDB/Storage for persistence. Most apps use a fraction of what is available.' },
+  { id:'frameworks-layer', title:'Frameworks', icon:'grid', desc:'React, Vue, Svelte, Solid, Angular. Different opinions on the same problem — what should re-render and when?', tags:['React','Vue','Svelte','Solid'], techId:'react' },
+  { id:'tools', title:'Build tools', icon:'tool', desc:'Vite, Webpack, Turbopack, esbuild, SWC. They make modules fast. They also define your DX.', tags:['Vite','Turbopack','esbuild'], techId:'vite' },
+  { id:'architecture-layer', title:'Architecture', icon:'layers', desc:'Folder structure, monorepos, design systems, feature boundaries. The decisions that survive every refactor.', tags:['Monorepo','Design system','Features'], detail:'Architecture is the set of decisions that outlive any feature: how you group code (by feature, not type), how you share across surfaces (monorepos), and how UI flows from tokens to primitives to patterns (the design system).' },
+  { id:'performance-layer', title:'Performance', icon:'gauge', desc:'Core Web Vitals, hydration cost, bundle budgets. Slow sites lose money and users — both measurable.', tags:['LCP','INP','CLS','Hydration'], detail:'Performance is measurable engineering: Core Web Vitals (LCP, INP, CLS) quantify experience, bundle budgets cap JS weight, and rendering strategy (SSR/SSG/ISR/streaming) trades first paint against interactivity.' },
+  { id:'deploy', title:'Deployment', icon:'rocket', desc:'Edge, CDN, serverless functions, ISR. Where your code actually meets users.', tags:['Edge','CDN','Serverless','CI/CD'], techId:'vercel' }
+];
+
+/* ---------- PIPELINE ---------- */
+const PIPELINE_STAGES = [
+  { id:'parse', name:'Parse HTML', sub:'DOM tree', icon:'parse', text:'The browser streams bytes from the network, decodes characters, tokenizes, and builds the DOM tree node by node. Blocking scripts pause this entirely — async and defer exist to avoid that.', code:'<span class="c">// browser builds the DOM as bytes arrive</span>\n<span class="k">html</span>\n└─ <span class="k">body</span>\n   ├─ <span class="k">header</span>\n   ├─ <span class="k">main</span>\n   └─ <span class="k">footer</span>' },
+  { id:'style', name:'Style', sub:'CSSOM', icon:'style', text:'CSS is parsed into the CSSOM — a parallel tree of computed styles. The browser blocks rendering until critical CSS is loaded. This is why you inline above-the-fold styles.', code:'<span class="c">// computed style for an article</span>\n{\n  display: <span class="s">"block"</span>,\n  fontSize: <span class="s">"16px"</span>,\n  margin: <span class="s">"24px auto"</span>\n}' },
+  { id:'layout', name:'Layout', sub:'Reflow', icon:'layout', text:'The render tree merges DOM + CSSOM, then the browser calculates geometry — position, size, line breaks. Touching width, height, top, or font-size triggers a reflow.', code:'<span class="c">// triggers reflow</span>\nelement.style.<span class="f">width</span> = <span class="s">"320px"</span>;\n\n<span class="c">// reads also trigger reflow</span>\n<span class="k">const</span> w = element.<span class="f">offsetWidth</span>;' },
+  { id:'paint', name:'Paint', sub:'Pixels', icon:'paint', text:'The browser rasterizes layout boxes into pixels — backgrounds, borders, text, shadows. Box-shadow and border-radius are surprisingly expensive.', code:'<span class="c">// triggers paint, not layout</span>\nelement.style.<span class="f">backgroundColor</span> = <span class="s">"#4f9dff"</span>;\n\n<span class="c">// triggers paint + layout (worse)</span>\nelement.style.<span class="f">padding</span> = <span class="s">"20px"</span>;' },
+  { id:'compose', name:'Composite', sub:'GPU layers', icon:'compose', text:'Painted layers are composited together on the GPU. transform and opacity skip layout and paint entirely — this is why they animate at 60fps for free.', code:'<span class="c">// runs on the compositor — 60fps</span>\nelement.style.<span class="f">transform</span> = <span class="s">"translateX(100px)"</span>;\nelement.style.<span class="f">opacity</span> = <span class="s">"0.5"</span>;' },
+  { id:'js-stage', name:'JavaScript', sub:'V8 + event loop', icon:'code', text:'JS runs on the main thread alongside everything above. Long tasks block layout, paint, and input. The event loop interleaves user code with rendering work between frames.', code:'<span class="k">requestAnimationFrame</span>(() => {\n  <span class="c">// runs right before the next paint</span>\n  update();\n});' }
+];
+
+/* ---------- FEATURE GRIDS ---------- */
+const HTML_FEATURES = [
+  { icon:'file', h:'Semantic structure', p:'Elements that describe meaning — article, nav, main — give browsers, screen readers, and search engines the same map of your content.' },
+  { icon:'tool', h:'Document metadata', p:'The head element controls how your page is parsed, indexed, and shared. viewport, charset, OG tags, JSON-LD — the invisible UI.' },
+  { icon:'browser', h:'Forms &amp; inputs', p:'Native validation, autocomplete tokens, input modes, and accessibility relationships ship without a single line of JS.' },
+  { icon:'globe', h:'SEO foundations', p:'Headings, links, and canonical URLs are how the web finds you. Semantics is distribution.' },
+  { icon:'tree', h:'The DOM tree', p:'HTML is the source. The DOM is the live object. Mutating one rebuilds the other — usually faster than you think, sometimes slower.' },
+  { icon:'layers', h:'Custom elements', p:'Web Components let you build framework-free UI primitives. Lifecycle, shadow DOM, and slots — the platform shipped its own React, sort of.' }
+];
+const CSS_FEATURES = [
+  { icon:'grid', h:'Grid &amp; Flexbox', p:'Grid for two-dimensional layouts, Flexbox for one. Together they replace every layout hack you grew up with.' },
+  { icon:'browser', h:'Container queries', p:'Components can finally respond to their container instead of the viewport. Truly modular, truly responsive.' },
+  { icon:'layers', h:'Cascade layers', p:'@layer gives you explicit control over specificity. Frameworks, components, utilities — finally a way to settle who wins.' },
+  { icon:'rocket', h:'Animations', p:'The compositor can animate transform and opacity at 60fps for free. Everything else costs paint cycles.' },
+  { icon:'palette', h:'Custom properties', p:'CSS variables are live — they cascade, inherit, and respond to media queries. The theme engine you did not have to build.' },
+  { icon:'layout', h:'Logical properties', p:'margin-inline, padding-block — direction-agnostic spacing for international layouts. RTL and vertical writing modes, all of it.' }
+];
+const JS_FEATURES = [
+  { icon:'code', h:'Scope &amp; closures', p:'Functions remember the lexical environment they were born in. The single most important mental model in JavaScript.' },
+  { icon:'gauge', h:'Promises &amp; async', p:'Synchronous-looking code over asynchronous values. await suspends the function, never the thread.' },
+  { icon:'compose', h:'The event loop', p:'One thread, one call stack, two queues. Microtasks drain before the next macrotask. Render fits in between.' },
+  { icon:'layers', h:'Modules', p:'ESM is the standard. import/export, top-level await, dynamic import. Bundlers exist mostly to make this fast.' },
+  { icon:'tree', h:'Prototypes &amp; classes', p:'Class is sugar over prototype chains. Knowing the difference is the difference between using JS and shipping JS.' },
+  { icon:'plug', h:'Web APIs', p:'fetch, IntersectionObserver, ResizeObserver, Web Workers, WebSocket, IndexedDB — the platform is enormous.' }
+];
+
+/* ---------- OTHER SECTION DATA ---------- */
+const TOOLING = [
+  { num:'01 · Bundlers', title:'Vite, Webpack, Turbopack', desc:'Transform a module graph into chunks of JS, CSS, and assets. The dev experience is mostly the bundler\'s fault.', list:['Dependency graph','Tree-shaking','Code splitting','HMR'] },
+  { num:'02 · Package managers', title:'pnpm, npm, Yarn, Bun', desc:'Resolve, install, link, and lock dependencies. pnpm\'s content-addressable store is the modern default.', list:['Lockfiles','Workspaces','Hoisting','Audit'] },
+  { num:'03 · Linters &amp; formatters', title:'ESLint, Biome, Prettier', desc:'Static analysis catches bugs before review. Formatters end whitespace debates. Both are non-negotiable in teams.', list:['Rule sets','Custom plugins','Pre-commit hooks','Auto-fix'] },
+  { num:'04 · Test runners', title:'Vitest, Jest, Playwright', desc:'Unit, integration, E2E. The pyramid matters less than coverage of the critical paths.', list:['Unit · Vitest','Component · RTL','E2E · Playwright','Visual · Chromatic'] },
+  { num:'05 · CI/CD', title:'GitHub Actions, Vercel, CircleCI', desc:'Every commit gets typechecked, linted, tested, built, and deployed. Preview URLs are the killer feature.', list:['Type check','Lint','Test','Preview deploy','Promote to prod'] },
+  { num:'06 · Monorepo tooling', title:'Turborepo, Nx, Moon', desc:'Cache build outputs, parallelize tasks, share config. The thing that makes large codebases survivable.', list:['Incremental builds','Remote caching','Task graphs','Shared deps'] }
+];
+const CAREERS = [
+  { name:'UI Developer', tag:'shipping the surface', color:'#4f9dff', desc:'Lives in components, design systems, and visual polish. Closest to designers, deepest in CSS.', stack:['React','Tailwind','Figma','Storybook'], icon:'ui' },
+  { name:'Frontend Engineer', tag:'app architecture', color:'#a98bfa', desc:'Owns the client architecture: state, routing, data fetching, testing. The generalist of the discipline.', stack:['React','TypeScript','TanStack','Vitest'], icon:'engineer' },
+  { name:'UX Engineer', tag:'design + code', color:'#5cd1ff', desc:'Bridges design and engineering. Prototypes flows in code, ships shared primitives, lives in the design system.', stack:['React','Figma','Motion','Tokens'], icon:'ux' },
+  { name:'Creative Developer', tag:'experimental web', color:'#ff8fb4', desc:'WebGL, shaders, generative art, audio. Where the browser becomes a creative medium, not a document viewer.', stack:['Three.js','GLSL','GSAP','p5'], icon:'creative' },
+  { name:'Design Engineer', tag:'product polish', color:'#ffb86b', desc:'Hybrid IC. Owns small features end-to-end with taste — visual, interactive, performant. Rare and high-leverage.', stack:['React','Tailwind','Framer','Linear-grade taste'], icon:'design' },
+  { name:'Full-Stack Frontend', tag:'end-to-end', color:'#5be39a', desc:'Owns the entire product slice. Next.js + database + auth + deployment. Indie hackers and startups live here.', stack:['Next.js','Supabase','tRPC','Stripe'], icon:'full' }
+];
+const PATTERNS = [
+  { name:'Modal dialog', desc:'focus trap · scroll lock · escape', preview:'modal' },
+  { name:'Dropdown menu', desc:'keyboard nav · portal · roving focus', preview:'dropdown' },
+  { name:'Tabs', desc:'aria-controls · lazy panels · deep links', preview:'tabs' },
+  { name:'Command palette', desc:'fuzzy search · scoring · ⌘K', preview:'cmd' },
+  { name:'Tooltip', desc:'positioning · hover delay · touch fallback', preview:'tip' },
+  { name:'Toggle / switch', desc:'pressed state · label association', preview:'toggle' },
+  { name:'Accordion', desc:'animate height · single vs multi-open', preview:'accord' },
+  { name:'Sticky navigation', desc:'IntersectionObserver · scroll-aware', preview:'nav' }
+];
+const RESOURCES = {
+  refs:[{name:'MDN Web Docs',sub:'developer.mozilla.org',icon:'book',url:'https://developer.mozilla.org'},{name:'web.dev',sub:'Google Chrome team',icon:'book',url:'https://web.dev'},{name:'WHATWG specs',sub:'living standards',icon:'book',url:'https://spec.whatwg.org'},{name:'Can I Use',sub:'feature support tables',icon:'book',url:'https://caniuse.com'},{name:'ECMAScript spec',sub:'tc39.es/ecma262',icon:'book',url:'https://tc39.es/ecma262/'},{name:'CSS Specs',sub:'w3.org/Style/CSS',icon:'book',url:'https://www.w3.org/Style/CSS/'}],
+  tools:[{name:'Next.js docs',sub:'nextjs.org/docs',icon:'tool',url:'https://nextjs.org/docs'},{name:'React docs',sub:'react.dev',icon:'tool',url:'https://react.dev'},{name:'Vite guide',sub:'vite.dev',icon:'tool',url:'https://vite.dev'},{name:'Tailwind docs',sub:'tailwindcss.com',icon:'tool',url:'https://tailwindcss.com'},{name:'Vercel docs',sub:'vercel.com/docs',icon:'tool',url:'https://vercel.com/docs'},{name:'TypeScript handbook',sub:'typescriptlang.org',icon:'tool',url:'https://www.typescriptlang.org/docs/'}],
+  people:[{name:'508 Dev',sub:'508dev.com',icon:'a11y',url:'https://508dev.com'},{name:'WebAIM',sub:'webaim.org',icon:'a11y',url:'https://webaim.org'},{name:'The A11y Project',sub:'a11yproject.com',icon:'a11y',url:'https://www.a11yproject.com'},{name:'WCAG 2.2 quick reference',sub:'w3.org/WAI',icon:'a11y',url:'https://www.w3.org/WAI/WCAG22/quickref/'},{name:'Inclusive Components',sub:'inclusive-components.design',icon:'a11y',url:'https://inclusive-components.design'},{name:'MDN Accessibility',sub:'developer.mozilla.org',icon:'a11y',url:'https://developer.mozilla.org/en-US/docs/Web/Accessibility'}],
+  inspo:[{name:'Awwwards',sub:'awwwards.com',icon:'star',url:'https://www.awwwards.com'},{name:'Godly',sub:'godly.website',icon:'star',url:'https://godly.website'},{name:'Refactoring UI',sub:'design book',icon:'star',url:'https://www.refactoringui.com'},{name:'Linear blog',sub:'engineering & design',icon:'star',url:'https://linear.app/blog'},{name:'Vercel design',sub:'vercel.com/design',icon:'star',url:'https://vercel.com/design'},{name:'Mobbin',sub:'real-world UI',icon:'star',url:'https://mobbin.com'}]
+};
+const METRICS = [
+  { label:'LCP', value:'1.8', unit:'s', trend:'↓ 24% vs last quarter', cls:'' },
+  { label:'INP', value:'124', unit:'ms', trend:'↓ 18ms', cls:'' },
+  { label:'CLS', value:'0.03', unit:'', trend:'good', cls:'' },
+  { label:'TTFB', value:'380', unit:'ms', trend:'edge', cls:'' },
+  { label:'Bundle', value:'142', unit:'kB', trend:'↑ 8kB', cls:'warn' },
+  { label:'Hydration', value:'64', unit:'ms', trend:'streaming', cls:'' }
+];
+const PERF = [
+  { h:'Code splitting', p:'Ship only what the current route needs. Dynamic import() plus route-level bundling cuts the critical path by an order of magnitude.', list:['Route-based','Component-based','Conditional vendor chunks'] },
+  { h:'Image optimization', p:'The bulk of any page weight. Modern formats, responsive sources, lazy loading, and CDN-side resizing — each is a 30–50% saving.', list:['AVIF / WebP','srcset + sizes','loading="lazy"'] },
+  { h:'Rendering strategy', p:'SSR for first paint, CSR for interactivity, SSG for static, ISR for hybrid. Streaming and partial hydration are the new defaults.', list:['SSR · SSG · ISR','React Server Components','Islands architecture'] },
+  { h:'Caching layers', p:'Browser cache, service worker, edge CDN, server cache, database cache. The fastest request is the one that never reaches origin.', list:['stale-while-revalidate','Edge KV / Cache API','HTTP cache directives'] }
+];
+
+/* ---------- PERSISTENCE STATE ---------- */
+const state = {
+  theme: store.get('fi-theme') || 'dark',
+  visited: new Set(store.getJSON('fi-visited', [])),
+  bookmarks: new Set(store.getJSON('fi-bookmarks', []))
+};
+const saveVisited = () => store.setJSON('fi-visited', [...state.visited]);
+const saveBookmarks = () => store.setJSON('fi-bookmarks', [...state.bookmarks]);
+
+/* ---------- THEME ---------- */
+const applyTheme = (t) => {
+  document.documentElement.dataset.theme = t;
+  state.theme = t; store.set('fi-theme', t);
+  const icon = $('#theme-icon');
+  if (icon) icon.outerHTML = (t === 'light')
+    ? '<svg id="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>'
+    : '<svg id="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>';
+};
+const toggleTheme = () => applyTheme(state.theme === 'dark' ? 'light' : 'dark');
+applyTheme(state.theme);
+$('#theme-toggle').addEventListener('click', toggleTheme);
+
+/* ---------- DETAIL DRAWER (drill-down) ---------- */
+const drawer = $('#drawer'), drawerBackdrop = $('#drawer-backdrop'), drawerBody = $('#drawer-body'), drawerHead = $('#drawer-head-content');
+let drawerLastFocus = null, drawerOpenId = null;
+
+function renderBookmarkBtn(id) {
+  const on = state.bookmarks.has(id);
+  const btn = el('button', { class: 'bm-btn' + (on ? ' on' : ''), 'aria-pressed': on ? 'true' : 'false', html: (on ? ICONS.bookmarkFill : ICONS.bookmark) + (on ? '<span>Saved</span>' : '<span>Save</span>') });
+  btn.addEventListener('click', () => {
+    if (state.bookmarks.has(id)) state.bookmarks.delete(id); else state.bookmarks.add(id);
+    saveBookmarks(); openDrawer(id, false);
+  });
+  return el('div', { class: 'drawer-bookmark' }, btn);
+}
+
+function openDrawer(id, pushHash=true) {
+  const t = TECH[id]; if (!t) return;
+  drawerOpenId = id;
+  if (document.activeElement && !drawer.contains(document.activeElement)) drawerLastFocus = document.activeElement;
+
+  drawerHead.innerHTML = '';
+  drawerHead.append(
+    el('div', { class: 'drawer-cat' }, el('span', { class: 'cat-dot', style: 'background:' + t.color }), catLabel(t.cat)),
+    el('div', { class: 'drawer-title-row' },
+      el('div', { class: 'drawer-logo', style: 'color:' + t.color }, t.logo),
+      el('div', {},
+        el('div', { class: 'drawer-title', id: 'drawer-title' }, t.name),
+        el('div', { class: 'drawer-maturity' }, t.maturity || '')
+      )
+    ),
+    renderBookmarkBtn(id)
+  );
+
+  drawerBody.innerHTML = '';
+  drawerBody.append(el('div', { class: 'drawer-section' }, el('h4', {}, 'What it is'), el('p', {}, t.what || t.summary)));
+
+  if (t.when && t.when.length) {
+    const when = el('div', { class: 'drawer-when' });
+    t.when.forEach(w => when.append(el('div', { class: 'when-item' }, el('span', { class: 'when-ic', html: ICONS.check }), w)));
+    (t.avoid || []).forEach(a => when.append(el('div', { class: 'when-item avoid' }, el('span', { class: 'when-ic', html: ICONS.x }), a)));
+    drawerBody.append(el('div', { class: 'drawer-section' }, el('h4', {}, 'When to reach for it'), when));
+  }
+  if (t.competes && t.competes.length) {
+    const row = el('div', { class: 'drawer-competes' });
+    t.competes.forEach(cid => { if (TECH[cid]) row.append(el('button', { class: 'compete-chip', onclick: () => openDrawer(cid) }, TECH[cid].name)); });
+    drawerBody.append(el('div', { class: 'drawer-section' }, el('h4', {}, 'Competes with'), row));
+  }
+  if (t.code) drawerBody.append(el('div', { class: 'drawer-section' }, el('h4', {}, 'In code'), el('div', { class: 'drawer-code', html: t.code })));
+  if (t.related && t.related.length) {
+    const row = el('div', { class: 'drawer-related' });
+    t.related.forEach(rid => { if (TECH[rid]) row.append(el('button', { class: 'rel-chip', onclick: () => openDrawer(rid) }, el('span', { class: 'rel-dot', style: 'background:' + TECH[rid].color }), TECH[rid].name)); });
+    drawerBody.append(el('div', { class: 'drawer-section' }, el('h4', {}, 'Commonly used with'), row));
+  }
+  if (t.links && t.links.length) {
+    const links = el('div', { class: 'drawer-links' });
+    t.links.forEach(([label, url]) => links.append(el('a', { href: url, target: '_blank', rel: 'noopener noreferrer' }, label, el('span', { class: 'link-arrow', html: ICONS.ext }))));
+    drawerBody.append(el('div', { class: 'drawer-section' }, el('h4', {}, 'Go deeper'), links));
+  }
+  drawerBody.scrollTop = 0;
+  drawerBackdrop.classList.add('open');
+  drawer.classList.add('open');
+  if (pushHash) { try { history.replaceState(null, '', '#tech/' + id); } catch {} }
+  setTimeout(() => $('#drawer-close').focus(), 60);
+  if (state.highlightStack) state.highlightStack(id);
+}
+function closeDrawer() {
+  drawer.classList.remove('open'); drawerBackdrop.classList.remove('open');
+  drawerOpenId = null;
+  const h = location.hash;
+  if (h.startsWith('#tech/')) { try { history.replaceState(null, '', location.pathname + location.search); } catch {} }
+  if (drawerLastFocus && drawerLastFocus.focus) drawerLastFocus.focus();
+}
+$('#drawer-close').addEventListener('click', closeDrawer);
+drawerBackdrop.addEventListener('click', closeDrawer);
+
+/* ---------- SIDEBAR ---------- */
+const SIDE_GROUPS = [
+  { title:'Index', items:[['hero','Overview','globe'],['roadmap','Roadmap','tree']] },
+  { title:'Foundations', items:[['browser','The Browser','browser'],['core','Core Tech','code'],['frameworks','Frameworks','grid']] },
+  { title:'Systems', items:[['stack','Stack Map','layers'],['tooling','Tooling','tool'],['architecture','Architecture','layout'],['performance','Performance','gauge']] },
+  { title:'Practice', items:[['careers','Career Paths','full'],['labs','Interactive Labs','tool'],['patterns','Production Patterns','grid'],['resources','Resource Hub','book']] }
+];
+(() => {
+  const sb = $('#sidebar');
+  SIDE_GROUPS.forEach(g => {
+    const sec = el('div', { class: 'side-section' }, el('div', { class: 'side-section-title' }, g.title));
+    g.items.forEach(([id, label, icon]) => {
+      sec.append(el('a', { class: 'side-link', 'data-section': id, href: '#' + id },
+        el('span', { class: 'side-icon', html: ICONS[icon] || ICONS.code, 'aria-hidden': 'true' }), label));
+    });
+    sb.append(sec);
+  });
+})();
+
+/* ---------- HERO VIZ ---------- */
+(() => {
+  const g = $('#hero-nodes'); if (!g) return;
+  const nodes = [
+    { x:480,y:180,r:30,label:'Browser',primary:true },{ x:200,y:80,r:14,label:'HTML' },{ x:110,y:200,r:14,label:'CSS' },
+    { x:180,y:290,r:14,label:'JS' },{ x:340,y:60,r:16,label:'DOM' },{ x:320,y:300,r:16,label:'APIs' },
+    { x:640,y:60,r:18,label:'React' },{ x:780,y:130,r:14,label:'Vue' },{ x:840,y:220,r:14,label:'Svelte' },
+    { x:760,y:300,r:16,label:'Next' },{ x:600,y:310,r:14,label:'Vite' }
+  ];
+  for (let i = 1; i < nodes.length; i++) {
+    g.appendChild(mkSVG('line', { x1:nodes[0].x, y1:nodes[0].y, x2:nodes[i].x, y2:nodes[i].y, stroke:'rgba(255,255,255,0.07)', 'stroke-width':'1', 'stroke-dasharray':'3 4' }));
+  }
+  g.appendChild(mkSVG('line', { x1:nodes[0].x, y1:nodes[0].y, x2:nodes[6].x, y2:nodes[6].y, stroke:'url(#lineGrad)', 'stroke-width':'1.5' }));
+  nodes.forEach(n => {
+    const grp = mkSVG('g', { transform:`translate(${n.x},${n.y})` });
+    if (n.primary) grp.appendChild(mkSVG('circle', { r:n.r*2.2, fill:'url(#nodeGlow)' }));
+    grp.appendChild(mkSVG('circle', { r:n.r, fill:n.primary?'rgba(79,157,255,0.18)':'rgba(255,255,255,0.04)', stroke:n.primary?'rgba(79,157,255,0.8)':'rgba(255,255,255,0.18)', 'stroke-width':'1' }));
+    const t = mkSVG('text', { 'text-anchor':'middle', dy:n.r+18, 'font-family':'Geist Mono, monospace', 'font-size':'10', fill:n.primary?'#ededf0':'#a8a8b3' }); t.textContent = n.label; grp.appendChild(t);
+    if (n.primary) { const inner = mkSVG('text', { 'text-anchor':'middle', dy:5, 'font-family':'Geist Mono, monospace', 'font-size':'14', 'font-weight':'500', fill:'#4f9dff' }); inner.textContent='⌬'; grp.appendChild(inner); }
+    g.appendChild(grp);
+    if (!n.primary) { const phase=Math.random()*Math.PI*2, amp=2+Math.random()*3, t0=performance.now();
+      const drift=()=>{ const dt=(performance.now()-t0)/1000; grp.setAttribute('transform',`translate(${n.x+Math.sin(dt*0.6+phase)*amp},${n.y+Math.cos(dt*0.5+phase)*amp})`); requestAnimationFrame(drift); }; drift(); }
+  });
+})();
+
+/* ---------- ROADMAP (with visited persistence + drill-down) ---------- */
+function renderRoadmap() {
+  const list = $('#roadmap-list'); list.innerHTML = '';
+  ROADMAP.forEach((r, i) => {
+    const num = String(i+1).padStart(2,'0');
+    const visited = state.visited.has(r.id);
+    const card = el('button', { class: 'roadmap-card', 'aria-label': 'Open ' + r.title + ' details' },
+      el('h3', {}, el('span', { class: 'ico', html: ICONS[r.icon] || ICONS.code }), r.title,
+        el('span', { class: 'drill', html: (visited ? ICONS.check + ' visited' : 'open ' + ICONS.arrow) })),
+      el('p', {}, r.desc),
+      el('div', { class: 'roadmap-tags' }, ...r.tags.map(t => el('span', { class: 'tag' }, t)))
+    );
+    card.addEventListener('click', () => {
+      state.visited.add(r.id); saveVisited(); renderRoadmap();
+      if (r.techId && TECH[r.techId]) openDrawer(r.techId);
+      else openRoadmapDrawer(r);
+    });
+    const node = el('div', { class: 'roadmap-node' + (visited ? ' visited' : '') },
+      el('div', { class: 'roadmap-step' }, el('div', { class: 'step-circle' }, visited ? '✓' : num), el('div', { class: 'step-label' }, 'layer ' + num)),
+      card);
+    list.append(node);
+  });
+}
+function openRoadmapDrawer(r) {
+  if (document.activeElement) drawerLastFocus = document.activeElement;
+  drawerHead.innerHTML = '';
+  drawerHead.append(
+    el('div', { class: 'drawer-cat' }, el('span', { class: 'cat-dot', style: 'background:var(--accent)' }), 'Roadmap layer'),
+    el('div', { class: 'drawer-title-row' }, el('div', { class: 'drawer-logo', style:'color:var(--accent)', html: ICONS[r.icon] }), el('div', {}, el('div', { class: 'drawer-title', id:'drawer-title' }, r.title)))
+  );
+  drawerBody.innerHTML = '';
+  drawerBody.append(el('div', { class: 'drawer-section' }, el('h4', {}, 'What it is'), el('p', {}, r.detail || r.desc)));
+  drawerBody.append(el('div', { class: 'drawer-section' }, el('h4', {}, 'Key concepts'), el('div', { class: 'drawer-competes' }, ...r.tags.map(t => el('span', { class: 'compete-chip', style:'cursor:default' }, t)))));
+  drawerBody.scrollTop = 0;
+  drawerBackdrop.classList.add('open'); drawer.classList.add('open');
+  setTimeout(() => $('#drawer-close').focus(), 60);
+}
+renderRoadmap();
+
+/* ---------- PIPELINE (tablist) ---------- */
+(() => {
+  const stagesEl = $('#pipeline-stages'), detailEl = $('#pipeline-detail');
+  PIPELINE_STAGES.forEach((s, i) => {
+    const btn = el('button', { class: 'pipeline-stage' + (i===0?' active':''), 'data-id': s.id, role:'tab', 'aria-selected': i===0?'true':'false' },
+      el('div', { class: 'stage-icon', html: ICONS[s.icon] || ICONS.code }), el('div', { class: 'stage-name' }, s.name), el('div', { class: 'stage-sub' }, s.sub));
+    btn.addEventListener('click', () => { $$('.pipeline-stage', stagesEl).forEach(x => { x.classList.remove('active'); x.setAttribute('aria-selected','false'); }); btn.classList.add('active'); btn.setAttribute('aria-selected','true'); renderDetail(s); });
+    stagesEl.append(btn);
+  });
+  function renderDetail(s) { detailEl.innerHTML=''; detailEl.append(el('div', {}, el('h4', {}, s.name, el('span', { class:'kbd-tag' }, s.sub)), el('p', {}, s.text)), el('div', { class:'code-block', html: s.code })); }
+  renderDetail(PIPELINE_STAGES[0]);
+})();
+
+/* ---------- FEATURE GRIDS + TABS ---------- */
+(() => {
+  const grid = (cid, items) => { const c = $(cid); items.forEach(it => c.append(el('div', { class:'feature-card' }, el('div', { class:'fc-icon', html: ICONS[it.icon]||ICONS.code }), el('h4', { html: it.h }), el('p', { html: it.p })))); };
+  grid('#grid-html', HTML_FEATURES); grid('#grid-css', CSS_FEATURES); grid('#grid-js', JS_FEATURES);
+  $$('.tech-tab').forEach(tab => tab.addEventListener('click', () => {
+    $$('.tech-tab').forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected','false'); });
+    tab.classList.add('active'); tab.setAttribute('aria-selected','true');
+    $$('.tech-panel').forEach(p => p.classList.toggle('active', p.dataset.panel === tab.dataset.tab));
+  }));
+})();
+
+/* ---------- FRAMEWORK CARDS (drill-down) ---------- */
+(() => {
+  const grid = $('#framework-grid');
+  const traits = { react:[['Learning curve',0.5],['Performance',0.7],['Ecosystem',1],['Type safety',0.85]], vue:[['Learning curve',0.8],['Performance',0.85],['Ecosystem',0.75],['Type safety',0.8]], svelte:[['Learning curve',0.9],['Performance',0.95],['Ecosystem',0.55],['Type safety',0.75]], solid:[['Learning curve',0.7],['Performance',1],['Ecosystem',0.45],['Type safety',0.85]], angular:[['Learning curve',0.3],['Performance',0.7],['Ecosystem',0.85],['Type safety',1]], next:[['Learning curve',0.55],['Performance',0.9],['Ecosystem',0.95],['Type safety',0.9]] };
+  ['react','vue','svelte','solid','angular','next'].forEach(id => {
+    const t = TECH[id];
+    const card = el('button', { class:'framework-card', style:'--fw-color: '+t.color, 'aria-label':'Open '+t.name+' details' },
+      el('div', { class:'fw-head' }, el('div', { class:'fw-logo' }, t.logo), el('div', {}, el('div', { class:'fw-name' }, t.name), el('div', { class:'fw-meta' }, t.maturity))),
+      el('div', { class:'fw-desc' }, t.summary),
+      el('div', { class:'fw-traits' }, ...(traits[id]||[]).map(([l,v]) => el('div', { class:'fw-trait' }, el('span', { class:'fw-trait-label' }, l), el('div', { class:'fw-bar' }, el('div', { class:'fw-bar-fill', style:'width:'+(v*100)+'%' }))))),
+      el('div', { class:'drill-hint', html: 'full entry ' + ICONS.arrow })
+    );
+    card.addEventListener('click', () => openDrawer(id));
+    grid.append(card);
+  });
+})();
+
+/* ---------- STACK MAP (keyboard-navigable, drill-down) ---------- */
+(() => {
+  const toolbar = $('#stack-toolbar'), canvas = $('#stack-canvas'), tooltip = $('#stack-tooltip');
+  let activeCat = 'all';
+  STACK_CATS.forEach(c => {
+    const chip = el('button', { class:'stack-chip'+(c.id==='all'?' active':''), 'data-cat':c.id, 'aria-pressed':c.id==='all'?'true':'false' }, el('span', { class:'chip-dot', style:'background:'+c.color }), c.label);
+    chip.addEventListener('click', () => { activeCat=c.id; $$('.stack-chip').forEach(x => { x.classList.toggle('active', x.dataset.cat===c.id); x.setAttribute('aria-pressed', x.dataset.cat===c.id?'true':'false'); }); renderMap(); });
+    toolbar.append(chip);
+  });
+  function showTooltip(t) {
+    tooltip.innerHTML = '';
+    tooltip.append(el('div', { class:'tip-name' }, el('span', { style:'width:8px;height:8px;border-radius:50%;background:'+t.color+';display:inline-block' }), t.name));
+    tooltip.append(el('div', { class:'tip-cat' }, catLabel(t.cat)));
+    tooltip.append(el('div', { class:'tip-desc' }, t.summary));
+    tooltip.append(el('div', { class:'tip-cta' }, 'click for full entry →'));
+    tooltip.classList.add('show');
+  }
+  function renderMap() {
+    canvas.innerHTML = '';
+    const drawn = new Set();
+    TECH_IDS.forEach(id => { const n = TECH[id]; (n.related||[]).forEach(rid => { const r = TECH[rid]; if (!r) return; const key=[id,rid].sort().join('-'); if (drawn.has(key)) return; drawn.add(key);
+      const vis = activeCat==='all'||n.cat===activeCat||r.cat===activeCat;
+      canvas.appendChild(mkSVG('line', { x1:n.x,y1:n.y,x2:r.x,y2:r.y, stroke:vis?'rgba(255,255,255,0.10)':'rgba(255,255,255,0.025)', 'stroke-width':'1' })); }); });
+    TECH_IDS.forEach(id => {
+      const n = TECH[id]; const dim = activeCat!=='all' && n.cat!==activeCat;
+      const g = mkSVG('g', { class:'stack-node'+(dim?' dim':''), transform:`translate(${n.x},${n.y})`, tabindex:'0', role:'button', 'aria-label':n.name+' — '+catLabel(n.cat) });
+      g.appendChild(mkSVG('circle', { r:n.r+6, fill:n.color, opacity:'0.08' }));
+      g.appendChild(mkSVG('circle', { r:n.r, fill:'rgba(20,20,26,0.9)', stroke:n.color, 'stroke-width':'1.5' }));
+      const tx = mkSVG('text', { 'text-anchor':'middle', dy:n.r+14, 'font-family':'Geist Mono, monospace', 'font-size':'10', fill:'#ededf0' }); tx.textContent=n.name; g.appendChild(tx);
+      const inner = mkSVG('text', { 'text-anchor':'middle', dy:4, 'font-family':'Geist Mono, monospace', 'font-size':n.r>24?'12':'10', 'font-weight':'500', fill:n.color }); inner.textContent=n.logo; g.appendChild(inner);
+      g.addEventListener('mouseenter', () => showTooltip(n));
+      g.addEventListener('mouseleave', () => tooltip.classList.remove('show'));
+      g.addEventListener('focus', () => showTooltip(n));
+      g.addEventListener('blur', () => tooltip.classList.remove('show'));
+      g.addEventListener('click', () => openDrawer(id));
+      g.addEventListener('keydown', (e) => { if (e.key==='Enter'||e.key===' ') { e.preventDefault(); openDrawer(id); } });
+      canvas.appendChild(g);
+    });
+  }
+  state.highlightStack = (id) => { const t = TECH[id]; if (!t) return; if (t.cat !== activeCat && activeCat !== 'all') { activeCat='all'; $$('.stack-chip').forEach(x => { x.classList.toggle('active', x.dataset.cat==='all'); }); renderMap(); } };
+  renderMap();
+})();
+
+/* ---------- TOOLING / METRICS / PERF / CAREERS / PATTERNS / RESOURCES ---------- */
+(() => {
+  const tg = $('#tooling-grid');
+  TOOLING.forEach(t => tg.append(el('div', { class:'glass-card' }, el('div', { class:'card-num' }, t.num), el('h4', { html:t.title }), el('p', { html:t.desc }), el('div', { class:'card-list' }, ...t.list.map(i => el('div', { class:'card-list-item' }, i))))));
+
+  const mg = $('#metric-grid');
+  METRICS.forEach(m => mg.append(el('div', { class:'metric' }, el('div', { class:'m-label' }, m.label), el('div', { class:'m-value', html: m.value+'<span class="m-unit">'+m.unit+'</span>' }), el('div', { class:'m-trend'+(m.cls?' '+m.cls:'') }, m.trend))));
+  const pg = $('#perf-grid');
+  PERF.forEach(p => pg.append(el('div', { class:'glass-card' }, el('h4', {}, p.h), el('p', { html:p.p }), el('div', { class:'card-list' }, ...p.list.map(x => el('div', { class:'card-list-item' }, x))))));
+
+  const cg = $('#career-grid');
+  CAREERS.forEach(c => cg.append(el('div', { class:'career-card', style:'--ct-color: '+c.color }, el('div', { class:'ct-icon', html: ICONS[c.icon]||ICONS.code }), el('div', { class:'ct-name' }, c.name), el('div', { class:'ct-tagline' }, c.tag), el('div', { class:'ct-desc' }, c.desc), el('div', { class:'ct-stack' }, ...c.stack.map(s => el('span', { class:'tag' }, s))))));
+
+  const previews = {
+    modal:()=>`<div class="pattern-modal"><div class="pm-title">Confirm action</div><div class="pm-row"></div><div class="pm-row"></div><div class="pm-row short"></div><div class="pm-actions"><div class="pm-btn sec">Cancel</div><div class="pm-btn">Confirm</div></div></div>`,
+    dropdown:()=>`<div class="pattern-dropdown"><div class="pd-item"><span class="pd-dot"></span>Profile</div><div class="pd-item active"><span class="pd-dot"></span>Settings</div><div class="pd-item"><span class="pd-dot"></span>Billing</div><div class="pd-item"><span class="pd-dot"></span>Sign out</div></div>`,
+    tabs:()=>`<div class="pattern-tabs"><div class="pt-bar"><div class="pt-tab active">Overview</div><div class="pt-tab">Details</div><div class="pt-tab">Reviews</div></div><div class="pt-body">Active tab content lives here.</div></div>`,
+    cmd:()=>`<div class="pattern-cmd"><div class="pc-input">Search...</div><div class="pc-item active">⌘  Search the index</div><div class="pc-item">↗  Open stack map</div><div class="pc-item">⎙  Toggle theme</div></div>`,
+    tip:()=>`<div class="pattern-tip"><div class="pt-bubble">Tooltip text</div><div class="pt-trigger"></div></div>`,
+    toggle:()=>`<div class="pattern-toggle"><div class="pt-row"><span>Dark mode</span><div class="pt-switch on"></div></div><div class="pt-row"><span>Notifications</span><div class="pt-switch on"></div></div><div class="pt-row"><span>Auto-update</span><div class="pt-switch"></div></div></div>`,
+    accord:()=>`<div class="pattern-accord"><div class="pa-row"><span>What is hydration?</span><span class="pa-arrow">›</span></div><div class="pa-row open"><span>SSR vs CSR vs SSG</span><span class="pa-arrow">›</span></div><div class="pa-content">Attaching JS handlers to server-rendered HTML.</div><div class="pa-row"><span>Partial hydration</span><span class="pa-arrow">›</span></div></div>`,
+    nav:()=>`<div class="pattern-nav"><div class="pn-bar"><span class="pn-item active">Home</span><span class="pn-item">Docs</span><span class="pn-item">Labs</span><span class="pn-item">Blog</span></div></div>`
+  };
+  const pq = $('#pattern-grid');
+  PATTERNS.forEach(p => pq.append(el('div', { class:'pattern-card' }, el('div', { class:'pattern-preview', html: (previews[p.preview]||(()=>''))() }), el('div', { class:'pattern-info' }, el('h4', {}, p.name), el('p', {}, p.desc)))));
+
+  const renderRes = (id, list) => { const c = $(id); list.forEach(r => { const tag = r.url?'a':'div'; const attrs = { class:'resource-card' }; if (r.url){ attrs.href=r.url; attrs.target='_blank'; attrs.rel='noopener noreferrer'; } c.append(el(tag, attrs, el('div', { class:'res-icon', html: ICONS[r.icon]||ICONS.book }), el('div', { class:'res-meta' }, el('div', { class:'res-name' }, r.name), el('div', { class:'res-sub' }, r.sub)))); }); };
+  renderRes('#res-refs', RESOURCES.refs); renderRes('#res-tools', RESOURCES.tools); renderRes('#res-people', RESOURCES.people); renderRes('#res-inspo', RESOURCES.inspo);
+})();
+
+/* ---------- LAB: FLEXBOX ---------- */
+(() => {
+  const stage = $('#flex-stage'), codeEl = $('#flex-code');
+  const st = { direction:'row', wrap:'nowrap', justify:'flex-start', align:'stretch', gap:10 };
+  const render = () => {
+    stage.style.flexDirection=st.direction; stage.style.flexWrap=st.wrap; stage.style.justifyContent=st.justify; stage.style.alignItems=st.align; stage.style.gap=st.gap+'px';
+    $('#flex-gap-val').textContent = st.gap+'px';
+    codeEl.innerHTML = '<span style="color:var(--text-3)">.container {</span>\n  display: <span style="color:var(--violet)">flex</span>;\n  flex-direction: <span style="color:var(--cyan)">'+st.direction+'</span>;\n  flex-wrap: <span style="color:var(--cyan)">'+st.wrap+'</span>;\n  justify-content: <span style="color:var(--cyan)">'+st.justify+'</span>;\n  align-items: <span style="color:var(--cyan)">'+st.align+'</span>;\n  gap: <span style="color:var(--amber)">'+st.gap+'px</span>;\n<span style="color:var(--text-3)">}</span>';
+  };
+  $$('#flex-lab .seg').forEach(seg => seg.querySelectorAll('.seg-btn').forEach(b => b.addEventListener('click', () => { seg.querySelectorAll('.seg-btn').forEach(x => x.classList.remove('active')); b.classList.add('active'); st[seg.dataset.prop]=b.dataset.val; render(); })));
+  $('#flex-justify').addEventListener('change', e => { st.justify=e.target.value; render(); });
+  $('#flex-align').addEventListener('change', e => { st.align=e.target.value; render(); });
+  $('#flex-gap').addEventListener('input', e => { st.gap=+e.target.value; render(); });
+  render();
+})();
+
+/* ---------- LAB: CSS GRID GENERATOR ---------- */
+(() => {
+  const stage = $('#grid-stage'), codeEl = $('#grid-code');
+  const st = { cols:3, rows:2, gap:8, colmode:'1fr', justify:'stretch' };
+  const colTemplate = () => st.colmode==='1fr' ? `repeat(${st.cols}, 1fr)` : st.colmode==='auto' ? `repeat(${st.cols}, auto)` : `repeat(${st.cols}, minmax(0, 1fr))`;
+  const render = () => {
+    const n = st.cols * st.rows;
+    stage.style.gridTemplateColumns = colTemplate();
+    stage.style.gridTemplateRows = `repeat(${st.rows}, 1fr)`;
+    stage.style.gap = st.gap+'px';
+    stage.style.justifyItems = st.justify;
+    stage.innerHTML = '';
+    for (let i=1;i<=n;i++) stage.append(el('div', { class:'grid-cell' }, String(i)));
+    $('#grid-cols-val').textContent = st.cols; $('#grid-rows-val').textContent = st.rows; $('#grid-gap-val').textContent = st.gap+'px';
+    codeEl.innerHTML = '<span style="color:var(--text-3)">.grid {</span>\n  display: <span style="color:var(--violet)">grid</span>;\n  grid-template-columns: <span style="color:var(--cyan)">'+colTemplate()+'</span>;\n  grid-template-rows: <span style="color:var(--cyan)">repeat('+st.rows+', 1fr)</span>;\n  justify-items: <span style="color:var(--cyan)">'+st.justify+'</span>;\n  gap: <span style="color:var(--amber)">'+st.gap+'px</span>;\n<span style="color:var(--text-3)">}</span>';
+  };
+  $('#grid-cols').addEventListener('input', e => { st.cols=+e.target.value; render(); });
+  $('#grid-rows').addEventListener('input', e => { st.rows=+e.target.value; render(); });
+  $('#grid-gap').addEventListener('input', e => { st.gap=+e.target.value; render(); });
+  $('#grid-justify').addEventListener('change', e => { st.justify=e.target.value; render(); });
+  $$('#grid-lab .seg').forEach(seg => seg.querySelectorAll('.seg-btn').forEach(b => b.addEventListener('click', () => { seg.querySelectorAll('.seg-btn').forEach(x => x.classList.remove('active')); b.classList.add('active'); st.colmode=b.dataset.val; render(); })));
+  render();
+})();
+
+/* ---------- LAB: EVENT LOOP ---------- */
+(() => {
+  const steps = [
+    { log:"console.log('A')", act:s=>{ s.stack=['log(A)']; } },{ log:"// A printed", act:s=>{ s.stack=[]; } },
+    { log:"setTimeout(() => B, 0)", act:s=>{ s.stack=['setTimeout()']; } },{ log:"// schedules B to task queue", act:s=>{ s.stack=[]; s.queue=['B']; } },
+    { log:"Promise.resolve().then(C)", act:s=>{ s.stack=['Promise.then()']; } },{ log:"// schedules C to microqueue", act:s=>{ s.stack=[]; s.micro=['C']; } },
+    { log:"console.log('D')", act:s=>{ s.stack=['log(D)']; } },{ log:"// D printed, main script done", act:s=>{ s.stack=[]; } },
+    { log:"// drain microtasks first…", act:s=>{} },{ log:"run C from microqueue", act:s=>{ s.stack=['C']; s.micro=[]; } },
+    { log:"// C finishes, microqueue empty", act:s=>{ s.stack=[]; } },{ log:"// next macrotask…", act:s=>{} },
+    { log:"run B from task queue", act:s=>{ s.stack=['B']; s.queue=[]; } },{ log:"// B finishes", act:s=>{ s.stack=[]; } },
+    { log:"// render frame", act:s=>{} },{ log:"// idle", act:s=>{} }
+  ];
+  let idx=0, auto=null;
+  const stackEl=$('#zone-stack'), queueEl=$('#zone-queue'), microEl=$('#zone-microqueue'), logEl=$('#eventloop-log'), statusEl=$('#ev-status');
+  const s = { stack:[], queue:[], micro:[], log:[] };
+  const render = () => {
+    stackEl.innerHTML = s.stack.map(x=>`<div class="eventloop-item">${x}</div>`).join('');
+    queueEl.innerHTML = s.queue.map(x=>`<div class="eventloop-item">${x}</div>`).join('');
+    microEl.innerHTML = s.micro.map(x=>`<div class="eventloop-item">${x}</div>`).join('');
+    logEl.innerHTML = s.log.map((x,i)=>`<div class="log-line"><span class="step">${String(i+1).padStart(2,'0')}</span>${x}</div>`).join('');
+    logEl.scrollTop = logEl.scrollHeight; statusEl.textContent = `Step ${idx}/${steps.length}`;
+  };
+  const reset = () => { s.stack=[]; s.queue=[]; s.micro=[]; s.log=[]; idx=0; if (auto){ clearInterval(auto); auto=null; $('#ev-auto').textContent='Auto-run'; } render(); };
+  const step = () => { if (idx>=steps.length){ if(auto){clearInterval(auto);auto=null;$('#ev-auto').textContent='Auto-run';} return; } const c=steps[idx]; s.log.push(c.log); c.act(s); if(s.log.length>16) s.log=s.log.slice(-16); idx++; render(); };
+  $('#ev-step').addEventListener('click', step);
+  $('#ev-reset').addEventListener('click', reset);
+  $('#ev-auto').addEventListener('click', () => { if(auto){clearInterval(auto);auto=null;$('#ev-auto').textContent='Auto-run';return;} if(idx>=steps.length) reset(); $('#ev-auto').textContent='Stop'; auto=setInterval(()=>{ if(idx>=steps.length){clearInterval(auto);auto=null;$('#ev-auto').textContent='Auto-run';return;} step(); }, 800); });
+  reset();
+})();
+
+/* ---------- LAB: SPECIFICITY CALCULATOR ---------- */
+(() => {
+  const input = $('#spec-input'), out = $('#spec-output'), breakdown = $('#spec-breakdown');
+  // returns {a,b,c, tokens:[{text,cls}]}
+  function calc(selector) {
+    let a=0,b=0,c=0; const tokens=[];
+    // strip combinators, split into compound pieces but keep simple selectors
+    const cleaned = selector.replace(/\s*[>+~]\s*/g,' ').trim();
+    if (!cleaned) return { a:0,b:0,c:0, tokens:[] };
+    // match: #id  .class  [attr]  :pseudo-class  ::pseudo-element  tag  *
+    const re = /(::[a-zA-Z-]+)|(#[a-zA-Z0-9_-]+)|(\.[a-zA-Z0-9_-]+)|(\[[^\]]+\])|(:[a-zA-Z-]+(?:\([^)]*\))?)|(\*)|([a-zA-Z][a-zA-Z0-9]*)/g;
+    let m;
+    while ((m = re.exec(cleaned)) !== null) {
+      const tok = m[0];
+      if (m[1]) { c++; tokens.push({text:tok,cls:'c'}); }          // ::pseudo-element → type
+      else if (m[2]) { a++; tokens.push({text:tok,cls:'a'}); }      // #id
+      else if (m[3]) { b++; tokens.push({text:tok,cls:'b'}); }      // .class
+      else if (m[4]) { b++; tokens.push({text:tok,cls:'b'}); }      // [attr]
+      else if (m[5]) {                                              // :pseudo-class
+        if (/^:(not|is|has)\b/i.test(tok)) { tokens.push({text:tok,cls:'b'}); b++; }
+        else { b++; tokens.push({text:tok,cls:'b'}); }
+      }
+      else if (m[6]) { tokens.push({text:tok,cls:''}); }            // * → 0
+      else if (m[7]) { c++; tokens.push({text:tok,cls:'c'}); }      // tag
+    }
+    return { a,b,c, tokens };
+  }
+  function render() {
+    const r = calc(input.value);
+    out.innerHTML = '';
+    const pill = (cls,val,label) => el('div', { class:'spec-pill '+cls }, el('div', { class:'sp-val' }, String(val)), el('div', { class:'sp-label' }, label));
+    out.append(pill('a', r.a, 'ID'), el('span', { class:'spec-sep' }, ','), pill('b', r.b, 'Class/Attr'), el('span', { class:'spec-sep' }, ','), pill('c', r.c, 'Type'));
+    breakdown.innerHTML = '';
+    if (r.tokens.length) {
+      const wrap = el('div', { style:'text-align:center' });
+      r.tokens.forEach(t => wrap.append(el('span', { class:'spec-token '+(t.cls||''), title: t.cls==='a'?'ID — high':t.cls==='b'?'class/attr/pseudo-class — medium':t.cls==='c'?'type/pseudo-element — low':'universal — zero' }, t.text)));
+      const note = el('p', { style:'font-size:12.5px;color:var(--text-3);text-align:center;margin-top:14px;line-height:1.5' }, 'Specificity reads as ('+r.a+','+r.b+','+r.c+'). Higher tuples win; a single ID ('+'1,0,0'+') beats any number of classes.');
+      breakdown.append(wrap, note);
+    } else {
+      breakdown.append(el('p', { style:'font-size:12.5px;color:var(--text-3);text-align:center' }, 'Type a selector above to see its specificity.'));
+    }
+  }
+  input.addEventListener('input', render);
+  render();
+})();
+
+/* ---------- SCROLL SPY + FLOATING TOC + SIDEBAR NAV ---------- */
+(() => {
+  const sections = ['hero','roadmap','browser','core','frameworks','stack','tooling','architecture','performance','careers','labs','patterns','resources'];
+  const labels = { hero:'Overview', roadmap:'Roadmap', browser:'Browser', core:'Core', frameworks:'Frameworks', stack:'Stack Map', tooling:'Tooling', architecture:'Architecture', performance:'Performance', careers:'Careers', labs:'Labs', patterns:'Patterns', resources:'Resources' };
+  const toc = $('#floating-toc');
+  sections.forEach(id => {
+    const dot = el('button', { class:'toc-dot', 'data-section':id, 'aria-label':'Jump to '+labels[id] }, el('span', { class:'toc-label' }, labels[id]));
+    dot.addEventListener('click', () => { const t=document.getElementById(id); if(t) t.scrollIntoView({behavior:'smooth'}); });
+    toc.append(dot);
+  });
+  const setActive = (id) => { $$('.side-link').forEach(l => l.classList.toggle('active', l.dataset.section===id)); $$('.toc-dot').forEach(d => d.classList.toggle('active', d.dataset.section===id)); };
+  if ('IntersectionObserver' in window) {
+    const obs = new IntersectionObserver((entries) => { let best=null,br=0; entries.forEach(e => { if (e.isIntersecting && e.intersectionRatio>br){ best=e.target; br=e.intersectionRatio; } }); if (best) setActive(best.id); }, { threshold:[0.15,0.3,0.5], rootMargin:'-80px 0px -40% 0px' });
+    sections.forEach(id => { const s=document.getElementById(id); if(s) obs.observe(s); });
+  }
+  setActive('hero');
+})();
+
+/* ---------- MOBILE SIDEBAR DRAWER ---------- */
+(() => {
+  const sb = $('#sidebar'), btn = $('#menu-btn'), backdrop = $('#sidebar-backdrop');
+  const open = () => { sb.classList.add('open'); backdrop.classList.add('open'); btn.setAttribute('aria-expanded','true'); };
+  const close = () => { sb.classList.remove('open'); backdrop.classList.remove('open'); btn.setAttribute('aria-expanded','false'); };
+  btn.addEventListener('click', () => sb.classList.contains('open') ? close() : open());
+  backdrop.addEventListener('click', close);
+  sb.addEventListener('click', (e) => { if (e.target.closest('.side-link')) close(); });
+})();
+
+/* ---------- SEARCH INDEX + COMMAND PALETTE (content-aware) ---------- */
+(() => {
+  const backdrop = $('#cmdk-backdrop'), input = $('#cmdk-input'), results = $('#cmdk-results'), closeBtn = $('#cmdk-close'), trigger = $('#search-trigger');
+  const SECTIONS = [['hero','Overview','globe'],['roadmap','Roadmap','tree'],['browser','The Browser','browser'],['core','Core Web Technologies','code'],['frameworks','Frameworks','grid'],['stack','Stack Map','layers'],['tooling','Tooling Ecosystem','tool'],['architecture','Architecture','layout'],['performance','Performance Engineering','gauge'],['careers','Career Paths','full'],['labs','Interactive Labs','tool'],['patterns','Production Patterns','grid'],['resources','Resource Hub','book']];
+  const LABS_IDX = [['flex-lab','Flexbox playground','tool'],['grid-lab','CSS Grid generator','grid'],['eventloop-lab','Event loop simulator','gauge'],['spec-lab','CSS specificity calculator','code']];
+
+  // build the index: sections + tech (with searchable body) + labs + patterns
+  const INDEX = [];
+  SECTIONS.forEach(([id,name,icon]) => INDEX.push({ group:'Sections', name, sub:'#'+id, icon, body:name, action:()=>goSection(id) }));
+  TECH_IDS.forEach(id => { const t=TECH[id]; INDEX.push({ group:'Technologies', name:t.name, sub:catLabel(t.cat), icon:'layers', body:(t.summary+' '+(t.what||'')+' '+(t.when||[]).join(' ')+' '+catLabel(t.cat)).toLowerCase(), action:()=>{ goSection('stack'); setTimeout(()=>openDrawer(id), 300); } }); });
+  LABS_IDX.forEach(([id,name,icon]) => INDEX.push({ group:'Labs', name, sub:'/labs', icon, body:name+' interactive lab', action:()=>{ goSection('labs'); setTimeout(()=>{ const t=document.getElementById(id); if(t) t.scrollIntoView({behavior:'smooth'}); }, 300); } }));
+  PATTERNS.forEach(p => INDEX.push({ group:'Patterns', name:p.name, sub:p.desc, icon:'grid', body:(p.name+' '+p.desc).toLowerCase(), action:()=>goSection('patterns') }));
+  INDEX.push({ group:'Actions', name:'Toggle theme', sub:'dark / light', icon:'palette', shortcut:'⌘T', action:toggleTheme });
+  INDEX.push({ group:'Actions', name:'About Frontend Index', sub:'project info', icon:'globe', action:()=>openAbout() });
+
+  function goSection(id){ const t=document.getElementById(id); if(t) t.scrollIntoView({behavior:'smooth'}); }
+  let selectedIdx=0, filtered=INDEX;
+
+  function score(item, q) {
+    if (!q) return item.group==='Sections' ? 2 : 1;
+    const name=item.name.toLowerCase(), sub=(item.sub||'').toLowerCase(), body=(item.body||'').toLowerCase();
+    if (name===q) return 1000;
+    if (name.startsWith(q)) return 500;
+    if (name.includes(q)) return 250;
+    if (sub.includes(q)) return 120;
+    if (body.includes(q)) return 60;  // content match
+    let qi=0; for (const ch of name){ if(qi<q.length && ch===q[qi]) qi++; } if (qi===q.length) return 30;
+    return 0;
+  }
+  function hl(name, q) { if (!q) return escapeHTML(name); const i=name.toLowerCase().indexOf(q); if (i<0) return escapeHTML(name); return escapeHTML(name.slice(0,i))+'<mark>'+escapeHTML(name.slice(i,i+q.length))+'</mark>'+escapeHTML(name.slice(i+q.length)); }
+
+  function render(q) {
+    results.innerHTML=''; const groups={}; filtered.forEach(it => (groups[it.group]=groups[it.group]||[]).push(it));
+    let gi=0;
+    Object.entries(groups).forEach(([gname, items]) => {
+      results.append(el('div', { class:'cmdk-group-label' }, gname));
+      items.forEach(it => {
+        const my=gi++;
+        const item = el('div', { class:'cmdk-item'+(my===selectedIdx?' selected':''), 'data-idx':my },
+          el('div', { class:'item-icon', html: ICONS[it.icon]||ICONS.code }),
+          el('div', { class:'item-text' }, el('div', { class:'item-name', html: hl(it.name, q) }), el('div', { class:'item-sub' }, it.sub)),
+          it.shortcut ? el('div', { class:'item-shortcut' }, it.shortcut) : null);
+        item.addEventListener('click', () => exec(it));
+        item.addEventListener('mouseenter', () => { selectedIdx=my; $$('.cmdk-item').forEach(x=>x.classList.toggle('selected', +x.dataset.idx===selectedIdx)); });
+        results.append(item);
+      });
+    });
+    if (!filtered.length) results.append(el('div', { style:'padding:24px;text-align:center;color:var(--text-3);font-size:13px' }, 'No results found'));
+  }
+  function filter(raw) { const q=(raw||'').trim().toLowerCase(); filtered = !q ? INDEX : INDEX.map(it=>({it,s:score(it,q)})).filter(x=>x.s>0).sort((a,b)=>b.s-a.s).map(x=>x.it); selectedIdx=0; render(q); }
+  function open(){ backdrop.classList.add('open'); input.value=''; filter(''); setTimeout(()=>input.focus(),50); }
+  function close(){ backdrop.classList.remove('open'); }
+  function exec(it){ close(); if (it.action) it.action(); }
+
+  trigger.addEventListener('click', open);
+  closeBtn.addEventListener('click', close);
+  backdrop.addEventListener('click', e => { if (e.target===backdrop) close(); });
+  input.addEventListener('input', e => filter(e.target.value));
+  document.addEventListener('keydown', e => {
+    const isMac = navigator.platform.toLowerCase().includes('mac'); const meta = isMac ? e.metaKey : e.ctrlKey;
+    if (meta && e.key.toLowerCase()==='k'){ e.preventDefault(); backdrop.classList.contains('open')?close():open(); }
+    else if (meta && e.key.toLowerCase()==='t'){ e.preventDefault(); toggleTheme(); }
+    else if (e.key==='Escape' && backdrop.classList.contains('open')) close();
+    else if (backdrop.classList.contains('open')) {
+      const items=$$('.cmdk-item');
+      if (e.key==='ArrowDown'){ e.preventDefault(); selectedIdx=(selectedIdx+1)%items.length; render(input.value.trim().toLowerCase()); results.querySelector('.selected')?.scrollIntoView({block:'nearest'}); }
+      else if (e.key==='ArrowUp'){ e.preventDefault(); selectedIdx=(selectedIdx-1+items.length)%items.length; render(input.value.trim().toLowerCase()); results.querySelector('.selected')?.scrollIntoView({block:'nearest'}); }
+      else if (e.key==='Enter'){ e.preventDefault(); if (filtered[selectedIdx]) exec(filtered[selectedIdx]); }
+    }
+  });
+})();
+
+/* ---------- ABOUT DIALOG ---------- */
+let openAbout;
+(() => {
+  const backdrop=$('#about-backdrop'), trigger=$('#about-trigger'), closeBtn=$('#about-close'), footerLink=$('#footer-about');
+  let last=null;
+  openAbout = () => { last=document.activeElement; backdrop.classList.add('open'); setTimeout(()=>closeBtn.focus(),50); };
+  const close = () => { backdrop.classList.remove('open'); if (last&&last.focus) last.focus(); };
+  trigger.addEventListener('click', openAbout);
+  closeBtn.addEventListener('click', close);
+  backdrop.addEventListener('click', e => { if (e.target===backdrop) close(); });
+  footerLink?.addEventListener('click', e => { e.preventDefault(); openAbout(); });
+  document.addEventListener('keydown', e => { if (e.key==='Escape' && backdrop.classList.contains('open')) close(); });
+})();
+
+/* ---------- HASH ROUTING (deep links) ---------- */
+function handleHash() {
+  const h = location.hash;
+  if (h.startsWith('#tech/')) { const id=h.slice(6); if (TECH[id]) { const s=document.getElementById('stack'); if(s) s.scrollIntoView(); setTimeout(()=>openDrawer(id,false), 200); } }
+}
+window.addEventListener('hashchange', () => { const h=location.hash; if (h.startsWith('#tech/') && TECH[h.slice(6)] && drawerOpenId!==h.slice(6)) openDrawer(h.slice(6), false); });
+// global ESC closes drawer
+document.addEventListener('keydown', e => { if (e.key==='Escape' && drawer.classList.contains('open')) closeDrawer(); });
+// restore deep link on load
+if (location.hash.startsWith('#tech/')) setTimeout(handleHash, 400);
+
+})();
+
+</script>
+</body>
+</html>
