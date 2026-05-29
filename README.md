@@ -30,12 +30,14 @@ frontend-index/
 ├── .editorconfig
 ├── .gitignore
 ├── .nojekyll
+├── CONTRIBUTING.md
 ├── favicon.svg
 ├── index.html
 ├── LICENSE
 ├── package.json
 ├── README.md
 ├── robots.txt
+├── SECURITY.md
 ├── sitemap.xml
 └── site.webmanifest
 ```
