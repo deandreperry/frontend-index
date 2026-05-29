@@ -2,31 +2,30 @@
 
 A visual reference system for modern frontend engineering.
 
-Frontend Index is designed to help developers understand not only the technologies used in modern frontend development, but also how those technologies connect within the broader ecosystem. Instead of presenting disconnected documentation, Frontend Index provides an interactive, visual learning experience covering browsers, frameworks, tooling, architecture, Git workflows, AI-assisted development, and production engineering concepts.
+Frontend Index is an interactive educational platform that helps developers understand how modern frontend technologies fit together. Instead of learning tools in isolation, users can explore the relationships between browsers, frameworks, development tooling, Git workflows, AI-assisted development, and production engineering concepts through visual diagrams and interactive learning experiences.
 
-Built as a single-page educational platform, Frontend Index combines reference material, visual diagrams, interactive learning modules, and developer tooling simulations into a unified experience.
+Built with HTML, CSS, and JavaScript, Frontend Index serves as both a learning resource and a reference guide for developers at every stage of their frontend journey.
 
 ---
 
 ## Why Frontend Index Exists
 
-Frontend development has become increasingly complex.
+Frontend development has evolved into a complex ecosystem of technologies, tools, and workflows.
 
-Modern developers are expected to understand:
+Developers are expected to understand:
 
 * HTML, CSS, and JavaScript
-* Frameworks and libraries
-* Build tools and package managers
-* Git workflows and collaboration
-* Browser architecture
-* Performance optimization
-* Accessibility
-* AI-assisted development workflows
+* Browsers and rendering engines
+* Development environments
+* Package managers and build tools
+* Git and collaboration workflows
+* Accessibility and performance
+* AI-assisted development
 * Deployment and production systems
 
-Most learning resources explain these topics individually.
+Most resources teach these topics separately.
 
-Frontend Index focuses on showing how they fit together.
+Frontend Index focuses on helping developers understand how everything connects.
 
 ---
 
@@ -34,25 +33,24 @@ Frontend Index focuses on showing how they fit together.
 
 ### Interactive Frontend Roadmap
 
-Explore the major areas of frontend engineering through an interactive learning path.
+Explore the major disciplines of frontend engineering through a visual learning experience.
 
 ### Browser Fundamentals
 
-Learn how HTML, CSS, JavaScript, rendering engines, networking, and browser APIs work together.
+Understand how browsers process HTML, CSS, JavaScript, networking requests, and rendering.
 
 ### Developer Tooling
 
-Visual guides covering:
+Learn essential frontend development tools including:
 
 * Terminal fundamentals
 * Package managers
-* Development environments
-* Build tooling
-* Project structure
+* Development workflows
+* Project structure concepts
 
 ### VS Code Environment
 
-Interactive visualizations of:
+Visual guides covering:
 
 * Explorer
 * Command Palette
@@ -62,37 +60,36 @@ Interactive visualizations of:
 
 ### Git & Collaboration
 
-Learn modern software development workflows including:
+Learn the foundations of modern software development:
 
 * Repositories
-* Branching strategies
+* Branches
 * Commits
 * Pull Requests
 * CI/CD concepts
 
 ### AI-Assisted Development
 
-Explore how modern developers leverage:
+Explore modern developer workflows using:
 
-* Claude
+* Claude Code
 * OpenAI Codex
-* AI coding workflows
 * Prompt-driven development
-* Human-AI collaboration patterns
+* Human-AI collaboration
 
 ### Frontend Ecosystem Mapping
 
-Visual relationship diagrams showing how frontend technologies connect across the development stack.
+Visual diagrams that show how frontend technologies connect across the development stack.
 
 ### Interactive Learning Labs
 
-Hands-on visual demonstrations covering:
+Hands-on demonstrations covering:
 
 * Flexbox
 * CSS Grid
 * CSS Specificity
 * Layout systems
-* Modern UI patterns
+* Modern UI concepts
 
 ---
 
@@ -104,57 +101,30 @@ Hands-on visual demonstrations covering:
 * CSS3
 * Vanilla JavaScript
 
-### Design
+### Design System
 
 * Geist
 * Geist Mono
 * Instrument Serif
 
-### Architecture
+### Principles
 
-* Component-driven UI patterns
-* Interactive visualization systems
-* Theme-aware design
-* Responsive layouts
-* Accessibility-conscious interactions
-
----
-
-## Project Goals
-
-Frontend Index aims to:
-
-1. Help developers understand the frontend ecosystem.
-2. Visualize relationships between technologies.
-3. Provide interactive learning experiences.
-4. Serve as a long-term reference resource.
-5. Demonstrate modern frontend engineering practices.
+* Responsive Design
+* Theme-Aware UI
+* Interactive Learning
+* Accessibility-Conscious Experiences
+* Visual Knowledge Mapping
 
 ---
 
-## Repository Structure
+## Current Repository Structure
 
 ```text
 frontend-index/
-│
 ├── index.html
 ├── README.md
 ├── LICENSE
-│
-├── docs/
-│   ├── architecture.md
-│   ├── roadmap.md
-│   ├── git-workflows.md
-│   └── ai-assisted-development.md
-│
-├── assets/
-│   ├── images/
-│   ├── icons/
-│   └── screenshots/
-│
-└── .github/
-    ├── ISSUE_TEMPLATE/
-    └── workflows/
+└── Favicon.svg
 ```
 
 ---
@@ -167,19 +137,19 @@ Clone the repository:
 git clone https://github.com/YOUR-USERNAME/frontend-index.git
 ```
 
-Open the project:
+Navigate into the project:
 
 ```bash
 cd frontend-index
 ```
 
-Launch:
+Open the application:
 
 ```bash
 open index.html
 ```
 
-Or use a local development server:
+Or run a local server:
 
 ```bash
 npx serve .
@@ -187,27 +157,33 @@ npx serve .
 
 ---
 
-## Roadmap
+## Future Roadmap
 
-Future additions may include:
+Planned areas for expansion:
 
 * Design Systems
 * Accessibility Engineering
 * Performance Engineering
-* React Architecture
+* React Ecosystem
 * Next.js Architecture
 * State Management
-* Testing Ecosystem
-* Frontend Security
+* Frontend Testing
 * API Integration Patterns
+* Frontend Security
 * Advanced AI Development Workflows
 
 ---
 
 ## License
 
-Licensed under the Apache License 2.0.
+Copyright © 2026 De'Andre Perry. All rights reserved.
+
+This project is proprietary software and is provided for educational and informational purposes only.
+
+No permission is granted to copy, modify, distribute, sublicense, sell, or commercially use this software or any derivative works without explicit written permission from the author.
+
+Unauthorized reproduction or redistribution of this software, in whole or in part, is prohibited.
 
 ---
 
-Built for developers who want to understand the frontend ecosystem, not just memorize tools.
+Built to be read once, referenced forever.
