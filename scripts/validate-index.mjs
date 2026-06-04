@@ -19,6 +19,20 @@ const requiredIndexSnippets = [
   'https://github.com/deandreperry/frontend-index'
 ];
 
+const requiredSectionIds = [
+  'security',
+  'accessibility',
+  'testing',
+  'data',
+  'state',
+  'design-systems',
+  'forms',
+  'seo',
+  'deployment',
+  'monitoring',
+  'i18n'
+];
+
 const failures = [];
 
 for (const file of requiredFiles) {
@@ -33,6 +47,15 @@ const index = await readFile('index.html', 'utf8');
 for (const snippet of requiredIndexSnippets) {
   if (!index.includes(snippet)) {
     failures.push(`index.html is missing: ${snippet}`);
+  }
+}
+
+for (const id of requiredSectionIds) {
+  if (!index.includes(`<section id="${id}"`)) {
+    failures.push(`index.html is missing section: ${id}`);
+  }
+  if (!index.includes(`data-domain="${id}"`)) {
+    failures.push(`index.html is missing domain board: ${id}`);
   }
 }
 

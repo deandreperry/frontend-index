@@ -13,6 +13,7 @@ Frontend Index is an interactive map for understanding how the modern frontend s
 - A guided frontend roadmap from browser fundamentals through AI-assisted workflows.
 - Interactive labs for Flexbox, CSS Grid, the JavaScript event loop, and CSS specificity.
 - A technology stack map with searchable, clickable entries.
+- Expanded engineering sections for security, accessibility, testing, API/data fetching, state management, design systems, forms, SEO, deployment, monitoring, and internationalization.
 - Visual explainers for browser rendering, Git flow, VS Code workflows, terminal commands, performance, and production UI patterns.
 - Dark and light themes with local preference storage.
 - Static-site metadata for GitHub Pages, social previews, search crawlers, and installable web app metadata.
@@ -91,14 +92,11 @@ The app is intentionally dependency-light. The core experience lives in `index.h
 
 Planned expansion areas:
 
-- Accessibility engineering
-- Frontend testing
-- API integration patterns
-- Frontend security
 - Advanced performance diagnostics
 - React and Next.js architecture
-- State management tradeoffs
-- Design system governance
+- Advanced AI development workflows
+- Deeper framework comparison paths
+- More interactive labs for security, accessibility, and data fetching
 
 ---
 

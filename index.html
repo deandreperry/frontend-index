@@ -53,8 +53,8 @@ html[data-theme="light"] {
   --shadow-sm: 0 1px 2px rgba(0,0,0,0.05); --shadow-md: 0 6px 24px rgba(0,0,0,0.08); --shadow-lg: 0 24px 60px rgba(0,0,0,0.12);
 }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
-body { font-family: var(--font-body); background: var(--bg); color: var(--text); line-height: 1.55; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-feature-settings: "ss01", "cv11"; letter-spacing: -0.005em; overflow-x: hidden; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; max-width: 100%; overflow-x: clip; }
+body { font-family: var(--font-body); background: var(--bg); color: var(--text); line-height: 1.55; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-feature-settings: "ss01", "cv11"; letter-spacing: -0.005em; max-width: 100%; overflow-x: clip; }
 a { color: inherit; text-decoration: none; }
 button { font: inherit; color: inherit; background: none; border: none; cursor: pointer; }
 input, select, textarea { font: inherit; color: inherit; }
@@ -355,6 +355,27 @@ section[id] + section[id] { border-top: 1px solid var(--border); }
 .resource-card .res-meta { min-width: 0; }
 .resource-card .res-name { font-size: 13px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .resource-card .res-sub { font-size: 11.5px; color: var(--text-3); font-family: var(--font-mono); }
+.domain-board { display: grid; gap: 18px; }
+.domain-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.domain-pillar, .domain-topic, .domain-check { background: var(--bg-elev-1); border: 1px solid var(--border); border-radius: var(--radius-lg); transition: all .18s; }
+.domain-pillar { padding: 18px 20px; }
+.domain-pillar:hover, .domain-topic:hover, .domain-check:hover { border-color: var(--border-strong); background: var(--bg-elev-2); transform: translateY(-1px); }
+.domain-pillar .dp-kicker { font-size: 10.5px; color: var(--domain-color, var(--accent)); font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; }
+.domain-pillar h4, .domain-topic h4 { font-size: 15px; font-weight: 600; letter-spacing: -0.01em; margin-bottom: 7px; }
+.domain-pillar p, .domain-topic p, .domain-check p { font-size: 12.8px; color: var(--text-2); line-height: 1.58; }
+.domain-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(235px, 1fr)); gap: 12px; }
+.domain-topic { padding: 18px 20px; position: relative; overflow: hidden; }
+.domain-topic::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--domain-color, var(--accent)), transparent); opacity: 0.55; }
+.domain-topic .dt-head { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+.domain-topic .dt-icon { width: 34px; height: 34px; border-radius: 8px; background: var(--bg-elev-3); border: 1px solid var(--border); display: grid; place-items: center; color: var(--domain-color, var(--accent)); flex-shrink: 0; }
+.domain-topic .dt-icon svg { width: 17px; height: 17px; }
+.domain-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 13px; }
+.domain-tag { font-family: var(--font-mono); font-size: 10.5px; color: var(--text-3); border: 1px solid var(--border); border-radius: 4px; padding: 2px 7px; background: var(--bg-elev-2); }
+.domain-checks { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 10px; }
+.domain-check { display: flex; gap: 12px; padding: 14px 16px; align-items: flex-start; }
+.domain-check .dc-mark { width: 24px; height: 24px; border-radius: 6px; display: grid; place-items: center; color: var(--domain-color, var(--accent)); background: var(--accent-glow); flex-shrink: 0; }
+.domain-check .dc-mark svg { width: 13px; height: 13px; }
+.domain-check h4 { font-size: 13.5px; font-weight: 600; margin-bottom: 4px; }
 /* command palette + about (shared backdrop) */
 .cmdk-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,0.55); backdrop-filter: blur(8px); z-index: 200; display: none; align-items: flex-start; justify-content: center; padding-top: 14vh; }
 .cmdk-backdrop.open { display: flex; animation: fadeIn .15s; }
@@ -471,6 +492,7 @@ section[id] + section[id] { border-top: 1px solid var(--border); }
   .lab-controls { border-right: none; border-bottom: 1px solid var(--border); }
   .pipeline-detail { grid-template-columns: 1fr; }
   .eventloop-stage { grid-template-columns: 1fr; }
+  .domain-strip { grid-template-columns: 1fr; }
   .top-nav { display: none; }
   .search-trigger { min-width: 0; padding: 6px 8px; }
   .search-trigger span:not(.kbd) { display: none; }
@@ -864,7 +886,7 @@ html[data-theme="light"] .hero-viz .graph-node-body.satellite { filter: var(--gr
     <span class="brand-version">v2.0</span>
   </a>
   <nav class="top-nav" aria-label="Primary">
-    <a href="#roadmap">Roadmap</a><a href="#stack">Stack Map</a><a href="#labs">Labs</a><a href="#patterns">Patterns</a>
+    <a href="#roadmap">Roadmap</a><a href="#stack">Stack Map</a><a href="#security">Domains</a><a href="#labs">Labs</a>
   </nav>
   <div class="top-spacer"></div>
   <button class="search-trigger" id="search-trigger" aria-label="Open search">
@@ -991,13 +1013,68 @@ html[data-theme="light"] .hero-viz .graph-node-body.satellite { filter: var(--gr
       <div class="card-grid" id="perf-grid"></div>
     </div></section>
 
+    <section id="security"><div class="container">
+      <div class="section-head"><div class="section-eyebrow">09 · Website Security</div><h2>The browser is a hostile runtime with a user attached.</h2><p>Frontend security is not only backend territory. It lives in forms, tokens, third-party scripts, headers, cookies, dependencies, and every place user-controlled data meets the DOM.</p></div>
+      <div class="domain-board" data-domain="security"></div>
+    </div></section>
+
+    <section id="accessibility"><div class="container">
+      <div class="section-head"><div class="section-eyebrow">10 · Accessibility Engineering</div><h2>Usable by keyboard, screen reader, pointer, and preference.</h2><p>Accessibility is engineering discipline: semantic structure, focus management, states, contrast, motion, and testing. It makes the interface more robust for everyone.</p></div>
+      <div class="domain-board" data-domain="accessibility"></div>
+    </div></section>
+
+    <section id="testing"><div class="container">
+      <div class="section-head"><div class="section-eyebrow">11 · Frontend Testing</div><h2>Confidence is a stack, not a single test runner.</h2><p>Healthy frontend testing covers pure logic, components, routes, browser flows, accessibility, visual states, and the contract between UI and data.</p></div>
+      <div class="domain-board" data-domain="testing"></div>
+    </div></section>
+
+    <section id="data"><div class="container">
+      <div class="section-head"><div class="section-eyebrow">12 · API &amp; Data Fetching</div><h2>The UI is only as good as its loading, error, and empty states.</h2><p>Data work is where frontend meets product reality: cache policy, retries, pagination, optimistic updates, auth, schemas, and the network behaviors users actually feel.</p></div>
+      <div class="domain-board" data-domain="data"></div>
+    </div></section>
+
+    <section id="state"><div class="container">
+      <div class="section-head"><div class="section-eyebrow">13 · State Management</div><h2>Not all state belongs in the same place.</h2><p>Great apps separate local UI state, server state, URL state, global client state, and form state instead of forcing every problem through one store.</p></div>
+      <div class="domain-board" data-domain="state"></div>
+    </div></section>
+
+    <section id="design-systems"><div class="container">
+      <div class="section-head"><div class="section-eyebrow">14 · Design Systems</div><h2>Consistency becomes infrastructure.</h2><p>A design system turns visual decisions into tokens, primitives, patterns, documentation, governance, and accessibility guarantees that survive product growth.</p></div>
+      <div class="domain-board" data-domain="design-systems"></div>
+    </div></section>
+
+    <section id="forms"><div class="container">
+      <div class="section-head"><div class="section-eyebrow">15 · Forms</div><h2>The hardest common UI is also the most important.</h2><p>Forms combine semantics, validation, errors, accessibility, async submission, browser autofill, security, and product copy into one deceptively small surface.</p></div>
+      <div class="domain-board" data-domain="forms"></div>
+    </div></section>
+
+    <section id="seo"><div class="container">
+      <div class="section-head"><div class="section-eyebrow">16 · SEO &amp; Metadata</div><h2>Discovery starts in the document head and ends in the content tree.</h2><p>Modern SEO is technical quality, semantic HTML, indexable routes, metadata, structured data, social previews, performance, and content architecture.</p></div>
+      <div class="domain-board" data-domain="seo"></div>
+    </div></section>
+
+    <section id="deployment"><div class="container">
+      <div class="section-head"><div class="section-eyebrow">17 · Deployment &amp; Hosting</div><h2>Shipping is a frontend skill.</h2><p>Preview deploys, rollbacks, environment variables, CDNs, edge functions, domains, redirects, and cache rules decide how the work reaches users.</p></div>
+      <div class="domain-board" data-domain="deployment"></div>
+    </div></section>
+
+    <section id="monitoring"><div class="container">
+      <div class="section-head"><div class="section-eyebrow">18 · Monitoring &amp; Debugging</div><h2>Production is the only environment users believe.</h2><p>Frontend teams need visibility into errors, source maps, real-user performance, analytics, logs, session behavior, and the difference between lab scores and field data.</p></div>
+      <div class="domain-board" data-domain="monitoring"></div>
+    </div></section>
+
+    <section id="i18n"><div class="container">
+      <div class="section-head"><div class="section-eyebrow">19 · Internationalization</div><h2>Interfaces travel farther than your first language.</h2><p>Internationalization covers translation, text expansion, plural rules, dates, numbers, currencies, RTL layouts, locale routing, and content that can change shape.</p></div>
+      <div class="domain-board" data-domain="i18n"></div>
+    </div></section>
+
     <section id="careers"><div class="container">
-      <div class="section-head"><div class="section-eyebrow">09 · Career Paths</div><h2>Six directions. One ecosystem.</h2><p>Frontend has fragmented into specialties. Each track optimizes for a different intersection of design, engineering, and product.</p></div>
+      <div class="section-head"><div class="section-eyebrow">20 · Career Paths</div><h2>Six directions. One ecosystem.</h2><p>Frontend has fragmented into specialties. Each track optimizes for a different intersection of design, engineering, and product.</p></div>
       <div class="career-grid" id="career-grid"></div>
     </div></section>
 
     <section id="labs"><div class="container">
-      <div class="section-head"><div class="section-eyebrow">10 · Interactive Labs</div><h2>Manipulate the platform directly.</h2><p>Four working labs. Read about the event loop, sure — better to watch tasks drain in real time, then change them and see what breaks.</p></div>
+      <div class="section-head"><div class="section-eyebrow">21 · Interactive Labs</div><h2>Manipulate the platform directly.</h2><p>Four working labs. Read about the event loop, sure — better to watch tasks drain in real time, then change them and see what breaks.</p></div>
 
       <div class="lab" id="flex-lab">
         <div class="lab-header"><div class="lab-dots"><span class="lab-dot red"></span><span class="lab-dot amber"></span><span class="lab-dot green"></span></div><div class="lab-title">Flexbox playground</div><div class="lab-tag">/labs/flexbox</div></div>
@@ -1058,18 +1135,18 @@ html[data-theme="light"] .hero-viz .graph-node-body.satellite { filter: var(--gr
     </div></section>
 
     <section id="patterns"><div class="container">
-      <div class="section-head"><div class="section-eyebrow">11 · Production Patterns</div><h2>The UI primitives every app ends up shipping.</h2><p>Modal, dropdown, tabs, command palette. Boring on the surface — full of edge cases underneath. Each pattern below is a small system.</p></div>
+      <div class="section-head"><div class="section-eyebrow">22 · Production Patterns</div><h2>The UI primitives every app ends up shipping.</h2><p>Modal, dropdown, tabs, command palette. Boring on the surface — full of edge cases underneath. Each pattern below is a small system.</p></div>
       <div class="pattern-grid" id="pattern-grid"></div>
     </div></section>
 
     <section id="terminal"><div class="container">
-      <div class="section-head"><div class="section-eyebrow">12 · Terminal / CLI</div><h2>The dev loop lives in the shell.</h2><p>Every project starts and ends with commands. Pick one to see what it does and how it reshapes the filesystem in a frontend dev pipeline.</p></div>
+      <div class="section-head"><div class="section-eyebrow">23 · Terminal / CLI</div><h2>The dev loop lives in the shell.</h2><p>Every project starts and ends with commands. Pick one to see what it does and how it reshapes the filesystem in a frontend dev pipeline.</p></div>
       <div class="terminal" id="terminal-panel"></div>
       <div class="terminal-cmds" id="terminal-cmds"></div>
     </div></section>
 
     <section id="ide"><div class="container">
-      <div class="section-head"><div class="section-eyebrow">13 · VS Code / IDE</div><h2>The editor is half the job.</h2><p>The right extensions and shortcuts compound on themselves. Click a shortcut to watch it act on the editor preview.</p></div>
+      <div class="section-head"><div class="section-eyebrow">24 · VS Code / IDE</div><h2>The editor is half the job.</h2><p>The right extensions and shortcuts compound on themselves. Click a shortcut to watch it act on the editor preview.</p></div>
       <div class="vscode-window" id="vscode-window"></div>
       <div style="margin-top:36px"><h5 class="dev-h">Essential Extensions</h5><div class="feature-grid" id="vsc-ext"></div></div>
       <div style="margin-top:32px"><h5 class="dev-h">Keyboard Shortcuts</h5><div class="vsc-shortcuts-grid" id="vsc-shortcuts"></div></div>
@@ -1077,7 +1154,7 @@ html[data-theme="light"] .hero-viz .graph-node-body.satellite { filter: var(--gr
     </div></section>
 
     <section id="git"><div class="container">
-      <div class="section-head"><div class="section-eyebrow">14 · GitHub &amp; Git</div><h2>Code travels in stages.</h2><p>From your working directory to a merged pull request — six states, each with its own representation. Step through, or auto-play the whole flow.</p></div>
+      <div class="section-head"><div class="section-eyebrow">25 · GitHub &amp; Git</div><h2>Code travels in stages.</h2><p>From your working directory to a merged pull request — six states, each with its own representation. Step through, or auto-play the whole flow.</p></div>
       <div class="git-timeline">
         <div class="git-stages" id="git-stages" role="tablist" aria-label="Git stages"><div class="git-stages-line" id="git-line" aria-hidden="true"></div></div>
         <div class="git-detail" id="git-detail" role="tabpanel"></div>
@@ -1092,7 +1169,7 @@ html[data-theme="light"] .hero-viz .graph-node-body.satellite { filter: var(--gr
     </div></section>
 
     <section id="ai"><div class="container">
-      <div class="section-head"><div class="section-eyebrow">15 · AI-Assisted Development</div><h2>Two agents. One feedback loop.</h2><p>Modern frontend work is increasingly orchestrated by coding agents. They specialize differently — and the win comes from how they hand off.</p></div>
+      <div class="section-head"><div class="section-eyebrow">26 · AI-Assisted Development</div><h2>Two agents. One feedback loop.</h2><p>Modern frontend work is increasingly orchestrated by coding agents. They specialize differently — and the win comes from how they hand off.</p></div>
       <div class="ai-controls" id="ai-controls" role="tablist" aria-label="AI view"></div>
       <div class="ai-panels" id="ai-panels"></div>
       <div class="ai-deep" id="ai-deep"></div>
@@ -1100,7 +1177,7 @@ html[data-theme="light"] .hero-viz .graph-node-body.satellite { filter: var(--gr
     </div></section>
 
     <section id="resources"><div class="container">
-      <div class="section-head"><div class="section-eyebrow">16 · Resource Hub</div><h2>Where to go after the map.</h2><p>Curated, opinionated, kept current. Read these and you'll stay ahead of the curve without drinking from the firehose.</p></div>
+      <div class="section-head"><div class="section-eyebrow">27 · Resource Hub</div><h2>Where to go after the map.</h2><p>Curated, opinionated, kept current. Read these and you'll stay ahead of the curve without drinking from the firehose.</p></div>
       <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;" id="res-row">
         <div>
           <h5 style="font-size: 11px; font-family: var(--font-mono); color: var(--text-3); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 14px;">References &amp; specs</h5>
@@ -1125,7 +1202,7 @@ html[data-theme="light"] .hero-viz .graph-node-body.satellite { filter: var(--gr
           <a href="https://github.com/deandreperry" target="_blank" rel="noopener noreferrer" style="font-family: var(--font-mono); font-size: 11px; color: var(--text-3); transition: color .15s;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--text-3)'">© 2026 De&rsquo;Andre Perry. All rights reserved.</a>
         </div>
         <div><h5>Index</h5><ul><li><a href="#roadmap">Roadmap</a></li><li><a href="#browser">The Browser</a></li><li><a href="#frameworks">Frameworks</a></li><li><a href="#stack">Stack Map</a></li></ul></div>
-        <div><h5>Practice</h5><ul><li><a href="#labs">Labs</a></li><li><a href="#patterns">Patterns</a></li><li><a href="#performance">Performance</a></li><li><a href="#careers">Career paths</a></li></ul></div>
+        <div><h5>Practice</h5><ul><li><a href="#security">Security</a></li><li><a href="#accessibility">Accessibility</a></li><li><a href="#testing">Testing</a></li><li><a href="#labs">Labs</a></li></ul></div>
         <div><h5>Meta</h5><ul><li><a href="#resources">Resources</a></li><li><a href="https://github.com/deandreperry/frontend-index" target="_blank" rel="noopener noreferrer">Contribute on GitHub</a></li><li><a href="#" id="footer-about">About this project</a></li></ul></div>
       </div>
     </footer>
@@ -1156,7 +1233,7 @@ html[data-theme="light"] .hero-viz .graph-node-body.satellite { filter: var(--gr
     <div class="about-body">
       <p>A visual reference system for modern frontend engineering. Not a tutorial — a map. Click any technology to open its full entry: what it is, when to use it, what it competes with, and where to go next.</p>
       <div class="about-stats">
-        <div class="about-stat"><div class="as-value">17</div><div class="as-label">Sections</div></div>
+        <div class="about-stat"><div class="as-value">28</div><div class="as-label">Sections</div></div>
         <div class="about-stat"><div class="as-value">38+</div><div class="as-label">Entries</div></div>
         <div class="about-stat"><div class="as-value">4</div><div class="as-label">Live labs</div></div>
         <div class="about-stat"><div class="as-value">8</div><div class="as-label">Patterns</div></div>
@@ -1256,6 +1333,14 @@ const ICONS = {
   ux:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="9" r="7"/><circle cx="15" cy="15" r="7"/></svg>',
   creative:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r=".5"/><circle cx="17.5" cy="10.5" r=".5"/><circle cx="8.5" cy="7.5" r=".5"/><circle cx="6.5" cy="12.5" r=".5"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/></svg>',
   design:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 19 21 12 17 5 21 12 2"/></svg>',
+  shield:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-8 9-4.5-1.5-8-4-8-9V5l8-3 8 3v8z"/><path d="m9 12 2 2 4-5"/></svg>',
+  test:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2v7.31"/><path d="M14 9.3V2"/><path d="M8.5 2h7"/><path d="M14 9.3a6 6 0 1 1-4 0"/><path d="M8 16h8"/></svg>',
+  data:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v6c0 1.66 3.58 3 8 3s8-1.34 8-3V5"/><path d="M4 11v6c0 1.66 3.58 3 8 3s8-1.34 8-3v-6"/></svg>',
+  form:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v4a1 1 0 0 0 1 1h4"/><path d="M17 21H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7l5 5v11a2 2 0 0 1-2 2z"/><path d="M8 13h8M8 17h5"/></svg>',
+  search:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>',
+  bug:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m8 2 1.88 1.88M14.12 3.88 16 2"/><path d="M9 7.13v-1a3 3 0 0 1 6 0v1"/><path d="M12 20c-3.3 0-6-2.7-6-6v-3a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v3c0 3.3-2.7 6-6 6z"/><path d="M3 13h3M18 13h3M4 19l2.3-2.3M19.7 16.7 22 19"/></svg>',
+  cloud:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19H8a6 6 0 1 1 1.2-11.88A7 7 0 0 1 22 12.5 4.5 4.5 0 0 1 17.5 19z"/></svg>',
+  translate:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></svg>',
   full:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/></svg>'
 };
 
@@ -1656,6 +1741,228 @@ const PATTERNS = [
   { name:'Accordion', desc:'animate height · single vs multi-open', preview:'accord' },
   { name:'Sticky navigation', desc:'IntersectionObserver · scroll-aware', preview:'nav' }
 ];
+const FRONTEND_DOMAINS = {
+  security: {
+    color:'#ff7a7a',
+    pillars:[
+      ['Boundary', 'Every input, URL, cookie, script, package, and embedded frame is a trust boundary. Treat browser code as public and user-controlled data as hostile.'],
+      ['Failure mode', 'Security bugs usually appear when convenience wins: raw HTML, leaked tokens, weak headers, broad dependencies, or unchecked form payloads.'],
+      ['Ship signal', 'A secure frontend has defensive defaults: CSP, safe auth storage, sanitized rendering, dependency review, HTTPS, and clear server-side validation.']
+    ],
+    topics:[
+      { icon:'shield', h:'XSS and DOM injection', p:'Escaping, sanitization, template boundaries, and avoiding unsafe HTML sinks. The rule is simple: user data should not become executable code.', tags:['XSS','DOM sinks','sanitization'] },
+      { icon:'browser', h:'Cookies, sessions, and CSRF', p:'Understand SameSite, httpOnly, secure cookies, CSRF tokens, and why storage location changes the risk profile of auth flows.', tags:['SameSite','httpOnly','CSRF'] },
+      { icon:'book', h:'Security headers', p:'CSP, HSTS, frame guards, referrer policy, and permissions policy create browser-enforced guardrails around your UI.', tags:['CSP','HSTS','headers'] },
+      { icon:'tool', h:'Supply chain risk', p:'npm packages are code that runs in your build or browser. Lockfiles, audits, provenance, and small dependency surfaces matter.', tags:['npm','lockfiles','audit'] }
+    ],
+    checks:[
+      ['No secrets in client code', 'API secrets, private tokens, and service credentials stay off the frontend bundle. Public keys are treated as public.'],
+      ['Client validation is not authority', 'Use client validation for UX and server validation for trust. Both should agree, but only one is authoritative.'],
+      ['Sanitize rich content', 'Markdown, CMS HTML, and user profiles need a sanitizer and a narrow allowlist before entering the DOM.'],
+      ['Review third-party scripts', 'Analytics, widgets, and tag managers expand your attack surface and should be loaded intentionally.']
+    ]
+  },
+  accessibility: {
+    color:'#5be39a',
+    pillars:[
+      ['Structure', 'Semantic HTML gives assistive technology the same document map sighted users infer visually.'],
+      ['Interaction', 'Keyboard, focus order, labels, states, announcements, and motion preferences are part of component behavior.'],
+      ['Verification', 'Automated checks catch obvious misses; manual keyboard and screen reader passes catch the real interaction bugs.']
+    ],
+    topics:[
+      { icon:'a11y', h:'Semantic HTML', p:'Use the platform first: headings, landmarks, buttons, links, labels, lists, tables, and forms carry built-in accessibility behavior.', tags:['semantics','landmarks','labels'] },
+      { icon:'layout', h:'Focus management', p:'Dialogs, menus, tabs, drawers, and route changes need predictable focus movement and visible focus states.', tags:['focus','keyboard','dialogs'] },
+      { icon:'palette', h:'Contrast and motion', p:'Readable color contrast, non-color-only states, reduced-motion support, and scalable text make the UI resilient.', tags:['contrast','motion','zoom'] },
+      { icon:'test', h:'Testing access', p:'Combine axe checks, keyboard-only navigation, screen reader smoke tests, and component-level ARIA assertions.', tags:['axe','WCAG','manual QA'] }
+    ],
+    checks:[
+      ['Every control has a name', 'Buttons, inputs, icons, and toggles expose a meaningful accessible name.'],
+      ['Keyboard path works', 'A user can reach, operate, and exit every interactive surface without a mouse.'],
+      ['States are announced', 'Expanded, selected, invalid, busy, and error states are visible and available to assistive tech.'],
+      ['Design tokens include contrast', 'Color choices are tested as system rules, not fixed one component at a time.']
+    ]
+  },
+  testing: {
+    color:'#ffb86b',
+    pillars:[
+      ['Scope', 'Test the smallest unit that gives confidence, then cover critical journeys in a real browser.'],
+      ['Signal', 'A good suite fails for user-impacting regressions and stays quiet for implementation reshuffles.'],
+      ['Speed', 'Fast unit and component tests protect development; slower E2E tests protect the business paths.']
+    ],
+    topics:[
+      { icon:'test', h:'Unit and utility tests', p:'Pure functions, reducers, parsers, formatters, and edge-case logic belong in fast deterministic tests.', tags:['Vitest','Jest','logic'] },
+      { icon:'ui', h:'Component tests', p:'Render components like users use them: text, roles, labels, events, async loading, and observable output.', tags:['Testing Library','roles','events'] },
+      { icon:'browser', h:'End-to-end flows', p:'Playwright and Cypress cover routing, auth, network timing, browser APIs, and flows that only fail when everything is connected.', tags:['Playwright','Cypress','journeys'] },
+      { icon:'design', h:'Visual and accessibility checks', p:'Visual regression, Storybook states, and a11y scans catch bugs that code assertions do not see.', tags:['Storybook','visual','a11y'] }
+    ],
+    checks:[
+      ['Test behavior, not internals', 'Prefer visible output, accessible roles, and user events over component private state.'],
+      ['Cover loading and error states', 'Every data surface needs success, loading, empty, and failure expectations.'],
+      ['Keep E2E focused', 'A few critical flows beat a huge flaky browser suite.'],
+      ['Run checks in CI', 'Tests only matter if they run before merge and block broken changes.']
+    ]
+  },
+  data: {
+    color:'#5cd1ff',
+    pillars:[
+      ['Contract', 'The UI depends on request shapes, response shapes, auth rules, and error semantics. Treat the API as a contract.'],
+      ['Cache', 'Freshness, invalidation, dedupe, and optimistic updates determine how responsive the product feels.'],
+      ['States', 'Loading, empty, stale, partial, offline, retrying, and failed are all real UI states.']
+    ],
+    topics:[
+      { icon:'data', h:'REST, GraphQL, and RPC', p:'Each model trades discoverability, coupling, overfetching, caching, and type safety differently.', tags:['REST','GraphQL','RPC'] },
+      { icon:'gauge', h:'Caching strategy', p:'Server state tools such as TanStack Query separate fetched data from local UI state and make invalidation explicit.', tags:['cache','SWR','TanStack'] },
+      { icon:'rocket', h:'Optimistic UI', p:'Some actions should feel instant, but optimistic updates need rollback, reconciliation, and clear failure handling.', tags:['optimistic','rollback','mutation'] },
+      { icon:'shield', h:'Auth and data boundaries', p:'Tokens, permissions, CORS, rate limits, and per-user data rules shape every fetch boundary.', tags:['auth','CORS','permissions'] }
+    ],
+    checks:[
+      ['Model every data state', 'The component handles loading, empty, success, stale, and error states intentionally.'],
+      ['Validate API payloads', 'Runtime schemas catch backend drift before it becomes strange UI behavior.'],
+      ['Do not duplicate server state', 'Fetched data belongs in a server-state cache, not scattered through global client stores.'],
+      ['Make retries visible', 'Retries, backoff, cancellation, and disabled submit states keep network failure understandable.']
+    ]
+  },
+  state: {
+    color:'#a98bfa',
+    pillars:[
+      ['Ownership', 'State should live where it is owned: component, route, server cache, global store, browser storage, or form controller.'],
+      ['Lifetime', 'A value that lasts one click, one page, one session, or forever should not use the same mechanism.'],
+      ['Derivation', 'Do not store what can be derived. Redundant state creates disagreement.']
+    ],
+    topics:[
+      { icon:'ui', h:'Local UI state', p:'Open menus, selected tabs, hover-adjacent state, and transient interaction details usually belong near the component.', tags:['useState','signals','local'] },
+      { icon:'globe', h:'URL state', p:'Filters, tabs, pagination, and shareable views often belong in query params so the browser can remember them.', tags:['query params','routing','shareable'] },
+      { icon:'data', h:'Server state', p:'Fetched data has freshness, invalidation, refetch, and mutation concerns that make it different from client state.', tags:['cache','invalidation','server'] },
+      { icon:'layers', h:'Global client state', p:'App-wide preferences, session context, and cross-feature coordination can justify a store when ownership is truly shared.', tags:['Zustand','Redux','Pinia'] }
+    ],
+    checks:[
+      ['Name the owner', 'Before adding a store, identify the component, route, server, or session that owns the value.'],
+      ['Prefer derived values', 'Calculate totals, filtered views, and disabled states from source data when possible.'],
+      ['Keep stores boring', 'Stores should expose stable actions and selectors, not become a second application.'],
+      ['Persist intentionally', 'LocalStorage, sessionStorage, cookies, and IndexedDB each have different privacy and security tradeoffs.']
+    ]
+  },
+  'design-systems': {
+    color:'#ff8fb4',
+    pillars:[
+      ['Tokens', 'Color, type, spacing, radius, shadow, motion, and density become shared decisions.'],
+      ['Primitives', 'Buttons, inputs, dialogs, menus, tabs, and layout components encode behavior as well as appearance.'],
+      ['Governance', 'A system stays useful through documentation, review, ownership, versioning, and accessibility standards.']
+    ],
+    topics:[
+      { icon:'palette', h:'Design tokens', p:'Tokens let brand, theme, density, and platform choices flow through the product without one-off styling.', tags:['color','type','spacing'] },
+      { icon:'ui', h:'Component primitives', p:'Reusable controls need variants, states, accessibility, keyboard behavior, and predictable composition rules.', tags:['buttons','inputs','dialogs'] },
+      { icon:'book', h:'Documentation and examples', p:'Storybook, usage notes, dos and donts, and visual states make the system usable without tribal knowledge.', tags:['Storybook','docs','states'] },
+      { icon:'layers', h:'Adoption and governance', p:'Design systems are product infrastructure. Ownership, migration paths, and contribution models decide whether teams trust them.', tags:['ownership','versioning','review'] }
+    ],
+    checks:[
+      ['Tokens before colors', 'Components consume named tokens instead of hard-coded visual values.'],
+      ['States are complete', 'Default, hover, focus, disabled, loading, error, and selected states are designed together.'],
+      ['Accessibility is built in', 'Primitives handle labels, focus, keyboard behavior, and ARIA contracts by default.'],
+      ['Usage rules are visible', 'A component includes guidance about when to use it, not only how to render it.']
+    ]
+  },
+  forms: {
+    color:'#5be39a',
+    pillars:[
+      ['Semantics', 'Native labels, inputs, fieldsets, autocomplete, input modes, and validation APIs do a lot before JavaScript arrives.'],
+      ['Feedback', 'Errors, hints, loading, success, disabled states, and server messages are part of the form experience.'],
+      ['Trust', 'Forms are the most common boundary between user intent, backend validation, and security risk.']
+    ],
+    topics:[
+      { icon:'form', h:'Native form behavior', p:'Use real forms, labels, buttons, input types, autocomplete tokens, and submit semantics before building custom controls.', tags:['labels','input types','autocomplete'] },
+      { icon:'check', h:'Validation layers', p:'Client validation improves speed and clarity; server validation enforces truth and permissions.', tags:['client','server','schema'] },
+      { icon:'a11y', h:'Error UX', p:'Errors need proximity, readable copy, programmatic association, and recovery paths that do not erase user work.', tags:['aria-describedby','copy','recovery'] },
+      { icon:'data', h:'Submission flow', p:'Async submit needs disabled states, idempotency, retries, duplicate prevention, and server-error mapping.', tags:['async','idempotency','errors'] }
+    ],
+    checks:[
+      ['Labels are explicit', 'Every input has a visible or programmatic label, not only placeholder text.'],
+      ['Errors are connected', 'Invalid fields point to useful error messages and preserve the entered value.'],
+      ['Autofill is supported', 'Use autocomplete and inputmode to help browsers help users.'],
+      ['Submits are resilient', 'Prevent duplicate submissions and handle slow networks without confusing the user.']
+    ]
+  },
+  seo: {
+    color:'#4f9dff',
+    pillars:[
+      ['Crawlability', 'Indexable content needs stable URLs, semantic markup, canonical rules, and routes that bots can understand.'],
+      ['Metadata', 'Titles, descriptions, Open Graph, Twitter cards, JSON-LD, robots, and sitemaps shape discovery and sharing.'],
+      ['Quality', 'Performance, accessibility, internal linking, and content hierarchy are technical SEO, not separate concerns.']
+    ],
+    topics:[
+      { icon:'search', h:'Document head', p:'Titles, descriptions, canonical URLs, viewport, icons, and social previews define how pages appear outside the app.', tags:['title','canonical','Open Graph'] },
+      { icon:'tree', h:'Content structure', p:'Headings, landmarks, links, alt text, and meaningful URLs help both users and crawlers understand the page.', tags:['headings','links','alt text'] },
+      { icon:'code', h:'Structured data', p:'JSON-LD can describe products, articles, breadcrumbs, organizations, and other entities when content calls for it.', tags:['JSON-LD','schema.org','entities'] },
+      { icon:'gauge', h:'Rendering and performance', p:'Search quality is affected by server rendering, hydration cost, Core Web Vitals, and whether content arrives in time.', tags:['SSR','CWV','hydration'] }
+    ],
+    checks:[
+      ['One clear canonical URL', 'Each important page declares the URL search engines should treat as primary.'],
+      ['Metadata is page-specific', 'Titles, descriptions, and previews describe the actual route, not the whole site generically.'],
+      ['Links are crawlable', 'Important navigation uses real anchors and descriptive text.'],
+      ['Sitemap and robots agree', 'Discovery files point to the real production host and do not block important content.']
+    ]
+  },
+  deployment: {
+    color:'#00ad9f',
+    pillars:[
+      ['Pipeline', 'Build, check, preview, approve, release, rollback. Deployment is an engineering workflow.'],
+      ['Runtime', 'Static hosting, server rendering, edge functions, APIs, assets, and CDNs each have different constraints.'],
+      ['Operations', 'Domains, redirects, cache headers, environment variables, secrets, and rollbacks decide production reliability.']
+    ],
+    topics:[
+      { icon:'rocket', h:'Preview deployments', p:'Every branch should produce a URL where product, design, and engineering can review the same artifact.', tags:['preview','branch','review'] },
+      { icon:'cloud', h:'Hosting models', p:'GitHub Pages, Vercel, Netlify, Cloudflare Pages, static buckets, and server platforms optimize for different app shapes.', tags:['static','serverless','edge'] },
+      { icon:'shield', h:'Environment variables', p:'Build-time and runtime variables differ. Public frontend env values are public; secrets stay server-side.', tags:['env','secrets','runtime'] },
+      { icon:'gauge', h:'Caching and rollbacks', p:'Asset hashing, CDN rules, stale content, redirects, and rollback paths affect every release.', tags:['CDN','cache','rollback'] }
+    ],
+    checks:[
+      ['Preview before production', 'A deploy preview validates the exact built artifact before it reaches users.'],
+      ['Secrets stay private', 'Only public configuration is exposed to the browser bundle.'],
+      ['Cache rules are intentional', 'HTML, assets, APIs, and redirects use different cache strategies.'],
+      ['Rollback path exists', 'The team knows how to revert a broken release quickly.']
+    ]
+  },
+  monitoring: {
+    color:'#ffb86b',
+    pillars:[
+      ['Observe', 'Errors, performance, analytics, logs, and user behavior reveal what the local dev server cannot.'],
+      ['Diagnose', 'Source maps, traces, network waterfalls, reproduction steps, and release markers turn symptoms into fixes.'],
+      ['Prioritize', 'Field data tells you what users actually experience and which problems deserve attention first.']
+    ],
+    topics:[
+      { icon:'bug', h:'Error tracking', p:'Capture runtime errors with stack traces, source maps, release tags, and enough context to reproduce.', tags:['Sentry','source maps','releases'] },
+      { icon:'gauge', h:'Real user monitoring', p:'RUM measures Core Web Vitals, device classes, routes, and slow interactions from actual sessions.', tags:['RUM','LCP','INP'] },
+      { icon:'browser', h:'DevTools debugging', p:'Network, Performance, Memory, Elements, Lighthouse, and coverage tools explain what the browser is doing.', tags:['DevTools','traces','waterfall'] },
+      { icon:'data', h:'Analytics and funnels', p:'Product analytics show adoption, drop-off, conversion, and behavior patterns that performance logs cannot.', tags:['events','funnels','privacy'] }
+    ],
+    checks:[
+      ['Source maps are controlled', 'Production debugging works without exposing more source detail than intended.'],
+      ['Errors include release data', 'A regression can be tied back to a deploy, branch, or commit.'],
+      ['Vitals are route-aware', 'Performance data is grouped by page and interaction, not only averaged site-wide.'],
+      ['Analytics respect privacy', 'Collect the least data needed and document what is tracked.']
+    ]
+  },
+  i18n: {
+    color:'#a98bfa',
+    pillars:[
+      ['Content shape', 'Translated text changes length, grammar, pluralization, line breaks, and sometimes the entire sentence structure.'],
+      ['Locale rules', 'Dates, numbers, currencies, calendars, sorting, casing, and units depend on locale.'],
+      ['Layout', 'RTL, text expansion, truncation, font coverage, and direction-aware spacing are design and engineering concerns.']
+    ],
+    topics:[
+      { icon:'translate', h:'Message formatting', p:'Use message keys, interpolation, plural rules, and context-aware translations instead of concatenated strings.', tags:['messages','plurals','ICU'] },
+      { icon:'globe', h:'Locale routing', p:'Apps need a strategy for language detection, route prefixes, canonical URLs, fallback locales, and persisted preference.', tags:['routing','fallbacks','canonical'] },
+      { icon:'layout', h:'RTL and layout resilience', p:'Logical CSS properties, mirrored icons, and flexible components keep Arabic, Hebrew, and long strings usable.', tags:['RTL','logical CSS','text expansion'] },
+      { icon:'data', h:'Formatting APIs', p:'Intl APIs handle dates, relative time, lists, numbers, currencies, and collation better than custom formatting.', tags:['Intl','dates','currency'] }
+    ],
+    checks:[
+      ['No string concatenation', 'Sentences are translated as complete messages with variables, not assembled from fragments.'],
+      ['Layouts survive expansion', 'Buttons, cards, nav, and form fields tolerate longer labels without overlap.'],
+      ['Use logical properties', 'Prefer inline/block spacing so layouts adapt to writing direction.'],
+      ['Format by locale', 'Dates, numbers, currency, and sorting use Intl or a locale-aware library.']
+    ]
+  }
+};
 const RESOURCES = {
   refs:[{name:'MDN Web Docs',sub:'developer.mozilla.org',icon:'book',url:'https://developer.mozilla.org'},{name:'web.dev',sub:'Google Chrome team',icon:'book',url:'https://web.dev'},{name:'WHATWG specs',sub:'living standards',icon:'book',url:'https://spec.whatwg.org'},{name:'Can I Use',sub:'feature support tables',icon:'book',url:'https://caniuse.com'},{name:'ECMAScript spec',sub:'tc39.es/ecma262',icon:'book',url:'https://tc39.es/ecma262/'},{name:'CSS Specs',sub:'w3.org/Style/CSS',icon:'book',url:'https://www.w3.org/Style/CSS/'}],
   tools:[{name:'Next.js docs',sub:'nextjs.org/docs',icon:'tool',url:'https://nextjs.org/docs'},{name:'React docs',sub:'react.dev',icon:'tool',url:'https://react.dev'},{name:'Vite guide',sub:'vite.dev',icon:'tool',url:'https://vite.dev'},{name:'Tailwind docs',sub:'tailwindcss.com',icon:'tool',url:'https://tailwindcss.com'},{name:'Vercel docs',sub:'vercel.com/docs',icon:'tool',url:'https://vercel.com/docs'},{name:'TypeScript handbook',sub:'typescriptlang.org',icon:'tool',url:'https://www.typescriptlang.org/docs/'}],
@@ -1777,7 +2084,8 @@ drawerBackdrop.addEventListener('click', closeDrawer);
 const SIDE_GROUPS = [
   { title:'Index', items:[['hero','Overview','globe'],['roadmap','Roadmap','tree']] },
   { title:'Foundations', items:[['browser','The Browser','browser'],['core','Core Tech','code'],['frameworks','Frameworks','grid']] },
-  { title:'Systems', items:[['stack','Stack Map','layers'],['tooling','Tooling','tool'],['architecture','Architecture','layout'],['performance','Performance','gauge']] },
+  { title:'Systems', items:[['stack','Stack Map','layers'],['tooling','Tooling','tool'],['architecture','Architecture','layout'],['performance','Performance','gauge'],['security','Website Security','shield']] },
+  { title:'Product Engineering', items:[['accessibility','Accessibility','a11y'],['testing','Testing','test'],['data','API & Data','data'],['state','State','layers'],['design-systems','Design Systems','design'],['forms','Forms','form'],['seo','SEO & Metadata','search'],['deployment','Deployment','rocket'],['monitoring','Monitoring','bug'],['i18n','Internationalization','translate']] },
   { title:'Practice', items:[['careers','Career Paths','full'],['labs','Interactive Labs','tool'],['patterns','Production Patterns','grid']] },
   { title:'Dev Environment', items:[['terminal','Terminal / CLI','code'],['ide','VS Code / IDE','layout'],['git','GitHub & Git','book'],['ai','AI-Assisted Dev','layers']] },
   { title:'Reference', items:[['resources','Resource Hub','book']] }
@@ -1966,6 +2274,38 @@ renderRoadmap();
   const pg = $('#perf-grid');
   PERF.forEach(p => pg.append(el('div', { class:'glass-card' }, el('h4', {}, p.h), el('p', { html:p.p }), el('div', { class:'card-list' }, ...p.list.map(x => el('div', { class:'card-list-item' }, x))))));
 
+  const renderDomain = (board, domain) => {
+    board.style.setProperty('--domain-color', domain.color);
+    const pillars = el('div', { class:'domain-strip' }, ...domain.pillars.map(([title, copy], i) =>
+      el('div', { class:'domain-pillar' },
+        el('div', { class:'dp-kicker' }, String(i + 1).padStart(2, '0') + ' · lens'),
+        el('h4', {}, title),
+        el('p', {}, copy)
+      )
+    ));
+    const topics = el('div', { class:'domain-grid' }, ...domain.topics.map(topic =>
+      el('div', { class:'domain-topic' },
+        el('div', { class:'dt-head' },
+          el('div', { class:'dt-icon', html: ICONS[topic.icon] || ICONS.code }),
+          el('h4', {}, topic.h)
+        ),
+        el('p', {}, topic.p),
+        el('div', { class:'domain-tags' }, ...topic.tags.map(tag => el('span', { class:'domain-tag' }, tag)))
+      )
+    ));
+    const checks = el('div', { class:'domain-checks' }, ...domain.checks.map(([title, copy]) =>
+      el('div', { class:'domain-check' },
+        el('div', { class:'dc-mark', html: ICONS.check }),
+        el('div', {}, el('h4', {}, title), el('p', {}, copy))
+      )
+    ));
+    board.append(pillars, topics, checks);
+  };
+  $$('.domain-board').forEach(board => {
+    const domain = FRONTEND_DOMAINS[board.dataset.domain];
+    if (domain) renderDomain(board, domain);
+  });
+
   const cg = $('#career-grid');
   CAREERS.forEach(c => cg.append(el('div', { class:'career-card', style:'--ct-color: '+c.color }, el('div', { class:'ct-icon', html: ICONS[c.icon]||ICONS.code }), el('div', { class:'ct-name' }, c.name), el('div', { class:'ct-tagline' }, c.tag), el('div', { class:'ct-desc' }, c.desc), el('div', { class:'ct-stack' }, ...c.stack.map(s => el('span', { class:'tag' }, s))))));
 
@@ -2104,8 +2444,8 @@ renderRoadmap();
 
 /* ---------- SCROLL SPY + FLOATING TOC + SIDEBAR NAV ---------- */
 (() => {
-  const sections = ['hero','roadmap','browser','core','frameworks','stack','tooling','architecture','performance','careers','labs','patterns','terminal','ide','git','ai','resources'];
-  const labels = { hero:'Overview', roadmap:'Roadmap', browser:'Browser', core:'Core', frameworks:'Frameworks', stack:'Stack Map', tooling:'Tooling', architecture:'Architecture', performance:'Performance', careers:'Careers', labs:'Labs', patterns:'Patterns', terminal:'Terminal', ide:'VS Code', git:'Git & GitHub', ai:'AI Assist', resources:'Resources' };
+  const sections = ['hero','roadmap','browser','core','frameworks','stack','tooling','architecture','performance','security','accessibility','testing','data','state','design-systems','forms','seo','deployment','monitoring','i18n','careers','labs','patterns','terminal','ide','git','ai','resources'];
+  const labels = { hero:'Overview', roadmap:'Roadmap', browser:'Browser', core:'Core', frameworks:'Frameworks', stack:'Stack Map', tooling:'Tooling', architecture:'Architecture', performance:'Performance', security:'Security', accessibility:'Accessibility', testing:'Testing', data:'API & Data', state:'State', 'design-systems':'Design Systems', forms:'Forms', seo:'SEO', deployment:'Deployment', monitoring:'Monitoring', i18n:'i18n', careers:'Careers', labs:'Labs', patterns:'Patterns', terminal:'Terminal', ide:'VS Code', git:'Git & GitHub', ai:'AI Assist', resources:'Resources' };
   const toc = $('#floating-toc');
   sections.forEach(id => {
     const dot = el('button', { class:'toc-dot', 'data-section':id, 'aria-label':'Jump to '+labels[id] }, el('span', { class:'toc-label' }, labels[id]));
@@ -2789,7 +3129,7 @@ const AI_WORKFLOW = [
 /* ---------- SEARCH INDEX + COMMAND PALETTE (content-aware) ---------- */
 (() => {
   const backdrop = $('#cmdk-backdrop'), input = $('#cmdk-input'), results = $('#cmdk-results'), closeBtn = $('#cmdk-close'), trigger = $('#search-trigger');
-  const SECTIONS = [['hero','Overview','globe'],['roadmap','Roadmap','tree'],['browser','The Browser','browser'],['core','Core Web Technologies','code'],['frameworks','Frameworks','grid'],['stack','Stack Map','layers'],['tooling','Tooling Ecosystem','tool'],['architecture','Architecture','layout'],['performance','Performance Engineering','gauge'],['careers','Career Paths','full'],['labs','Interactive Labs','tool'],['patterns','Production Patterns','grid'],['terminal','Terminal / CLI','code'],['ide','VS Code / IDE','layout'],['git','GitHub & Git','book'],['ai','AI-Assisted Development','layers'],['resources','Resource Hub','book']];
+  const SECTIONS = [['hero','Overview','globe'],['roadmap','Roadmap','tree'],['browser','The Browser','browser'],['core','Core Web Technologies','code'],['frameworks','Frameworks','grid'],['stack','Stack Map','layers'],['tooling','Tooling Ecosystem','tool'],['architecture','Architecture','layout'],['performance','Performance Engineering','gauge'],['security','Website Security','shield'],['accessibility','Accessibility Engineering','a11y'],['testing','Frontend Testing','test'],['data','API & Data Fetching','data'],['state','State Management','layers'],['design-systems','Design Systems','design'],['forms','Forms','form'],['seo','SEO & Metadata','search'],['deployment','Deployment & Hosting','rocket'],['monitoring','Monitoring & Debugging','bug'],['i18n','Internationalization','translate'],['careers','Career Paths','full'],['labs','Interactive Labs','tool'],['patterns','Production Patterns','grid'],['terminal','Terminal / CLI','code'],['ide','VS Code / IDE','layout'],['git','GitHub & Git','book'],['ai','AI-Assisted Development','layers'],['resources','Resource Hub','book']];
   const LABS_IDX = [['flex-lab','Flexbox playground','tool'],['grid-lab','CSS Grid generator','grid'],['eventloop-lab','Event loop simulator','gauge'],['spec-lab','CSS specificity calculator','code']];
 
   // build the index: sections + tech (with searchable body) + labs + patterns
