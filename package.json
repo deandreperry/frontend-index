@@ -1,12 +1,14 @@
 {
   "name": "frontend-index",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "private": true,
   "description": "A visual reference system for modern frontend engineering.",
-  "homepage": "https://deandreperry.github.io/frontend-index/",
+  "homepage": "https://frontendindex.com/",
   "type": "module",
   "scripts": {
-    "check": "node scripts/validate-index.mjs",
+    "generate": "node scripts/generate-pages.mjs",
+    "generate:check": "node scripts/generate-pages.mjs --check",
+    "check": "npm run generate:check && node scripts/validate-index.mjs && node scripts/a11y-smoke.mjs",
     "dev": "python3 -m http.server 4173",
     "preview": "python3 -m http.server 4173"
   },

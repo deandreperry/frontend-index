@@ -2,15 +2,16 @@
   "name": "Frontend Index",
   "short_name": "Frontend Index",
   "description": "A visual reference system for modern frontend engineering.",
-  "start_url": "/frontend-index/",
-  "scope": "/frontend-index/",
+  "id": "/",
+  "start_url": "/",
+  "scope": "/",
   "display": "standalone",
   "background_color": "#08080a",
   "theme_color": "#08080a",
   "icons": [
     {
-      "src": "favicon.svg",
-      "sizes": "64x64",
+      "src": "/favicon.svg",
+      "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any"
     }

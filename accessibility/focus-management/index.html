@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Focus Management — Frontend Index</title>
+  <meta name="description" content="How to move, contain, restore, and visibly communicate keyboard focus in dynamic web interfaces.">
+  <link rel="canonical" href="https://frontendindex.com/accessibility/focus-management/">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta name="theme-color" content="#08080a">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Frontend Index">
+  <meta property="og:title" content="Focus Management — Frontend Index">
+  <meta property="og:description" content="How to move, contain, restore, and visibly communicate keyboard focus in dynamic web interfaces.">
+  <meta property="og:url" content="https://frontendindex.com/accessibility/focus-management/">
+  <meta property="og:image" content="https://frontendindex.com/assets/social-preview.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Frontend Index — a visual reference system for modern frontend engineering">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Focus Management — Frontend Index">
+  <meta name="twitter:description" content="How to move, contain, restore, and visibly communicate keyboard focus in dynamic web interfaces.">
+  <meta name="twitter:image" content="https://frontendindex.com/assets/social-preview.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles/reference.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://frontendindex.com/accessibility/focus-management/#article","headline":"Focus Management","description":"How to move, contain, restore, and visibly communicate keyboard focus in dynamic web interfaces.","dateModified":"2026-09-02","mainEntityOfPage":"https://frontendindex.com/accessibility/focus-management/","author":{"@type":"Person","name":"De'Andre Perry","url":"https://github.com/deandreperry"},"isPartOf":{"@type":"WebSite","@id":"https://frontendindex.com/#website","name":"Frontend Index"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Frontend Index","item":"https://frontendindex.com/"},{"@type":"ListItem","position":2,"name":"Production Engineering","item":"https://frontendindex.com/#accessibility"},{"@type":"ListItem","position":3,"name":"Focus Management","item":"https://frontendindex.com/accessibility/focus-management/"}]}]}</script>
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to content</a>
+  <header class="site-head">
+    <div class="site-head-inner">
+      <a class="brand" href="/"><span class="mark" aria-hidden="true">⌁</span>Frontend Index</a>
+      <a class="back" href="/#accessibility">Return to the interactive index →</a>
+    </div>
+  </header>
+  <main id="content" tabindex="-1">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Frontend Index</a><span aria-hidden="true">/</span><span>Production Engineering</span><span aria-hidden="true">/</span><span aria-current="page">Focus Management</span></nav>
+    <div class="eyebrow">Production Engineering</div>
+    <h1>Focus Management</h1>
+    <p class="lede">How to move, contain, restore, and visibly communicate keyboard focus in dynamic web interfaces.</p>
+    <div class="reviewed">Last reviewed: September 2026</div>
+    <article class="entry">
+      <section class="panel"><h2>What it is</h2><p>Focus management keeps keyboard focus aligned with what changed visually. It includes logical tab order, visible focus, intentional focus movement, containment for modal interfaces, and focus restoration.</p></section>
+      <section class="panel"><h2>Mental model</h2><p>Focus is the keyboard user&#39;s cursor. When an interface changes context, ask where that cursor should be now and where it should return when the context closes.</p></section>
+      <section class="panel"><h2>Why it exists</h2><p>Dynamic interfaces can add, remove, hide, or relocate content without naturally moving focus. Without coordination, users can become disoriented or interact with content behind an overlay.</p></section>
+      
+      <section class="panel">
+        <h2>When to use it</h2>
+        <ul><li>Opening and closing modal dialogs</li><li>Navigating client-rendered views</li><li>Adding validation summaries or asynchronous results</li><li>Removing the currently focused element</li></ul>
+      </section>
+      
+      <section class="panel">
+        <h2>When not to use it</h2>
+        <ul><li>Avoid moving focus for minor updates that do not change context</li><li>Avoid positive tabindex values to manually script a tab order</li></ul>
+      </section>
+      
+      
+      <section class="panel">
+        <h2>Production considerations</h2>
+        <ul><li>Return focus to the opener when it still exists</li><li>Keep background content inert during modal interaction</li><li>Support Escape where dismissal is expected</li><li>Test with keyboard and screen readers</li></ul>
+      </section>
+      <section class="panel"><h2>Accessibility implications</h2><p>A logical focus order and visible focus indicator are WCAG requirements. Modal focus behavior also prevents users from reaching hidden background controls.</p></section>
+      
+      
+      <section class="panel"><h2>Primary documentation</h2><ul class="source-list"><li><a href="https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/" target="_blank" rel="noopener noreferrer">WAI-ARIA APG — Dialog pattern</a></li><li><a href="https://www.w3.org/WAI/WCAG22/Understanding/focus-order.html" target="_blank" rel="noopener noreferrer">WCAG 2.2 — Focus Order</a></li><li><a href="https://www.w3.org/WAI/WCAG22/Understanding/focus-appearance.html" target="_blank" rel="noopener noreferrer">WCAG 2.2 — Focus Appearance</a></li></ul></section>
+      <section class="panel"><h2>Related Frontend Index entries</h2><div class="related"><a href="/security/content-security-policy/">Content Security Policy</a><a href="/#accessibility">Explore accessibility</a></div></section>
+    </article>
+  </main>
+  <footer>Maintained by De'Andre Perry · Frontend Index is an independent visual reference for modern frontend engineering.</footer>
+</body>
+</html>

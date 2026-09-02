@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Browser Rendering Pipeline — Frontend Index</title>
+  <meta name="description" content="How browsers turn HTML, CSS, and JavaScript into pixels through parsing, style, layout, paint, and compositing.">
+  <link rel="canonical" href="https://frontendindex.com/browser/rendering-pipeline/">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta name="theme-color" content="#08080a">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Frontend Index">
+  <meta property="og:title" content="Browser Rendering Pipeline — Frontend Index">
+  <meta property="og:description" content="How browsers turn HTML, CSS, and JavaScript into pixels through parsing, style, layout, paint, and compositing.">
+  <meta property="og:url" content="https://frontendindex.com/browser/rendering-pipeline/">
+  <meta property="og:image" content="https://frontendindex.com/assets/social-preview.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Frontend Index — a visual reference system for modern frontend engineering">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Browser Rendering Pipeline — Frontend Index">
+  <meta name="twitter:description" content="How browsers turn HTML, CSS, and JavaScript into pixels through parsing, style, layout, paint, and compositing.">
+  <meta name="twitter:image" content="https://frontendindex.com/assets/social-preview.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles/reference.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://frontendindex.com/browser/rendering-pipeline/#article","headline":"Browser Rendering Pipeline","description":"How browsers turn HTML, CSS, and JavaScript into pixels through parsing, style, layout, paint, and compositing.","dateModified":"2026-09-02","mainEntityOfPage":"https://frontendindex.com/browser/rendering-pipeline/","author":{"@type":"Person","name":"De'Andre Perry","url":"https://github.com/deandreperry"},"isPartOf":{"@type":"WebSite","@id":"https://frontendindex.com/#website","name":"Frontend Index"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Frontend Index","item":"https://frontendindex.com/"},{"@type":"ListItem","position":2,"name":"Foundations","item":"https://frontendindex.com/#browser"},{"@type":"ListItem","position":3,"name":"Browser Rendering Pipeline","item":"https://frontendindex.com/browser/rendering-pipeline/"}]}]}</script>
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to content</a>
+  <header class="site-head">
+    <div class="site-head-inner">
+      <a class="brand" href="/"><span class="mark" aria-hidden="true">⌁</span>Frontend Index</a>
+      <a class="back" href="/#browser">Return to the interactive index →</a>
+    </div>
+  </header>
+  <main id="content" tabindex="-1">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Frontend Index</a><span aria-hidden="true">/</span><span>Foundations</span><span aria-hidden="true">/</span><span aria-current="page">Browser Rendering Pipeline</span></nav>
+    <div class="eyebrow">Foundations</div>
+    <h1>Browser Rendering Pipeline</h1>
+    <p class="lede">How browsers turn HTML, CSS, and JavaScript into pixels through parsing, style, layout, paint, and compositing.</p>
+    <div class="reviewed">Last reviewed: September 2026</div>
+    <article class="entry">
+      <section class="panel"><h2>What it is</h2><p>The rendering pipeline is the browser&#39;s sequence for converting documents and styles into a visual frame. The stages overlap and can repeat as content, styles, viewport size, or application state changes.</p></section>
+      <section class="panel"><h2>Mental model</h2><p>Think in dependencies: the browser needs structure and styles before it can calculate geometry, and it needs geometry before it can paint. Compositing can then assemble independently painted layers without repainting everything.</p></section>
+      <section class="panel"><h2>Why it exists</h2><p>A browser must reconcile network input, document semantics, CSS rules, script-driven changes, device constraints, and user preferences into responsive pixels.</p></section>
+      
+      <section class="panel">
+        <h2>When to use it</h2>
+        <ul><li>Diagnosing layout, paint, or animation cost</li><li>Explaining why a DOM or style change affects rendering</li><li>Choosing between layout-changing and compositor-friendly animation properties</li></ul>
+      </section>
+      
+      
+      
+      <section class="panel">
+        <h2>Production considerations</h2>
+        <ul><li>Measure with browser performance tools before optimizing</li><li>Avoid repeated synchronous layout reads and writes</li><li>Treat layer promotion as a targeted tool, not a blanket fix</li></ul>
+      </section>
+      <section class="panel"><h2>Accessibility implications</h2><p>The accessibility tree is related to, but distinct from, the visual render tree. Visual hiding, DOM order, and semantic structure can affect users differently.</p></section>
+      <section class="panel"><h2>Performance implications</h2><p>Work that triggers layout or large paint areas can delay frames. Transform and opacity animations are often cheaper, but actual behavior depends on the page and browser.</p></section>
+      
+      <section class="panel"><h2>Primary documentation</h2><ul class="source-list"><li><a href="https://developer.mozilla.org/en-US/docs/Web/Performance/Guides/Critical_rendering_path" target="_blank" rel="noopener noreferrer">MDN — Critical rendering path</a></li><li><a href="https://developer.chrome.com/docs/devtools/performance/rendering-tools" target="_blank" rel="noopener noreferrer">Chrome for Developers — Rendering performance</a></li></ul></section>
+      <section class="panel"><h2>Related Frontend Index entries</h2><div class="related"><a href="/performance/core-web-vitals/">Core Web Vitals</a><a href="/#browser">Explore the browser section</a></div></section>
+    </article>
+  </main>
+  <footer>Maintained by De'Andre Perry · Frontend Index is an independent visual reference for modern frontend engineering.</footer>
+</body>
+</html>

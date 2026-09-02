@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>React — Frontend Index</title>
+  <meta name="description" content="React&#39;s component model, state-driven rendering, tradeoffs, and production considerations for frontend applications.">
+  <link rel="canonical" href="https://frontendindex.com/frameworks/react/">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta name="theme-color" content="#08080a">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Frontend Index">
+  <meta property="og:title" content="React — Frontend Index">
+  <meta property="og:description" content="React&#39;s component model, state-driven rendering, tradeoffs, and production considerations for frontend applications.">
+  <meta property="og:url" content="https://frontendindex.com/frameworks/react/">
+  <meta property="og:image" content="https://frontendindex.com/assets/social-preview.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Frontend Index — a visual reference system for modern frontend engineering">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="React — Frontend Index">
+  <meta name="twitter:description" content="React&#39;s component model, state-driven rendering, tradeoffs, and production considerations for frontend applications.">
+  <meta name="twitter:image" content="https://frontendindex.com/assets/social-preview.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles/reference.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://frontendindex.com/frameworks/react/#article","headline":"React","description":"React's component model, state-driven rendering, tradeoffs, and production considerations for frontend applications.","dateModified":"2026-09-02","mainEntityOfPage":"https://frontendindex.com/frameworks/react/","author":{"@type":"Person","name":"De'Andre Perry","url":"https://github.com/deandreperry"},"isPartOf":{"@type":"WebSite","@id":"https://frontendindex.com/#website","name":"Frontend Index"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Frontend Index","item":"https://frontendindex.com/"},{"@type":"ListItem","position":2,"name":"Application Engineering","item":"https://frontendindex.com/#frameworks"},{"@type":"ListItem","position":3,"name":"React","item":"https://frontendindex.com/frameworks/react/"}]}]}</script>
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to content</a>
+  <header class="site-head">
+    <div class="site-head-inner">
+      <a class="brand" href="/"><span class="mark" aria-hidden="true">⌁</span>Frontend Index</a>
+      <a class="back" href="/#frameworks">Return to the interactive index →</a>
+    </div>
+  </header>
+  <main id="content" tabindex="-1">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Frontend Index</a><span aria-hidden="true">/</span><span>Application Engineering</span><span aria-hidden="true">/</span><span aria-current="page">React</span></nav>
+    <div class="eyebrow">Application Engineering</div>
+    <h1>React</h1>
+    <p class="lede">React&#39;s component model, state-driven rendering, tradeoffs, and production considerations for frontend applications.</p>
+    <div class="reviewed">Last reviewed: September 2026</div>
+    <article class="entry">
+      <section class="panel"><h2>What it is</h2><p>React is a library for describing user interfaces as components. State changes produce a new description of the UI, and React coordinates the work needed to update the host environment.</p></section>
+      <section class="panel"><h2>Mental model</h2><p>Treat a component as a state-to-UI relationship. Rendering should stay pure; effects are for synchronizing with systems outside React.</p></section>
+      <section class="panel"><h2>Why it exists</h2><p>Component composition and declarative rendering make complex interfaces easier to reason about, reuse, and evolve across teams.</p></section>
+      
+      <section class="panel">
+        <h2>When to use it</h2>
+        <ul><li>A product benefits from React&#39;s ecosystem and team familiarity</li><li>The interface has substantial interactive state</li><li>A framework built on React fits the rendering and routing requirements</li></ul>
+      </section>
+      
+      <section class="panel">
+        <h2>When not to use it</h2>
+        <ul><li>A small static page does not need a client runtime</li><li>Another platform or framework better matches existing constraints and expertise</li></ul>
+      </section>
+      
+      <section class="panel">
+        <h2>Alternatives</h2>
+        <ul><li>Vue</li><li>Svelte</li><li>Solid</li><li>Angular</li><li>Server-rendered HTML with progressive enhancement</li></ul>
+      </section>
+      
+      <section class="panel">
+        <h2>Production considerations</h2>
+        <ul><li>Choose a routing and data architecture deliberately</li><li>Keep state close to where it is used</li><li>Profile before adding memoization</li><li>Plan loading, error, and empty states</li></ul>
+      </section>
+      <section class="panel"><h2>Accessibility implications</h2><p>React does not provide accessibility automatically. Semantic HTML, focus management, labeling, announcements, and keyboard behavior remain application responsibilities.</p></section>
+      <section class="panel"><h2>Performance implications</h2><p>Runtime and hydration cost depend on architecture and usage. Server rendering, code splitting, and careful state boundaries can reduce client work.</p></section>
+      
+      <section class="panel"><h2>Primary documentation</h2><ul class="source-list"><li><a href="https://react.dev/" target="_blank" rel="noopener noreferrer">React documentation</a></li><li><a href="https://react.dev/learn/keeping-components-pure" target="_blank" rel="noopener noreferrer">React — Keeping components pure</a></li></ul></section>
+      <section class="panel"><h2>Related Frontend Index entries</h2><div class="related"><a href="/#tech/react">Open React in the Stack Map</a><a href="/#frameworks">Explore frameworks</a></div></section>
+    </article>
+  </main>
+  <footer>Maintained by De'Andre Perry · Frontend Index is an independent visual reference for modern frontend engineering.</footer>
+</body>
+</html>
