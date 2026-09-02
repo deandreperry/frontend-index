@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Content Security Policy — Frontend Index</title>
+  <meta name="description" content="How CSP reduces content-injection risk, how to deploy it safely, and why it complements rather than replaces output encoding.">
+  <link rel="canonical" href="https://frontendindex.com/security/content-security-policy/">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta name="theme-color" content="#08080a">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Frontend Index">
+  <meta property="og:title" content="Content Security Policy — Frontend Index">
+  <meta property="og:description" content="How CSP reduces content-injection risk, how to deploy it safely, and why it complements rather than replaces output encoding.">
+  <meta property="og:url" content="https://frontendindex.com/security/content-security-policy/">
+  <meta property="og:image" content="https://frontendindex.com/assets/social-preview.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Frontend Index — a visual reference system for modern frontend engineering">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Content Security Policy — Frontend Index">
+  <meta name="twitter:description" content="How CSP reduces content-injection risk, how to deploy it safely, and why it complements rather than replaces output encoding.">
+  <meta name="twitter:image" content="https://frontendindex.com/assets/social-preview.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles/reference.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://frontendindex.com/security/content-security-policy/#article","headline":"Content Security Policy","description":"How CSP reduces content-injection risk, how to deploy it safely, and why it complements rather than replaces output encoding.","dateModified":"2026-09-02","mainEntityOfPage":"https://frontendindex.com/security/content-security-policy/","author":{"@type":"Person","name":"De'Andre Perry","url":"https://github.com/deandreperry"},"isPartOf":{"@type":"WebSite","@id":"https://frontendindex.com/#website","name":"Frontend Index"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Frontend Index","item":"https://frontendindex.com/"},{"@type":"ListItem","position":2,"name":"Production Engineering","item":"https://frontendindex.com/#security"},{"@type":"ListItem","position":3,"name":"Content Security Policy","item":"https://frontendindex.com/security/content-security-policy/"}]}]}</script>
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to content</a>
+  <header class="site-head">
+    <div class="site-head-inner">
+      <a class="brand" href="/"><span class="mark" aria-hidden="true">⌁</span>Frontend Index</a>
+      <a class="back" href="/#security">Return to the interactive index →</a>
+    </div>
+  </header>
+  <main id="content" tabindex="-1">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Frontend Index</a><span aria-hidden="true">/</span><span>Production Engineering</span><span aria-hidden="true">/</span><span aria-current="page">Content Security Policy</span></nav>
+    <div class="eyebrow">Production Engineering</div>
+    <h1>Content Security Policy</h1>
+    <p class="lede">How CSP reduces content-injection risk, how to deploy it safely, and why it complements rather than replaces output encoding.</p>
+    <div class="reviewed">Last reviewed: September 2026</div>
+    <article class="entry">
+      <section class="panel"><h2>What it is</h2><p>Content Security Policy is an HTTP response policy that limits which resources a document may load or execute. A well-designed policy can reduce the impact of some injection vulnerabilities.</p></section>
+      <section class="panel"><h2>Mental model</h2><p>CSP is a browser-enforced allowlist and set of execution constraints. It is a defense layer around the document, not a sanitizer for unsafe data.</p></section>
+      <section class="panel"><h2>Why it exists</h2><p>Web applications routinely combine first-party code, user-controlled data, and third-party resources. CSP gives the browser explicit boundaries for permitted content.</p></section>
+      
+      <section class="panel">
+        <h2>When to use it</h2>
+        <ul><li>Protecting production documents against content injection</li><li>Reducing reliance on unrestricted inline script</li><li>Auditing third-party resource dependencies</li></ul>
+      </section>
+      
+      <section class="panel">
+        <h2>When not to use it</h2>
+        <ul><li>Do not use CSP as a substitute for contextual output encoding</li><li>Do not copy a strict policy without mapping required application resources</li></ul>
+      </section>
+      
+      
+      <section class="panel">
+        <h2>Production considerations</h2>
+        <ul><li>Start with Content-Security-Policy-Report-Only</li><li>Prefer nonces or hashes over unsafe-inline</li><li>Collect reports with privacy and abuse controls</li><li>Test authentication, payments, embeds, and error flows</li></ul>
+      </section>
+      <section class="panel"><h2>Accessibility implications</h2><p>A policy must allow required accessibility assets and behavior. Test assistive flows and avoid failures that silently remove essential controls or content.</p></section>
+      <section class="panel"><h2>Performance implications</h2><p>Reducing unnecessary third-party origins can improve both policy clarity and performance. Reporting and policy complexity still require operational care.</p></section>
+      
+      <section class="panel"><h2>Primary documentation</h2><ul class="source-list"><li><a href="https://www.w3.org/TR/CSP3/" target="_blank" rel="noopener noreferrer">W3C — Content Security Policy Level 3</a></li><li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CSP" target="_blank" rel="noopener noreferrer">MDN — Content Security Policy</a></li></ul></section>
+      <section class="panel"><h2>Related Frontend Index entries</h2><div class="related"><a href="/accessibility/focus-management/">Focus management</a><a href="/#security">Explore website security</a></div></section>
+    </article>
+  </main>
+  <footer>Maintained by De'Andre Perry · Frontend Index is an independent visual reference for modern frontend engineering.</footer>
+</body>
+</html>

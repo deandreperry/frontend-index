@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Frontend Index reference entry",
+  "description": "Editorial model for substantial, crawlable Frontend Index entries. Only fields useful to an entry are required in rendered content.",
+  "type": "object",
+  "required": ["slug", "domain", "title", "description", "lastReviewed", "whatItIs", "mentalModel", "sources", "related"],
+  "properties": {
+    "slug": { "type": "string", "pattern": "^[a-z0-9-]+/[a-z0-9-]+$" },
+    "indexSection": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+    "domain": { "enum": ["Foundations", "Application Engineering", "Production Engineering", "Developer Workflow", "Practice & Growth"] },
+    "title": { "type": "string" },
+    "description": { "type": "string" },
+    "lastReviewed": { "type": "string", "format": "date" },
+    "whatItIs": { "type": "string" },
+    "mentalModel": { "type": "string" },
+    "whyItExists": { "type": "string" },
+    "whenToUse": { "type": "array", "items": { "type": "string" } },
+    "whenNotToUse": { "type": "array", "items": { "type": "string" } },
+    "alternatives": { "type": "array", "items": { "type": "string" } },
+    "productionConsiderations": { "type": "array", "items": { "type": "string" } },
+    "accessibilityImplications": { "type": "string" },
+    "performanceImplications": { "type": "string" },
+    "example": {
+      "type": "object",
+      "required": ["language", "code"],
+      "properties": { "language": { "type": "string" }, "code": { "type": "string" } }
+    },
+    "sources": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["label", "url"],
+        "properties": { "label": { "type": "string" }, "url": { "type": "string", "format": "uri" } }
+      }
+    },
+    "related": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["label", "href"],
+        "properties": { "label": { "type": "string" }, "href": { "type": "string" } }
+      }
+    }
+  }
+}

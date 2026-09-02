@@ -1,0 +1,147 @@
+[
+  {
+    "slug": "browser/rendering-pipeline",
+    "indexSection": "browser",
+    "domain": "Foundations",
+    "title": "Browser Rendering Pipeline",
+    "description": "How browsers turn HTML, CSS, and JavaScript into pixels through parsing, style, layout, paint, and compositing.",
+    "lastReviewed": "2026-09-02",
+    "whatItIs": "The rendering pipeline is the browser's sequence for converting documents and styles into a visual frame. The stages overlap and can repeat as content, styles, viewport size, or application state changes.",
+    "mentalModel": "Think in dependencies: the browser needs structure and styles before it can calculate geometry, and it needs geometry before it can paint. Compositing can then assemble independently painted layers without repainting everything.",
+    "whyItExists": "A browser must reconcile network input, document semantics, CSS rules, script-driven changes, device constraints, and user preferences into responsive pixels.",
+    "whenToUse": ["Diagnosing layout, paint, or animation cost", "Explaining why a DOM or style change affects rendering", "Choosing between layout-changing and compositor-friendly animation properties"],
+    "productionConsiderations": ["Measure with browser performance tools before optimizing", "Avoid repeated synchronous layout reads and writes", "Treat layer promotion as a targeted tool, not a blanket fix"],
+    "accessibilityImplications": "The accessibility tree is related to, but distinct from, the visual render tree. Visual hiding, DOM order, and semantic structure can affect users differently.",
+    "performanceImplications": "Work that triggers layout or large paint areas can delay frames. Transform and opacity animations are often cheaper, but actual behavior depends on the page and browser.",
+    "sources": [
+      { "label": "MDN — Critical rendering path", "url": "https://developer.mozilla.org/en-US/docs/Web/Performance/Guides/Critical_rendering_path" },
+      { "label": "Chrome for Developers — Rendering performance", "url": "https://developer.chrome.com/docs/devtools/performance/rendering-tools" }
+    ],
+    "related": [
+      { "label": "Core Web Vitals", "href": "/performance/core-web-vitals/" },
+      { "label": "Explore the browser section", "href": "/#browser" }
+    ]
+  },
+  {
+    "slug": "javascript/event-loop",
+    "indexSection": "labs",
+    "domain": "Foundations",
+    "title": "JavaScript Event Loop",
+    "description": "A practical mental model for tasks, microtasks, rendering opportunities, and responsive JavaScript in the browser.",
+    "lastReviewed": "2026-09-02",
+    "whatItIs": "The event loop coordinates queued work for an agent, including tasks, microtasks, and browser rendering opportunities. JavaScript execution is run-to-completion within each job, while browser APIs schedule later work.",
+    "mentalModel": "Run one task, drain eligible microtasks, give the browser an opportunity to render, then continue. Exact scheduling has specification details and browser constraints, so treat the model as a debugging tool rather than a timing guarantee.",
+    "whyItExists": "The browser needs to coordinate script, input, networking, timers, and rendering without allowing arbitrary concurrent access to the same JavaScript state.",
+    "whenToUse": ["Reasoning about Promise callbacks and timers", "Diagnosing long tasks and delayed input", "Designing work that yields to the browser"],
+    "whenNotToUse": ["Do not use the simplified queue model to promise exact wall-clock timing", "Do not treat microtasks as a way to hide unbounded work"],
+    "productionConsiderations": ["Break up long main-thread work", "Avoid recursively growing microtask chains", "Use workers for suitable CPU-intensive work"],
+    "accessibilityImplications": "Long tasks can delay keyboard, pointer, and assistive-technology interactions. Responsiveness is an accessibility concern as well as a performance concern.",
+    "performanceImplications": "Large tasks block input and rendering. Scheduling smaller units of work can improve responsiveness, but adds coordination overhead.",
+    "example": { "language": "javascript", "code": "console.log('A');\nsetTimeout(() => console.log('task'), 0);\nPromise.resolve().then(() => console.log('microtask'));\nconsole.log('B');" },
+    "sources": [
+      { "label": "WHATWG HTML — Event loops", "url": "https://html.spec.whatwg.org/multipage/webappapis.html#event-loops" },
+      { "label": "MDN — In-depth microtask guide", "url": "https://developer.mozilla.org/en-US/docs/Web/API/HTML_DOM_API/Microtask_guide/In_depth" }
+    ],
+    "related": [
+      { "label": "Open the event-loop lab", "href": "/#eventloop-lab" },
+      { "label": "Browser rendering pipeline", "href": "/browser/rendering-pipeline/" }
+    ]
+  },
+  {
+    "slug": "frameworks/react",
+    "indexSection": "frameworks",
+    "domain": "Application Engineering",
+    "title": "React",
+    "description": "React's component model, state-driven rendering, tradeoffs, and production considerations for frontend applications.",
+    "lastReviewed": "2026-09-02",
+    "whatItIs": "React is a library for describing user interfaces as components. State changes produce a new description of the UI, and React coordinates the work needed to update the host environment.",
+    "mentalModel": "Treat a component as a state-to-UI relationship. Rendering should stay pure; effects are for synchronizing with systems outside React.",
+    "whyItExists": "Component composition and declarative rendering make complex interfaces easier to reason about, reuse, and evolve across teams.",
+    "whenToUse": ["A product benefits from React's ecosystem and team familiarity", "The interface has substantial interactive state", "A framework built on React fits the rendering and routing requirements"],
+    "whenNotToUse": ["A small static page does not need a client runtime", "Another platform or framework better matches existing constraints and expertise"],
+    "alternatives": ["Vue", "Svelte", "Solid", "Angular", "Server-rendered HTML with progressive enhancement"],
+    "productionConsiderations": ["Choose a routing and data architecture deliberately", "Keep state close to where it is used", "Profile before adding memoization", "Plan loading, error, and empty states"],
+    "accessibilityImplications": "React does not provide accessibility automatically. Semantic HTML, focus management, labeling, announcements, and keyboard behavior remain application responsibilities.",
+    "performanceImplications": "Runtime and hydration cost depend on architecture and usage. Server rendering, code splitting, and careful state boundaries can reduce client work.",
+    "sources": [
+      { "label": "React documentation", "url": "https://react.dev/" },
+      { "label": "React — Keeping components pure", "url": "https://react.dev/learn/keeping-components-pure" }
+    ],
+    "related": [
+      { "label": "Open React in the Stack Map", "href": "/#tech/react" },
+      { "label": "Explore frameworks", "href": "/#frameworks" }
+    ]
+  },
+  {
+    "slug": "accessibility/focus-management",
+    "indexSection": "accessibility",
+    "domain": "Production Engineering",
+    "title": "Focus Management",
+    "description": "How to move, contain, restore, and visibly communicate keyboard focus in dynamic web interfaces.",
+    "lastReviewed": "2026-09-02",
+    "whatItIs": "Focus management keeps keyboard focus aligned with what changed visually. It includes logical tab order, visible focus, intentional focus movement, containment for modal interfaces, and focus restoration.",
+    "mentalModel": "Focus is the keyboard user's cursor. When an interface changes context, ask where that cursor should be now and where it should return when the context closes.",
+    "whyItExists": "Dynamic interfaces can add, remove, hide, or relocate content without naturally moving focus. Without coordination, users can become disoriented or interact with content behind an overlay.",
+    "whenToUse": ["Opening and closing modal dialogs", "Navigating client-rendered views", "Adding validation summaries or asynchronous results", "Removing the currently focused element"],
+    "whenNotToUse": ["Avoid moving focus for minor updates that do not change context", "Avoid positive tabindex values to manually script a tab order"],
+    "productionConsiderations": ["Return focus to the opener when it still exists", "Keep background content inert during modal interaction", "Support Escape where dismissal is expected", "Test with keyboard and screen readers"],
+    "accessibilityImplications": "A logical focus order and visible focus indicator are WCAG requirements. Modal focus behavior also prevents users from reaching hidden background controls.",
+    "sources": [
+      { "label": "WAI-ARIA APG — Dialog pattern", "url": "https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/" },
+      { "label": "WCAG 2.2 — Focus Order", "url": "https://www.w3.org/WAI/WCAG22/Understanding/focus-order.html" },
+      { "label": "WCAG 2.2 — Focus Appearance", "url": "https://www.w3.org/WAI/WCAG22/Understanding/focus-appearance.html" }
+    ],
+    "related": [
+      { "label": "Content Security Policy", "href": "/security/content-security-policy/" },
+      { "label": "Explore accessibility", "href": "/#accessibility" }
+    ]
+  },
+  {
+    "slug": "performance/core-web-vitals",
+    "indexSection": "performance",
+    "domain": "Production Engineering",
+    "title": "Core Web Vitals",
+    "description": "A field-oriented guide to LCP, INP, and CLS without treating performance metrics as product goals by themselves.",
+    "lastReviewed": "2026-09-02",
+    "whatItIs": "Core Web Vitals are a small set of user-centered performance signals covering loading, interaction responsiveness, and visual stability: LCP, INP, and CLS.",
+    "mentalModel": "Use the metrics as smoke alarms. They reveal categories of user friction, then diagnostics and product context identify the actual cause and worthwhile fix.",
+    "whyItExists": "A shared set of field metrics helps teams and tools discuss important parts of page experience consistently across sites.",
+    "whenToUse": ["Monitoring real-user performance over time", "Finding page types or cohorts with degraded experience", "Setting performance budgets alongside product context"],
+    "whenNotToUse": ["Do not optimize a score while ignoring the actual interaction", "Do not assume one lab run represents the user population"],
+    "productionConsiderations": ["Prioritize field data when enough traffic exists", "Segment by route, device, geography, and release", "Connect regressions to deploys and ownership"],
+    "accessibilityImplications": "Stable, responsive pages reduce cognitive and motor barriers. Performance work should preserve zoom, motion preferences, semantics, and content access.",
+    "performanceImplications": "The metrics are outputs, not direct fixes. Improve them by addressing the specific loading, main-thread, rendering, or layout behavior behind the measurement.",
+    "sources": [
+      { "label": "web.dev — Web Vitals", "url": "https://web.dev/articles/vitals" },
+      { "label": "Chrome for Developers — INP", "url": "https://web.dev/articles/inp" }
+    ],
+    "related": [
+      { "label": "Browser rendering pipeline", "href": "/browser/rendering-pipeline/" },
+      { "label": "Explore performance", "href": "/#performance" }
+    ]
+  },
+  {
+    "slug": "security/content-security-policy",
+    "indexSection": "security",
+    "domain": "Production Engineering",
+    "title": "Content Security Policy",
+    "description": "How CSP reduces content-injection risk, how to deploy it safely, and why it complements rather than replaces output encoding.",
+    "lastReviewed": "2026-09-02",
+    "whatItIs": "Content Security Policy is an HTTP response policy that limits which resources a document may load or execute. A well-designed policy can reduce the impact of some injection vulnerabilities.",
+    "mentalModel": "CSP is a browser-enforced allowlist and set of execution constraints. It is a defense layer around the document, not a sanitizer for unsafe data.",
+    "whyItExists": "Web applications routinely combine first-party code, user-controlled data, and third-party resources. CSP gives the browser explicit boundaries for permitted content.",
+    "whenToUse": ["Protecting production documents against content injection", "Reducing reliance on unrestricted inline script", "Auditing third-party resource dependencies"],
+    "whenNotToUse": ["Do not use CSP as a substitute for contextual output encoding", "Do not copy a strict policy without mapping required application resources"],
+    "productionConsiderations": ["Start with Content-Security-Policy-Report-Only", "Prefer nonces or hashes over unsafe-inline", "Collect reports with privacy and abuse controls", "Test authentication, payments, embeds, and error flows"],
+    "accessibilityImplications": "A policy must allow required accessibility assets and behavior. Test assistive flows and avoid failures that silently remove essential controls or content.",
+    "performanceImplications": "Reducing unnecessary third-party origins can improve both policy clarity and performance. Reporting and policy complexity still require operational care.",
+    "sources": [
+      { "label": "W3C — Content Security Policy Level 3", "url": "https://www.w3.org/TR/CSP3/" },
+      { "label": "MDN — Content Security Policy", "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CSP" }
+    ],
+    "related": [
+      { "label": "Focus management", "href": "/accessibility/focus-management/" },
+      { "label": "Explore website security", "href": "/#security" }
+    ]
+  }
+]

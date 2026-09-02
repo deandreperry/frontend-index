@@ -4,9 +4,9 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Frontend Index — A Visual Reference for Modern Frontend Engineering</title>
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link rel="manifest" href="site.webmanifest">
-<link rel="canonical" href="https://deandreperry.github.io/frontend-index/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="canonical" href="https://frontendindex.com/">
 <meta name="description" content="Frontend Index is a visual reference system for modern frontend engineering — the browser, frameworks, tooling, architecture, performance, and the patterns teams ship in production." />
 <meta name="keywords" content="frontend engineering, web development, JavaScript, CSS, HTML, browser rendering, frontend tools, Git workflow, AI-assisted development" />
 <meta name="theme-color" content="#08080a" />
@@ -14,15 +14,39 @@
 <meta property="og:title" content="Frontend Index" />
 <meta property="og:description" content="A visual reference for modern frontend engineering." />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://deandreperry.github.io/frontend-index/" />
-<meta property="og:image" content="https://deandreperry.github.io/frontend-index/assets/social-preview.svg" />
-<meta property="og:image:type" content="image/svg+xml" />
+<meta property="og:site_name" content="Frontend Index" />
+<meta property="og:url" content="https://frontendindex.com/" />
+<meta property="og:image" content="https://frontendindex.com/assets/social-preview.png" />
+<meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Frontend Index — a visual reference system for modern frontend engineering" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Frontend Index" />
 <meta name="twitter:description" content="A visual reference for modern frontend engineering." />
-<meta name="twitter:image" content="https://deandreperry.github.io/frontend-index/assets/social-preview.svg" />
+<meta name="twitter:image" content="https://frontendindex.com/assets/social-preview.png" />
+<meta name="twitter:image:alt" content="Frontend Index — a visual reference system for modern frontend engineering" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://frontendindex.com/#website",
+      "url": "https://frontendindex.com/",
+      "name": "Frontend Index",
+      "description": "A visual reference system for modern frontend engineering.",
+      "creator": { "@id": "https://frontendindex.com/#maintainer" }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://frontendindex.com/#maintainer",
+      "name": "De'Andre Perry",
+      "url": "https://github.com/deandreperry"
+    }
+  ]
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
@@ -35,7 +59,7 @@
   --bg: #08080a; --bg-elev-1: #0d0d10; --bg-elev-2: #131318; --bg-elev-3: #1a1a21;
   --bg-overlay: rgba(10, 10, 14, 0.72); --bg-glass: rgba(20, 20, 26, 0.55);
   --border: rgba(255, 255, 255, 0.06); --border-strong: rgba(255, 255, 255, 0.12); --border-active: rgba(255, 255, 255, 0.22);
-  --text: #ededf0; --text-2: #a8a8b3; --text-3: #6b6b76; --text-4: #444450;
+  --text: #ededf0; --text-2: #b2b2bc; --text-3: #92929d; --text-4: #7c7c87;
   --accent: #4f9dff; --accent-2: #7ab6ff; --accent-glow: rgba(79, 157, 255, 0.18);
   --violet: #a98bfa; --cyan: #5cd1ff; --pink: #ff8fb4; --green: #5be39a; --amber: #ffb86b; --red: #ff7a7a;
   --grid-line: rgba(255, 255, 255, 0.025);
@@ -47,7 +71,7 @@ html[data-theme="light"] {
   --bg: #fafafa; --bg-elev-1: #ffffff; --bg-elev-2: #f4f4f6; --bg-elev-3: #ededf0;
   --bg-overlay: rgba(255, 255, 255, 0.78); --bg-glass: rgba(255, 255, 255, 0.65);
   --border: rgba(0, 0, 0, 0.07); --border-strong: rgba(0, 0, 0, 0.12); --border-active: rgba(0, 0, 0, 0.22);
-  --text: #111114; --text-2: #57575e; --text-3: #87878f; --text-4: #b2b2b9;
+  --text: #111114; --text-2: #515158; --text-3: #66666e; --text-4: #73737b;
   --accent: #1f6feb; --accent-2: #1158c7; --accent-glow: rgba(31, 111, 235, 0.12);
   --grid-line: rgba(0, 0, 0, 0.04);
   --shadow-sm: 0 1px 2px rgba(0,0,0,0.05); --shadow-md: 0 6px 24px rgba(0,0,0,0.08); --shadow-lg: 0 24px 60px rgba(0,0,0,0.12);
@@ -60,13 +84,15 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 input, select, textarea { font: inherit; color: inherit; }
 img, svg { display: block; max-width: 100%; }
 ::selection { background: var(--accent); color: white; }
-:focus { outline: none; }
-:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+:focus:not(:focus-visible) { outline: none; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
 .skip-link { position: fixed; top: -60px; left: 12px; z-index: 400; background: var(--accent); color: #fff; padding: 10px 16px; border-radius: 8px; font-size: 13px; font-weight: 500; transition: top .2s; }
 .skip-link:focus { top: 12px; }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; } }
-body::before { content: ''; position: fixed; inset: 0; background-image: linear-gradient(var(--grid-line) 1px, transparent 1px), linear-gradient(90deg, var(--grid-line) 1px, transparent 1px); background-size: 56px 56px; pointer-events: none; z-index: 0; mask-image: radial-gradient(ellipse at top, black 30%, transparent 80%); }
+body::before { content: ''; position: fixed; inset: 0; background-image: linear-gradient(var(--grid-line) 1px, transparent 1px), linear-gradient(90deg, var(--grid-line) 1px, transparent 1px); background-size: 56px 56px; pointer-events: none; z-index: 0; -webkit-mask-image: radial-gradient(ellipse at top, black 30%, transparent 80%); mask-image: radial-gradient(ellipse at top, black 30%, transparent 80%); }
 body::after { content: ''; position: fixed; top: -300px; left: 50%; transform: translateX(-50%); width: 1200px; height: 800px; background: radial-gradient(ellipse at center, var(--accent-glow) 0%, transparent 60%); pointer-events: none; z-index: 0; opacity: 0.8; }
+body.overlay-open { overflow: hidden; }
+.visually-hidden { position: absolute !important; width: 1px !important; height: 1px !important; padding: 0 !important; margin: -1px !important; overflow: hidden !important; clip: rect(0 0 0 0) !important; white-space: nowrap !important; border: 0 !important; }
 .topbar { position: fixed; top: 0; left: 0; right: 0; height: var(--topbar-height); background: var(--bg-overlay); backdrop-filter: saturate(180%) blur(20px); -webkit-backdrop-filter: saturate(180%) blur(20px); border-bottom: 1px solid var(--border); z-index: 100; display: flex; align-items: center; padding: 0 20px; gap: 16px; }
 .menu-btn { display: none; width: 32px; height: 32px; place-items: center; border-radius: 8px; color: var(--text-2); }
 .menu-btn:hover { background: var(--bg-elev-2); color: var(--text); }
@@ -186,10 +212,10 @@ section[id] + section[id] { border-top: 1px solid var(--border); }
 .lab-header .lab-tag { font-family: var(--font-mono); font-size: 11px; color: var(--text-3); padding: 3px 8px; background: var(--bg-elev-3); border-radius: 4px; }
 .lab-body { display: grid; grid-template-columns: 240px 1fr; min-height: 320px; }
 .lab-controls { background: var(--bg-elev-2); border-right: 1px solid var(--border); padding: 18px 20px; display: flex; flex-direction: column; gap: 18px; }
-.lab-control label { display: block; font-size: 11px; font-family: var(--font-mono); color: var(--text-3); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; }
+.lab-control label, .lab-control .control-label { display: block; font-size: 11px; font-family: var(--font-mono); color: var(--text-3); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; }
 .lab-control label .lab-val { color: var(--accent); float: right; }
 .lab-control select, .lab-control input[type="range"], .lab-control input[type="text"] { width: 100%; background: var(--bg); border: 1px solid var(--border); border-radius: 6px; padding: 6px 10px; font-size: 12.5px; color: var(--text); font-family: var(--font-mono); }
-.lab-control select:focus, .lab-control input:focus { outline: none; border-color: var(--accent); }
+.lab-control select:focus-visible, .lab-control input:focus-visible { border-color: var(--accent); }
 .lab-control .seg { display: grid; grid-template-columns: repeat(auto-fit, minmax(50px, 1fr)); gap: 4px; background: var(--bg); border: 1px solid var(--border); border-radius: 6px; padding: 3px; }
 .lab-control .seg-btn { padding: 5px 8px; font-size: 11px; font-family: var(--font-mono); color: var(--text-3); border-radius: 4px; text-align: center; transition: all .12s; cursor: pointer; background: none; border: none; }
 .lab-control .seg-btn:hover { color: var(--text); }
@@ -422,7 +448,7 @@ section[id] + section[id] { border-top: 1px solid var(--border); }
 /* DETAIL DRAWER */
 .drawer-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,0.5); backdrop-filter: blur(4px); z-index: 250; opacity: 0; pointer-events: none; transition: opacity .25s; }
 .drawer-backdrop.open { opacity: 1; pointer-events: auto; }
-.drawer { position: fixed; top: 0; right: 0; height: 100vh; width: var(--drawer-width); max-width: 92vw; background: var(--bg-elev-1); border-left: 1px solid var(--border-strong); box-shadow: var(--shadow-lg); z-index: 251; transform: translateX(100%); transition: transform .3s cubic-bezier(.4,0,.2,1); display: flex; flex-direction: column; }
+.drawer { position: fixed; top: 0; right: 0; height: 100vh; height: 100dvh; width: var(--drawer-width); max-width: 92vw; background: var(--bg-elev-1); border-left: 1px solid var(--border-strong); box-shadow: var(--shadow-lg); z-index: 251; transform: translateX(100%); transition: transform .3s cubic-bezier(.4,0,.2,1); display: flex; flex-direction: column; }
 .drawer.open { transform: translateX(0); }
 .drawer-head { padding: 22px 24px 18px; border-bottom: 1px solid var(--border); position: relative; }
 .drawer-close { position: absolute; top: 18px; right: 18px; }
@@ -467,7 +493,18 @@ section[id] + section[id] { border-top: 1px solid var(--border); }
 .toc-dot:hover { background: var(--text-2); }
 .toc-dot.active { background: var(--accent); transform: scale(1.4); }
 .toc-dot .toc-label { position: absolute; right: calc(100% + 14px); top: 50%; transform: translateY(-50%); font-size: 11px; font-family: var(--font-mono); color: var(--text-2); background: var(--bg-glass); backdrop-filter: blur(20px); border: 1px solid var(--border); padding: 4px 10px; border-radius: 6px; white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity .15s; }
-.toc-dot:hover .toc-label { opacity: 1; }
+.toc-dot:hover .toc-label, .toc-dot:focus-visible .toc-label { opacity: 1; }
+.domain-explorer { margin: -20px 0 40px; padding: 18px; border: 1px solid var(--border); border-radius: var(--radius-xl); background: var(--bg-elev-1); }
+.domain-explorer-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 14px; }
+.domain-explorer-head h3 { font-size: 14px; }
+.domain-explorer-head p { color: var(--text-3); font: 11px var(--font-mono); }
+.domain-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; }
+.domain-card { min-height: 92px; padding: 12px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--bg); transition: border-color .15s, background .15s, transform .15s; }
+.domain-card:hover { border-color: var(--border-strong); background: var(--bg-elev-2); transform: translateY(-1px); }
+.domain-card strong { display: block; margin-bottom: 6px; font-size: 12px; line-height: 1.3; }
+.domain-card span { display: block; color: var(--text-3); font-size: 10.5px; line-height: 1.45; }
+.reference-status { display: grid; gap: 8px; padding: 12px 14px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--bg); color: var(--text-2); font: 12px var(--font-mono); }
+.reference-status a { color: var(--accent); }
 .footer { padding: 60px 48px 40px; border-top: 1px solid var(--border); margin-top: 80px; }
 .footer-inner { max-width: 1080px; margin: 0 auto; display: grid; grid-template-columns: 1.4fr repeat(3, 1fr); gap: 36px; }
 .footer h5 { font-size: 11.5px; font-family: var(--font-mono); color: var(--text-3); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 14px; }
@@ -498,6 +535,7 @@ section[id] + section[id] { border-top: 1px solid var(--border); }
   .search-trigger span:not(.kbd) { display: none; }
   #arch-row { grid-template-columns: 1fr !important; }
   #res-row { grid-template-columns: 1fr !important; }
+  .domain-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 600px) {
   .pipeline-stages { grid-template-columns: repeat(2, 1fr); }
@@ -505,6 +543,17 @@ section[id] + section[id] { border-top: 1px solid var(--border); }
   .hero h1 { font-size: 36px; }
   .footer-inner { grid-template-columns: 1fr; }
   .about-stats { grid-template-columns: repeat(2, 1fr); }
+  .domain-explorer-head { display: block; }
+  .domain-explorer-head p { margin-top: 4px; }
+  .domain-grid { grid-template-columns: 1fr; }
+  .domain-card { min-height: 0; }
+  .topbar { padding: 0 10px; gap: 8px; }
+  .brand-version, .search-trigger .kbd { display: none; }
+  .search-trigger { min-width: 32px; justify-content: center; padding: 7px; }
+}
+@media (max-width: 360px) {
+  .brand { font-size: 0; }
+  .brand-mark { flex: 0 0 auto; }
 }
 /* ============ DEV ENVIRONMENT SECTIONS ============ */
 .dev-h { font-size: 11px; font-family: var(--font-mono); color: var(--text-3); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 14px; }
@@ -877,26 +926,26 @@ html[data-theme="light"] .hero-viz .graph-node-body.satellite { filter: var(--gr
 <a href="#main" class="skip-link">Skip to content</a>
 
 <header class="topbar">
-  <button class="menu-btn" id="menu-btn" aria-label="Open navigation menu" aria-expanded="false">
+  <button class="menu-btn" id="menu-btn" aria-label="Open navigation menu" aria-expanded="false" aria-controls="sidebar">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
   </button>
   <a href="#hero" class="brand">
     <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12 L9 6 L15 12 L21 6" /><path d="M3 18 L9 12 L15 18 L21 12" /></svg></span>
     Frontend Index
-    <span class="brand-version">v2.0</span>
+    <span class="brand-version">v3.0</span>
   </a>
   <nav class="top-nav" aria-label="Primary">
-    <a href="#roadmap">Roadmap</a><a href="#stack">Stack Map</a><a href="#security">Domains</a><a href="#labs">Labs</a>
+    <a href="#roadmap">Roadmap</a><a href="#stack">Stack Map</a><a href="#domains">Domains</a><a href="#labs">Labs</a>
   </nav>
   <div class="top-spacer"></div>
-  <button class="search-trigger" id="search-trigger" aria-label="Open search">
+  <button class="search-trigger" id="search-trigger" aria-label="Open search" aria-haspopup="dialog" aria-controls="cmdk-backdrop">
     <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
     <span>Search the index...</span><span class="kbd" aria-hidden="true">⌘K</span>
   </button>
   <button class="icon-btn" id="theme-toggle" aria-label="Toggle theme">
     <svg id="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
   </button>
-  <button class="icon-btn" id="about-trigger" aria-label="About Frontend Index">
+  <button class="icon-btn" id="about-trigger" aria-label="About Frontend Index" aria-haspopup="dialog" aria-controls="about-backdrop">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
   </button>
 </header>
@@ -905,7 +954,7 @@ html[data-theme="light"] .hero-viz .graph-node-body.satellite { filter: var(--gr
 
 <div class="app">
   <aside class="sidebar" id="sidebar" aria-label="Section navigation"></aside>
-  <main class="main" id="main">
+  <main class="main" id="main" tabindex="-1">
 
     <section id="hero" class="hero">
       <div class="hero-inner">
@@ -931,6 +980,16 @@ html[data-theme="light"] .hero-viz .graph-node-body.satellite { filter: var(--gr
 
     <section id="roadmap"><div class="container">
       <div class="section-head"><div class="section-eyebrow">01 · Roadmap</div><h2>From the network up. The full progression.</h2><p>Frontend isn't a stack — it's a sequence of layers, each built on what came before. Click any layer to open the full entry. Visited layers are remembered.</p></div>
+      <nav class="domain-explorer" id="domains" aria-label="Explore by engineering domain">
+        <div class="domain-explorer-head"><h3>Explore by domain</h3><p>Five topical paths through the same 01–28 index</p></div>
+        <div class="domain-grid">
+          <a class="domain-card" href="#browser"><strong>Foundations</strong><span>Browser · HTML · CSS · JavaScript</span></a>
+          <a class="domain-card" href="#frameworks"><strong>Application Engineering</strong><span>Frameworks · architecture · state · forms</span></a>
+          <a class="domain-card" href="#performance"><strong>Production Engineering</strong><span>Performance · accessibility · security · testing</span></a>
+          <a class="domain-card" href="#tooling"><strong>Developer Workflow</strong><span>Tooling · terminal · editor · Git · AI</span></a>
+          <a class="domain-card" href="#labs"><strong>Practice &amp; Growth</strong><span>Labs · patterns · careers · resources</span></a>
+        </div>
+      </nav>
       <div class="roadmap" id="roadmap-list"></div>
     </div></section>
 
@@ -940,7 +999,7 @@ html[data-theme="light"] .hero-viz .graph-node-body.satellite { filter: var(--gr
     </div></section>
 
     <section id="core"><div class="container">
-      <div class="section-head"><div class="section-eyebrow">03 · Core Web Technologies</div><h2>HTML, CSS, JavaScript — the immutable trio.</h2><p>Frameworks come and go. These three never have. Every abstraction you'll ever use compiles down to them.</p></div>
+      <div class="section-head"><div class="section-eyebrow">03 · Core Web Technologies</div><h2>HTML, CSS, JavaScript — the durable core.</h2><p>Frameworks come and go. These three remain central, alongside browser APIs and WebAssembly. Most frontend abstractions ultimately produce or coordinate the platform beneath them.</p></div>
       <div class="tech-tabs" role="tablist" aria-label="Core technologies">
         <button class="tech-tab active" data-tab="html" role="tab" aria-selected="true">HTML</button>
         <button class="tech-tab" data-tab="css" role="tab" aria-selected="false">CSS</button>
@@ -952,12 +1011,12 @@ html[data-theme="light"] .hero-viz .graph-node-body.satellite { filter: var(--gr
     </div></section>
 
     <section id="frameworks"><div class="container">
-      <div class="section-head"><div class="section-eyebrow">04 · Frameworks</div><h2>Different answers to the same question: how does UI update?</h2><p>Every framework is a position on rendering, reactivity, and tradeoffs. None is universally best. All are right for something. Click a card for the full entry.</p></div>
+      <div class="section-head"><div class="section-eyebrow">04 · Frameworks</div><h2>Different answers to the same question: how does UI update?</h2><p>Each framework takes a position on rendering, reactivity, and tradeoffs. None is universally best; each can fit a particular set of constraints. Click a card for the full entry.</p></div>
       <div class="framework-grid" id="framework-grid"></div>
     </div></section>
 
     <section id="stack"><div class="container">
-      <div class="section-head"><div class="section-eyebrow">05 · Stack Map</div><h2>The whole ecosystem on one canvas.</h2><p>Every library, framework, and tool — clustered by category, connected by usage patterns. Hover for a summary, click (or focus + Enter) any node to open the full entry.</p></div>
+      <div class="section-head"><div class="section-eyebrow">05 · Stack Map</div><h2>The ecosystem on one canvas.</h2><p>A curated set of libraries, frameworks, and tools — clustered by category, connected by usage patterns. Hover for a summary, click (or focus + Enter) any node to open the full entry.</p></div>
       <div class="stack-map">
         <div class="stack-map-toolbar" id="stack-toolbar"></div>
         <div class="stack-meta">
@@ -1008,7 +1067,7 @@ html[data-theme="light"] .hero-viz .graph-node-body.satellite { filter: var(--gr
     </div></section>
 
     <section id="performance"><div class="container">
-      <div class="section-head"><div class="section-eyebrow">08 · Performance Engineering</div><h2>Speed is the most underrated UX.</h2><p>Every millisecond costs conversion. Every kilobyte costs power. Performance is engineering you can measure — and ignore at your peril.</p></div>
+      <div class="section-head"><div class="section-eyebrow">08 · Performance Engineering</div><h2>Speed is the most underrated UX.</h2><p>Delay can cost attention and conversion; transferred bytes cost time and power. Performance is engineering you can measure — and ignore at your peril.</p></div>
       <div class="metric-grid" id="metric-grid"></div>
       <div class="card-grid" id="perf-grid"></div>
     </div></section>
@@ -1080,11 +1139,11 @@ html[data-theme="light"] .hero-viz .graph-node-body.satellite { filter: var(--gr
         <div class="lab-header"><div class="lab-dots"><span class="lab-dot red"></span><span class="lab-dot amber"></span><span class="lab-dot green"></span></div><div class="lab-title">Flexbox playground</div><div class="lab-tag">/labs/flexbox</div></div>
         <div class="lab-body">
           <div class="lab-controls">
-            <div class="lab-control"><label>flex-direction</label><div class="seg" data-prop="direction"><button class="seg-btn active" data-val="row">row</button><button class="seg-btn" data-val="row-reverse">row-rev</button><button class="seg-btn" data-val="column">column</button><button class="seg-btn" data-val="column-reverse">col-rev</button></div></div>
-            <div class="lab-control"><label>justify-content</label><select id="flex-justify"><option>flex-start</option><option>center</option><option>flex-end</option><option>space-between</option><option>space-around</option><option>space-evenly</option></select></div>
-            <div class="lab-control"><label>align-items</label><select id="flex-align"><option>stretch</option><option>flex-start</option><option>center</option><option>flex-end</option><option>baseline</option></select></div>
-            <div class="lab-control"><label>gap <span class="lab-val" id="flex-gap-val">10px</span></label><input type="range" id="flex-gap" min="0" max="40" value="10" step="1"></div>
-            <div class="lab-control"><label>flex-wrap</label><div class="seg" data-prop="wrap"><button class="seg-btn active" data-val="nowrap">nowrap</button><button class="seg-btn" data-val="wrap">wrap</button></div></div>
+            <div class="lab-control"><div class="control-label" id="flex-direction-label">flex-direction</div><div class="seg" data-prop="direction" role="group" aria-labelledby="flex-direction-label"><button class="seg-btn active" data-val="row">row</button><button class="seg-btn" data-val="row-reverse">row-rev</button><button class="seg-btn" data-val="column">column</button><button class="seg-btn" data-val="column-reverse">col-rev</button></div></div>
+            <div class="lab-control"><label for="flex-justify">justify-content</label><select id="flex-justify"><option>flex-start</option><option>center</option><option>flex-end</option><option>space-between</option><option>space-around</option><option>space-evenly</option></select></div>
+            <div class="lab-control"><label for="flex-align">align-items</label><select id="flex-align"><option>stretch</option><option>flex-start</option><option>center</option><option>flex-end</option><option>baseline</option></select></div>
+            <div class="lab-control"><label for="flex-gap">gap <span class="lab-val" id="flex-gap-val">10px</span></label><input type="range" id="flex-gap" min="0" max="40" value="10" step="1"></div>
+            <div class="lab-control"><div class="control-label" id="flex-wrap-label">flex-wrap</div><div class="seg" data-prop="wrap" role="group" aria-labelledby="flex-wrap-label"><button class="seg-btn active" data-val="nowrap">nowrap</button><button class="seg-btn" data-val="wrap">wrap</button></div></div>
           </div>
           <div class="lab-preview"><div class="flex-stage" id="flex-stage"><div class="flex-item">1</div><div class="flex-item">2</div><div class="flex-item">3</div><div class="flex-item">4</div></div></div>
         </div>
@@ -1095,11 +1154,11 @@ html[data-theme="light"] .hero-viz .graph-node-body.satellite { filter: var(--gr
         <div class="lab-header"><div class="lab-dots"><span class="lab-dot red"></span><span class="lab-dot amber"></span><span class="lab-dot green"></span></div><div class="lab-title">CSS Grid generator</div><div class="lab-tag">/labs/grid</div></div>
         <div class="lab-body">
           <div class="lab-controls">
-            <div class="lab-control"><label>columns <span class="lab-val" id="grid-cols-val">3</span></label><input type="range" id="grid-cols" min="1" max="6" value="3" step="1"></div>
-            <div class="lab-control"><label>rows <span class="lab-val" id="grid-rows-val">2</span></label><input type="range" id="grid-rows" min="1" max="5" value="2" step="1"></div>
-            <div class="lab-control"><label>gap <span class="lab-val" id="grid-gap-val">8px</span></label><input type="range" id="grid-gap" min="0" max="32" value="8" step="1"></div>
-            <div class="lab-control"><label>column sizing</label><div class="seg" data-prop="colmode"><button class="seg-btn active" data-val="1fr">equal</button><button class="seg-btn" data-val="auto">auto</button><button class="seg-btn" data-val="minmax">minmax</button></div></div>
-            <div class="lab-control"><label>justify-items</label><select id="grid-justify"><option>stretch</option><option>start</option><option>center</option><option>end</option></select></div>
+            <div class="lab-control"><label for="grid-cols">columns <span class="lab-val" id="grid-cols-val">3</span></label><input type="range" id="grid-cols" min="1" max="6" value="3" step="1"></div>
+            <div class="lab-control"><label for="grid-rows">rows <span class="lab-val" id="grid-rows-val">2</span></label><input type="range" id="grid-rows" min="1" max="5" value="2" step="1"></div>
+            <div class="lab-control"><label for="grid-gap">gap <span class="lab-val" id="grid-gap-val">8px</span></label><input type="range" id="grid-gap" min="0" max="32" value="8" step="1"></div>
+            <div class="lab-control"><div class="control-label" id="grid-sizing-label">column sizing</div><div class="seg" data-prop="colmode" role="group" aria-labelledby="grid-sizing-label"><button class="seg-btn active" data-val="1fr">equal</button><button class="seg-btn" data-val="auto">auto</button><button class="seg-btn" data-val="minmax">minmax</button></div></div>
+            <div class="lab-control"><label for="grid-justify">justify-items</label><select id="grid-justify"><option>stretch</option><option>start</option><option>center</option><option>end</option></select></div>
           </div>
           <div class="lab-preview"><div class="grid-stage" id="grid-stage"></div></div>
         </div>
@@ -1127,7 +1186,7 @@ html[data-theme="light"] .hero-viz .graph-node-body.satellite { filter: var(--gr
       <div class="lab" id="spec-lab">
         <div class="lab-header"><div class="lab-dots"><span class="lab-dot red"></span><span class="lab-dot amber"></span><span class="lab-dot green"></span></div><div class="lab-title">CSS specificity calculator</div><div class="lab-tag">/labs/specificity</div></div>
         <div style="padding: 20px;">
-          <div class="lab-control"><label>type a CSS selector</label><input type="text" id="spec-input" value="#nav ul li.active a:hover" spellcheck="false" autocomplete="off"></div>
+          <div class="lab-control"><label for="spec-input">type a CSS selector</label><input type="text" id="spec-input" value="#nav ul li.active a:hover" spellcheck="false" autocomplete="off"></div>
           <div class="spec-output" id="spec-output"></div>
           <div class="spec-breakdown" id="spec-breakdown"></div>
         </div>
@@ -1140,7 +1199,7 @@ html[data-theme="light"] .hero-viz .graph-node-body.satellite { filter: var(--gr
     </div></section>
 
     <section id="terminal"><div class="container">
-      <div class="section-head"><div class="section-eyebrow">23 · Terminal / CLI</div><h2>The dev loop lives in the shell.</h2><p>Every project starts and ends with commands. Pick one to see what it does and how it reshapes the filesystem in a frontend dev pipeline.</p></div>
+      <div class="section-head"><div class="section-eyebrow">23 · Terminal / CLI</div><h2>The dev loop lives in the shell.</h2><p>Most frontend workflows rely on commands from setup through deployment. Pick one to see what it does and how it reshapes the filesystem in a frontend dev pipeline.</p></div>
       <div class="terminal" id="terminal-panel"></div>
       <div class="terminal-cmds" id="terminal-cmds"></div>
     </div></section>
@@ -1182,6 +1241,8 @@ html[data-theme="light"] .hero-viz .graph-node-body.satellite { filter: var(--gr
         <div>
           <h5 style="font-size: 11px; font-family: var(--font-mono); color: var(--text-3); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 14px;">References &amp; specs</h5>
           <div class="resource-grid" id="res-refs"></div>
+          <h5 style="font-size: 11px; font-family: var(--font-mono); color: var(--text-3); text-transform: uppercase; letter-spacing: 0.08em; margin: 28px 0 14px;">Frontend Index references</h5>
+          <div class="resource-grid" id="res-index"></div>
           <h5 style="font-size: 11px; font-family: var(--font-mono); color: var(--text-3); text-transform: uppercase; letter-spacing: 0.08em; margin: 28px 0 14px;">Tooling docs</h5>
           <div class="resource-grid" id="res-tools"></div>
         </div>
@@ -1198,7 +1259,7 @@ html[data-theme="light"] .hero-viz .graph-node-body.satellite { filter: var(--gr
       <div class="footer-inner">
         <div>
           <div class="footer-brand"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12 L9 6 L15 12 L21 6" /><path d="M3 18 L9 12 L15 18 L21 12" /></svg></span>Frontend Index</div>
-          <p class="footer-blurb">A visual reference for modern frontend engineering. Built to be read once, referenced forever.</p>
+          <p class="footer-blurb">An independent visual reference for modern frontend engineering. Maintained by De&rsquo;Andre Perry.</p>
           <a href="https://github.com/deandreperry" target="_blank" rel="noopener noreferrer" style="font-family: var(--font-mono); font-size: 11px; color: var(--text-3); transition: color .15s;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--text-3)'">© 2026 De&rsquo;Andre Perry. All rights reserved.</a>
         </div>
         <div><h5>Index</h5><ul><li><a href="#roadmap">Roadmap</a></li><li><a href="#browser">The Browser</a></li><li><a href="#frameworks">Frameworks</a></li><li><a href="#stack">Stack Map</a></li></ul></div>
@@ -1213,7 +1274,7 @@ html[data-theme="light"] .hero-viz .graph-node-body.satellite { filter: var(--gr
 <nav class="floating-toc" id="floating-toc" aria-label="Section quick-nav"></nav>
 
 <div class="drawer-backdrop" id="drawer-backdrop"></div>
-<aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="drawer-title" tabindex="-1">
+<aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="drawer-title" aria-hidden="true" tabindex="-1">
   <div class="drawer-head">
     <button class="icon-btn drawer-close" id="drawer-close" aria-label="Close details">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
@@ -1223,15 +1284,16 @@ html[data-theme="light"] .hero-viz .graph-node-body.satellite { filter: var(--gr
   <div class="drawer-body" id="drawer-body"></div>
 </aside>
 
-<div class="cmdk-backdrop" id="about-backdrop" role="presentation">
-  <div class="about-popover" role="dialog" aria-modal="true" aria-labelledby="about-title">
+<div class="cmdk-backdrop" id="about-backdrop" role="presentation" aria-hidden="true">
+  <div class="about-popover" role="dialog" aria-modal="true" aria-labelledby="about-title" tabindex="-1">
     <div class="about-head">
       <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12 L9 6 L15 12 L21 6" /><path d="M3 18 L9 12 L15 18 L21 12" /></svg></span>
-      <div class="about-head-text"><div class="about-title" id="about-title">Frontend Index</div><div class="about-sub">v2.0 · visual reference</div></div>
+      <div class="about-head-text"><div class="about-title" id="about-title">Frontend Index</div><div class="about-sub">v3.0 · visual reference</div></div>
       <button class="icon-btn" id="about-close" aria-label="Close about dialog"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
     </div>
     <div class="about-body">
-      <p>A visual reference system for modern frontend engineering. Not a tutorial — a map. Click any technology to open its full entry: what it is, when to use it, what it competes with, and where to go next.</p>
+      <p>A visual reference system for modern frontend engineering. Not a tutorial — a map. Frontend Index is intentionally opinionated rather than exhaustive.</p>
+      <p>Entries prefer specifications and official documentation, are periodically reviewed, and should be revalidated as the platform changes. Corrections can be proposed on GitHub.</p>
       <div class="about-stats">
         <div class="about-stat"><div class="as-value">28</div><div class="as-label">Sections</div></div>
         <div class="about-stat"><div class="as-value">38+</div><div class="as-label">Entries</div></div>
@@ -1244,27 +1306,28 @@ html[data-theme="light"] .hero-viz .graph-node-body.satellite { filter: var(--gr
       </div>
     </div>
     <div class="about-foot">
-      <span>Built by <a href="https://github.com/deandreperry" target="_blank" rel="noopener noreferrer">De&rsquo;Andre Perry</a></span>
+      <span>Maintained by <a href="https://github.com/deandreperry" target="_blank" rel="noopener noreferrer">De&rsquo;Andre Perry</a></span>
       <a href="https://github.com/deandreperry/frontend-index" target="_blank" rel="noopener noreferrer" class="btn-sm">View on GitHub<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:12px;height:12px" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></a>
     </div>
   </div>
 </div>
 
-<div class="cmdk-backdrop" id="cmdk-backdrop">
-  <div class="cmdk">
+<div class="cmdk-backdrop" id="cmdk-backdrop" aria-hidden="true">
+  <div class="cmdk" role="dialog" aria-modal="true" aria-labelledby="cmdk-title">
+    <h2 class="visually-hidden" id="cmdk-title">Search Frontend Index</h2>
     <div class="cmdk-input-wrap">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-      <input type="text" class="cmdk-input" id="cmdk-input" placeholder="Search sections, technologies, concepts..." autocomplete="off" spellcheck="false" aria-label="Search Frontend Index">
+      <input type="text" class="cmdk-input" id="cmdk-input" placeholder="Search sections, technologies, concepts..." autocomplete="off" spellcheck="false" aria-label="Search Frontend Index" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="cmdk-results">
       <button class="icon-btn" id="cmdk-close" aria-label="Close search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
     </div>
-    <div class="cmdk-results" id="cmdk-results"></div>
+    <div class="cmdk-results" id="cmdk-results" role="listbox" aria-label="Search results" aria-live="polite"></div>
     <div class="cmdk-footer"><span><span class="footer-key">↑↓</span>navigate</span><span><span class="footer-key">↵</span>open</span><span><span class="footer-key">esc</span>close</span><span style="margin-left: auto;">Frontend Index search</span></div>
   </div>
 </div>
 
 <script>
 /* =============================================================================
-   FRONTEND INDEX v2 — APPLICATION SCRIPT
+   FRONTEND INDEX v3 — APPLICATION SCRIPT
    ============================================================================= */
 (() => {
 'use strict';
@@ -1299,6 +1362,25 @@ const el = (tag, attrs={}, ...kids) => {
 const svgNS = 'http://www.w3.org/2000/svg';
 const mkSVG = (tag, attrs={}) => { const e = document.createElementNS(svgNS, tag); for (const [k,v] of Object.entries(attrs)) if (v != null) e.setAttribute(k, v); return e; };
 const escapeHTML = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const focusableSelector = 'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
+const focusables = container => $$(focusableSelector, container).filter(node => !node.hidden && node.getAttribute('aria-hidden') !== 'true');
+const trapFocus = (container, event) => {
+  if (event.key !== 'Tab') return;
+  const items = focusables(container); if (!items.length) return;
+  const first = items[0], last = items[items.length - 1];
+  if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+  else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+};
+const pageRegions = () => [$('.topbar'), $('.app'), $('.floating-toc')].filter(Boolean);
+const setPageInert = active => {
+  pageRegions().forEach(region => {
+    if ('inert' in region) region.inert = active;
+    else if (active) region.setAttribute('aria-hidden', 'true');
+    else region.removeAttribute('aria-hidden');
+  });
+  document.body.classList.toggle('overlay-open', active);
+};
+$('.skip-link')?.addEventListener('click', () => requestAnimationFrame(() => $('#main')?.focus()));
 
 /* ---------- ICONS ---------- */
 const ICONS = {
@@ -1359,15 +1441,15 @@ const catColor = id => (STACK_CATS.find(c => c.id === id) || {}).color || 'var(-
 /* ---------- TECH REGISTRY (drillable entries) ---------- */
 const TECH = {
   js:{ name:'JavaScript', cat:'lang', x:500,y:280,r:30, color:'#f7df1e', logo:'JS', maturity:'Standard · ECMAScript yearly cadence',
-    summary:'The language of the web. ECMAScript runs everywhere a browser does — and many places it does not.',
-    what:'JavaScript is a dynamic, single-threaded, prototype-based language with first-class functions and an event-loop concurrency model. It is the only language browsers execute natively, which is why every frontend abstraction ultimately compiles to it.',
+    summary:'The primary programming language of the web. ECMAScript runs everywhere a browser does — and many places it does not.',
+    what:'JavaScript is a dynamic, single-threaded, prototype-based language with first-class functions and an event-loop concurrency model. Browsers execute it natively alongside the wider web platform; most frontend abstractions ultimately produce JavaScript, WebAssembly, HTML, CSS, or browser API calls.',
     when:['You are building anything that runs in a browser','You want one language across client, server (Node), and tooling','You need the largest package ecosystem in existence (npm)'],
     avoid:['You need compile-time type guarantees out of the box — reach for TypeScript','CPU-bound heavy computation on the main thread — offload to Web Workers or WASM'],
     competes:['ts'], related:['ts','react','vue'],
     code:'<span class="k">const</span> add = (a, b) => a + b;\n<span class="k">const</span> nums = [1, 2, 3];\n<span class="k">const</span> total = nums.<span class="f">reduce</span>(add, 0); <span class="c">// 6</span>',
     links:[['MDN — JavaScript','https://developer.mozilla.org/en-US/docs/Web/JavaScript'],['ECMAScript spec','https://tc39.es/ecma262/']] },
   ts:{ name:'TypeScript', cat:'lang', x:600,y:200,r:26, color:'#3178c6', logo:'TS', maturity:'Mature · Microsoft · ~monthly releases',
-    summary:'JavaScript with static types. Type inference, generics, structural typing. Almost universal for new projects.',
+    summary:'JavaScript with static types. Type inference, generics, structural typing. A common default for new application code.',
     what:'TypeScript is a typed superset of JavaScript that compiles to plain JS. Its structural type system catches whole classes of bugs at build time and powers the editor autocomplete that makes large codebases navigable.',
     when:['Any codebase past a few thousand lines or more than one engineer','You want refactors the compiler can verify','You consume libraries that ship types (most now do)'],
     avoid:['A throwaway prototype where setup cost is not worth it','You cannot add a build step at all (rare today)'],
@@ -1375,7 +1457,7 @@ const TECH = {
     code:'<span class="k">interface</span> <span class="t">User</span> { id: <span class="t">number</span>; name: <span class="t">string</span> }\n<span class="k">const</span> greet = (u: <span class="t">User</span>) => <span class="s">`Hi ${u.name}`</span>;',
     links:[['TypeScript handbook','https://www.typescriptlang.org/docs/'],['Type challenges','https://github.com/type-challenges/type-challenges']] },
   react:{ name:'React', cat:'framework', x:380,y:200,r:32, color:'#61dafb', logo:'R', maturity:'Mature · Meta · v19',
-    summary:'Component model, virtual DOM diffing, hooks. The de facto choice for teams — and the largest ecosystem on earth.',
+    summary:'Component model, coordinated rendering, and hooks. Widely adopted by teams, with a large frontend ecosystem.',
     what:'React is a library for building UIs from composable components. You describe what the UI should look like for a given state; React reconciles the virtual DOM against the real DOM to apply the minimum set of changes. Hooks added state and side effects to function components.',
     when:['You want the largest talent pool and ecosystem','You are hiring and need people productive on day one','You need React Native to share concepts with mobile'],
     avoid:['You want the smallest possible bundle with zero runtime — consider Svelte/Solid','You dislike re-render-by-default and want fine-grained reactivity'],
@@ -1391,8 +1473,8 @@ const TECH = {
     code:'&lt;script setup&gt;\n<span class="k">import</span> { ref } <span class="k">from</span> <span class="s">\'vue\'</span>\n<span class="k">const</span> n = <span class="f">ref</span>(0)\n&lt;/script&gt;\n&lt;template&gt;&lt;button @click="n++"&gt;{{ n }}&lt;/button&gt;&lt;/template&gt;',
     links:[['vuejs.org','https://vuejs.org']] },
   svelte:{ name:'Svelte', cat:'framework', x:200,y:380,r:24, color:'#ff3e00', logo:'S', maturity:'Mature · Rich Harris · v5 (runes)',
-    summary:'Compiles to surgical DOM updates — no virtual DOM, no runtime. Smaller bundles, simpler mental model.',
-    what:'Svelte is a compiler: your components are transformed at build time into imperative code that surgically updates the DOM. There is no virtual DOM diffing at runtime, so bundles are small and updates are fast. v5 introduced runes for explicit reactivity.',
+    summary:'Compiles components into targeted DOM updates without virtual DOM diffing. Often small and direct.',
+    what:'Svelte compiles components into JavaScript that performs targeted DOM updates. It avoids virtual DOM diffing and ships the runtime support an application needs. v5 introduced runes for explicit reactivity.',
     when:['Bundle size and runtime performance are priorities','You want less boilerplate than React','Content sites, widgets, embedded UI'],
     avoid:['You need the very largest ecosystem of pre-built components','Your team is already deep in React and switching is costly'],
     competes:['react','vue','solid'], related:['sveltekit'],
@@ -1464,7 +1546,7 @@ const TECH = {
   css:{ name:'CSS', cat:'style', x:720,y:380,r:24, color:'#264de4', logo:'C', maturity:'Standard · evolving fast',
     summary:'The styling language of the web. Modern CSS is dramatically more powerful than its reputation.',
     what:'CSS describes how documents look: layout (Grid, Flexbox), typography, color, motion, and responsiveness. Modern CSS adds container queries, cascade layers, nesting, custom properties, and subgrid — much of what once required preprocessors or JS.',
-    when:['Always — every visual web project uses it','You want layout and motion the platform handles natively','You want theming via custom properties'],
+    when:['You are styling visual web content','You want layout and motion the platform handles natively','You want theming via custom properties'],
     avoid:['Nothing — but a framework like Tailwind can speed authoring'],
     competes:['tailwind','sass'], related:['tailwind','sass'],
     code:'.card {\n  display: <span class="t">grid</span>;\n  gap: <span class="s">1rem</span>;\n  container-type: <span class="t">inline-size</span>;\n}',
@@ -1660,13 +1742,18 @@ const TECH = {
     links:[['R3F docs','https://r3f.docs.pmnd.rs']] }
 };
 const TECH_IDS = Object.keys(TECH);
+const EDITORIAL_REVIEW = 'September 2026';
+const REFERENCE_ROUTES = {
+  react: '/frameworks/react/',
+  js: '/javascript/event-loop/'
+};
 TECH_IDS.forEach(id => { TECH[id].id = id; });
 
 /* ---------- ROADMAP ---------- */
 const ROADMAP = [
   { id:'internet', title:'The Internet', icon:'globe', desc:'TCP/IP, DNS, HTTP — the substrate everything runs on. Before you ship, learn what a request actually is.', tags:['HTTP/3','DNS','TLS','CDN'], detail:'The web rides on layered protocols: IP routes packets, TCP/QUIC makes them reliable, TLS encrypts them, HTTP frames them as requests and responses, and DNS turns names into addresses. Every performance and security decision upstream of your code lives here.' },
   { id:'browser-layer', title:'The Browser', icon:'browser', desc:'A rendering engine, a JavaScript VM, and a sandbox. Knowing how it parses, lays out, and paints is half the job.', tags:['Rendering','Event loop','Sandbox'], detail:'A browser is several engines in a trench coat: a parser building the DOM, a style engine building the CSSOM, a layout engine computing geometry, a paint/compositor stage, and a JavaScript VM — all coordinated by the event loop on one main thread.' },
-  { id:'html-layer', title:'HTML', icon:'file', desc:'Structure and semantics. Every framework you will ever use compiles down to this tree.', tags:['Semantics','Forms','Metadata'], detail:'HTML is the document model: semantic elements describe meaning, forms capture input with native validation, and metadata controls indexing and sharing. Get the tree right and accessibility plus SEO largely follow.' },
+  { id:'html-layer', title:'HTML', icon:'file', desc:'Structure and semantics. Browser-based UI ultimately participates in this document tree.', tags:['Semantics','Forms','Metadata'], detail:'HTML is the document model: semantic elements describe meaning, forms capture input with native validation, and metadata controls indexing and sharing. A strong tree gives accessibility and SEO a reliable foundation.' },
   { id:'css-layer', title:'CSS', icon:'palette', desc:'Layout, typography, motion. Modern CSS is dramatically more powerful than the CSS that scared you in 2015.', tags:['Grid','Flexbox','Container queries','@layer'], techId:'css' },
   { id:'js-layer', title:'JavaScript', icon:'code', desc:'The language. Closures, prototypes, async, modules. Master this and frameworks become easy.', tags:['ES2024','Async','Modules','Closures'], techId:'js' },
   { id:'dom', title:'The DOM', icon:'tree', desc:'The live object model the browser exposes. Where parsing ends and interaction begins.', tags:['Querying','Events','Mutation'], detail:'The DOM is the live, mutable object representation of the parsed HTML. JavaScript reads and writes it; the browser re-runs layout and paint in response. Frameworks exist largely to make these mutations efficient and declarative.' },
@@ -1698,7 +1785,7 @@ const HTML_FEATURES = [
   { icon:'layers', h:'Custom elements', p:'Web Components let you build framework-free UI primitives. Lifecycle, shadow DOM, and slots — the platform shipped its own React, sort of.' }
 ];
 const CSS_FEATURES = [
-  { icon:'grid', h:'Grid &amp; Flexbox', p:'Grid for two-dimensional layouts, Flexbox for one. Together they replace every layout hack you grew up with.' },
+  { icon:'grid', h:'Grid &amp; Flexbox', p:'Grid for two-dimensional layouts, Flexbox for one. Together they replace most historical layout hacks.' },
   { icon:'browser', h:'Container queries', p:'Components can finally respond to their container instead of the viewport. Truly modular, truly responsive.' },
   { icon:'layers', h:'Cascade layers', p:'@layer gives you explicit control over specificity. Frameworks, components, utilities — finally a way to settle who wins.' },
   { icon:'rocket', h:'Animations', p:'The compositor can animate transform and opacity at 60fps for free. Everything else costs paint cycles.' },
@@ -1965,6 +2052,7 @@ const FRONTEND_DOMAINS = {
 };
 const RESOURCES = {
   refs:[{name:'MDN Web Docs',sub:'developer.mozilla.org',icon:'book',url:'https://developer.mozilla.org'},{name:'web.dev',sub:'Google Chrome team',icon:'book',url:'https://web.dev'},{name:'WHATWG specs',sub:'living standards',icon:'book',url:'https://spec.whatwg.org'},{name:'Can I Use',sub:'feature support tables',icon:'book',url:'https://caniuse.com'},{name:'ECMAScript spec',sub:'tc39.es/ecma262',icon:'book',url:'https://tc39.es/ecma262/'},{name:'CSS Specs',sub:'w3.org/Style/CSS',icon:'book',url:'https://www.w3.org/Style/CSS/'}],
+  index:[{name:'Browser rendering pipeline',sub:'Foundations',icon:'browser',url:'/browser/rendering-pipeline/'},{name:'JavaScript event loop',sub:'Foundations',icon:'gauge',url:'/javascript/event-loop/'},{name:'React',sub:'Application Engineering',icon:'grid',url:'/frameworks/react/'},{name:'Focus management',sub:'Production Engineering',icon:'a11y',url:'/accessibility/focus-management/'},{name:'Core Web Vitals',sub:'Production Engineering',icon:'gauge',url:'/performance/core-web-vitals/'},{name:'Content Security Policy',sub:'Production Engineering',icon:'shield',url:'/security/content-security-policy/'}],
   tools:[{name:'Next.js docs',sub:'nextjs.org/docs',icon:'tool',url:'https://nextjs.org/docs'},{name:'React docs',sub:'react.dev',icon:'tool',url:'https://react.dev'},{name:'Vite guide',sub:'vite.dev',icon:'tool',url:'https://vite.dev'},{name:'Tailwind docs',sub:'tailwindcss.com',icon:'tool',url:'https://tailwindcss.com'},{name:'Vercel docs',sub:'vercel.com/docs',icon:'tool',url:'https://vercel.com/docs'},{name:'TypeScript handbook',sub:'typescriptlang.org',icon:'tool',url:'https://www.typescriptlang.org/docs/'}],
   people:[{name:'508 Dev',sub:'508dev.com',icon:'a11y',url:'https://508dev.com'},{name:'WebAIM',sub:'webaim.org',icon:'a11y',url:'https://webaim.org'},{name:'The A11y Project',sub:'a11yproject.com',icon:'a11y',url:'https://www.a11yproject.com'},{name:'WCAG 2.2 quick reference',sub:'w3.org/WAI',icon:'a11y',url:'https://www.w3.org/WAI/WCAG22/quickref/'},{name:'Inclusive Components',sub:'inclusive-components.design',icon:'a11y',url:'https://inclusive-components.design'},{name:'MDN Accessibility',sub:'developer.mozilla.org',icon:'a11y',url:'https://developer.mozilla.org/en-US/docs/Web/Accessibility'}],
   inspo:[{name:'Awwwards',sub:'awwwards.com',icon:'star',url:'https://www.awwwards.com'},{name:'Godly',sub:'godly.website',icon:'star',url:'https://godly.website'},{name:'Refactoring UI',sub:'design book',icon:'star',url:'https://www.refactoringui.com'},{name:'Linear blog',sub:'engineering & design',icon:'star',url:'https://linear.app/blog'},{name:'Vercel design',sub:'vercel.com/design',icon:'star',url:'https://vercel.com/design'},{name:'Mobbin',sub:'real-world UI',icon:'star',url:'https://mobbin.com'}]
@@ -1978,9 +2066,9 @@ const METRICS = [
   { label:'Hydration', value:'64', unit:'ms', trend:'streaming', cls:'' }
 ];
 const PERF = [
-  { h:'Code splitting', p:'Ship only what the current route needs. Dynamic import() plus route-level bundling cuts the critical path by an order of magnitude.', list:['Route-based','Component-based','Conditional vendor chunks'] },
-  { h:'Image optimization', p:'The bulk of any page weight. Modern formats, responsive sources, lazy loading, and CDN-side resizing — each is a 30–50% saving.', list:['AVIF / WebP','srcset + sizes','loading="lazy"'] },
-  { h:'Rendering strategy', p:'SSR for first paint, CSR for interactivity, SSG for static, ISR for hybrid. Streaming and partial hydration are the new defaults.', list:['SSR · SSG · ISR','React Server Components','Islands architecture'] },
+  { h:'Code splitting', p:'Ship what the current route needs. Dynamic import() and route-level bundling can reduce initial transfer and execution cost.', list:['Route-based','Component-based','Conditional vendor chunks'] },
+  { h:'Image optimization', p:'Images are often a large share of page weight. Modern formats, responsive sources, lazy loading, and right-sized delivery can produce meaningful savings.', list:['AVIF / WebP','srcset + sizes','loading="lazy"'] },
+  { h:'Rendering strategy', p:'SSR for initial HTML, CSR for client interaction, SSG for static output, ISR for hybrid updates. Streaming and partial hydration add useful options.', list:['SSR · SSG · ISR','React Server Components','Islands architecture'] },
   { h:'Caching layers', p:'Browser cache, service worker, edge CDN, server cache, database cache. The fastest request is the one that never reaches origin.', list:['stale-while-revalidate','Edge KV / Cache API','HTTP cache directives'] }
 ];
 
@@ -1998,6 +2086,8 @@ const applyTheme = (t) => {
   document.documentElement.dataset.theme = t;
   state.theme = t; store.set('fi-theme', t);
   const icon = $('#theme-icon');
+  const toggle = $('#theme-toggle');
+  if (toggle) toggle.setAttribute('aria-label', `Switch to ${t === 'dark' ? 'light' : 'dark'} theme`);
   if (icon) icon.outerHTML = (t === 'light')
     ? '<svg id="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>'
     : '<svg id="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>';
@@ -2061,17 +2151,24 @@ function openDrawer(id, pushHash=true) {
   if (t.links && t.links.length) {
     const links = el('div', { class: 'drawer-links' });
     t.links.forEach(([label, url]) => links.append(el('a', { href: url, target: '_blank', rel: 'noopener noreferrer' }, label, el('span', { class: 'link-arrow', html: ICONS.ext }))));
-    drawerBody.append(el('div', { class: 'drawer-section' }, el('h4', {}, 'Go deeper'), links));
+    drawerBody.append(el('div', { class: 'drawer-section' }, el('h4', {}, 'Sources & official documentation'), links));
   }
+  const status = el('div', { class: 'reference-status' }, el('span', {}, `Last reviewed: ${t.reviewed || EDITORIAL_REVIEW}`));
+  if (REFERENCE_ROUTES[id]) status.append(el('a', { href: REFERENCE_ROUTES[id] }, 'Open the standalone reference →'));
+  drawerBody.append(el('div', { class: 'drawer-section' }, el('h4', {}, 'Reference status'), status));
   drawerBody.scrollTop = 0;
   drawerBackdrop.classList.add('open');
   drawer.classList.add('open');
+  drawer.setAttribute('aria-hidden', 'false');
+  setPageInert(true);
   if (pushHash) { try { history.replaceState(null, '', '#tech/' + id); } catch {} }
   setTimeout(() => $('#drawer-close').focus(), 60);
   if (state.highlightStack) state.highlightStack(id);
 }
 function closeDrawer() {
   drawer.classList.remove('open'); drawerBackdrop.classList.remove('open');
+  drawer.setAttribute('aria-hidden', 'true');
+  setPageInert(false);
   drawerOpenId = null;
   const h = location.hash;
   if (h.startsWith('#tech/')) { try { history.replaceState(null, '', location.pathname + location.search); } catch {} }
@@ -2083,12 +2180,11 @@ drawerBackdrop.addEventListener('click', closeDrawer);
 /* ---------- SIDEBAR ---------- */
 const SIDE_GROUPS = [
   { title:'Index', items:[['hero','Overview','globe'],['roadmap','Roadmap','tree']] },
-  { title:'Foundations', items:[['browser','The Browser','browser'],['core','Core Tech','code'],['frameworks','Frameworks','grid']] },
-  { title:'Systems', items:[['stack','Stack Map','layers'],['tooling','Tooling','tool'],['architecture','Architecture','layout'],['performance','Performance','gauge'],['security','Website Security','shield']] },
-  { title:'Product Engineering', items:[['accessibility','Accessibility','a11y'],['testing','Testing','test'],['data','API & Data','data'],['state','State','layers'],['design-systems','Design Systems','design'],['forms','Forms','form'],['seo','SEO & Metadata','search'],['deployment','Deployment','rocket'],['monitoring','Monitoring','bug'],['i18n','Internationalization','translate']] },
-  { title:'Practice', items:[['careers','Career Paths','full'],['labs','Interactive Labs','tool'],['patterns','Production Patterns','grid']] },
-  { title:'Dev Environment', items:[['terminal','Terminal / CLI','code'],['ide','VS Code / IDE','layout'],['git','GitHub & Git','book'],['ai','AI-Assisted Dev','layers']] },
-  { title:'Reference', items:[['resources','Resource Hub','book']] }
+  { title:'Foundations', items:[['browser','The Browser','browser'],['core','Core Tech','code'],['stack','Stack Map','layers']] },
+  { title:'Application Engineering', items:[['frameworks','Frameworks','grid'],['architecture','Architecture','layout'],['data','API & Data','data'],['state','State','layers'],['design-systems','Design Systems','design'],['forms','Forms','form']] },
+  { title:'Production Engineering', items:[['performance','Performance','gauge'],['accessibility','Accessibility','a11y'],['security','Website Security','shield'],['testing','Testing','test'],['seo','SEO & Metadata','search'],['deployment','Deployment','rocket'],['monitoring','Monitoring','bug'],['i18n','Internationalization','translate']] },
+  { title:'Developer Workflow', items:[['tooling','Tooling','tool'],['terminal','Terminal / CLI','code'],['ide','VS Code / IDE','layout'],['git','GitHub & Git','book'],['ai','AI-Assisted Dev','layers']] },
+  { title:'Practice & Growth', items:[['labs','Interactive Labs','tool'],['patterns','Production Patterns','grid'],['careers','Career Paths','full'],['resources','Resource Hub','book']] }
 ];
 (() => {
   const sb = $('#sidebar');
@@ -2111,6 +2207,8 @@ const SIDE_GROUPS = [
     { x:640,y:60,r:18,label:'React' },{ x:780,y:130,r:14,label:'Vue' },{ x:840,y:220,r:14,label:'Svelte' },
     { x:760,y:300,r:16,label:'Next' },{ x:600,y:310,r:14,label:'Vite' }
   ];
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const drifting = [];
   for (let i = 1; i < nodes.length; i++) {
     g.appendChild(mkSVG('line', { class:'graph-edge dashed', x1:nodes[0].x, y1:nodes[0].y, x2:nodes[i].x, y2:nodes[i].y, 'stroke-dasharray':'3 4' }));
   }
@@ -2122,9 +2220,25 @@ const SIDE_GROUPS = [
     const t = mkSVG('text', { class:'graph-node-label' + (n.primary?' primary':''), 'text-anchor':'middle', dy:n.r+18 }); t.textContent = n.label; grp.appendChild(t);
     if (n.primary) { const inner = mkSVG('text', { class:'graph-node-mark', 'text-anchor':'middle', dy:5 }); inner.textContent='⌬'; grp.appendChild(inner); }
     g.appendChild(grp);
-    if (!n.primary) { const phase=Math.random()*Math.PI*2, amp=2+Math.random()*3, t0=performance.now();
-      const drift=()=>{ const dt=(performance.now()-t0)/1000; grp.setAttribute('transform',`translate(${n.x+Math.sin(dt*0.6+phase)*amp},${n.y+Math.cos(dt*0.5+phase)*amp})`); requestAnimationFrame(drift); }; drift(); }
+    if (!n.primary) drifting.push({ grp, n, phase:Math.random()*Math.PI*2, amp:2+Math.random()*3 });
   });
+  let animationFrame = 0;
+  const animate = now => {
+    const seconds = now / 1000;
+    drifting.forEach(({ grp, n, phase, amp }) => grp.setAttribute('transform', `translate(${n.x+Math.sin(seconds*0.6+phase)*amp},${n.y+Math.cos(seconds*0.5+phase)*amp})`));
+    animationFrame = requestAnimationFrame(animate);
+  };
+  const stopAnimation = () => {
+    if (animationFrame) cancelAnimationFrame(animationFrame); animationFrame = 0;
+    if (reduceMotion.matches) drifting.forEach(({ grp, n }) => grp.setAttribute('transform', `translate(${n.x},${n.y})`));
+  };
+  const syncAnimation = () => {
+    if (reduceMotion.matches || document.hidden) stopAnimation();
+    else if (!animationFrame) animationFrame = requestAnimationFrame(animate);
+  };
+  reduceMotion.addEventListener?.('change', syncAnimation);
+  document.addEventListener('visibilitychange', syncAnimation);
+  syncAnimation();
 })();
 
 /* ---------- ROADMAP (with visited persistence + drill-down) ---------- */
@@ -2162,6 +2276,8 @@ function openRoadmapDrawer(r) {
   drawerBody.append(el('div', { class: 'drawer-section' }, el('h4', {}, 'Key concepts'), el('div', { class: 'drawer-competes' }, ...r.tags.map(t => el('span', { class: 'compete-chip', style:'cursor:default' }, t)))));
   drawerBody.scrollTop = 0;
   drawerBackdrop.classList.add('open'); drawer.classList.add('open');
+  drawer.setAttribute('aria-hidden', 'false');
+  setPageInert(true);
   setTimeout(() => $('#drawer-close').focus(), 60);
 }
 renderRoadmap();
@@ -2322,8 +2438,8 @@ renderRoadmap();
   const pq = $('#pattern-grid');
   PATTERNS.forEach(p => pq.append(el('div', { class:'pattern-card' }, el('div', { class:'pattern-preview', html: (previews[p.preview]||(()=>''))() }), el('div', { class:'pattern-info' }, el('h4', {}, p.name), el('p', {}, p.desc)))));
 
-  const renderRes = (id, list) => { const c = $(id); list.forEach(r => { const tag = r.url?'a':'div'; const attrs = { class:'resource-card' }; if (r.url){ attrs.href=r.url; attrs.target='_blank'; attrs.rel='noopener noreferrer'; } c.append(el(tag, attrs, el('div', { class:'res-icon', html: ICONS[r.icon]||ICONS.book }), el('div', { class:'res-meta' }, el('div', { class:'res-name' }, r.name), el('div', { class:'res-sub' }, r.sub)))); }); };
-  renderRes('#res-refs', RESOURCES.refs); renderRes('#res-tools', RESOURCES.tools); renderRes('#res-people', RESOURCES.people); renderRes('#res-inspo', RESOURCES.inspo);
+  const renderRes = (id, list) => { const c = $(id); list.forEach(r => { const tag = r.url?'a':'div'; const attrs = { class:'resource-card' }; if (r.url){ attrs.href=r.url; if (/^https?:/i.test(r.url)) { attrs.target='_blank'; attrs.rel='noopener noreferrer'; } } c.append(el(tag, attrs, el('div', { class:'res-icon', html: ICONS[r.icon]||ICONS.book }), el('div', { class:'res-meta' }, el('div', { class:'res-name' }, r.name), el('div', { class:'res-sub' }, r.sub)))); }); };
+  renderRes('#res-refs', RESOURCES.refs); renderRes('#res-index', RESOURCES.index); renderRes('#res-tools', RESOURCES.tools); renderRes('#res-people', RESOURCES.people); renderRes('#res-inspo', RESOURCES.inspo);
 })();
 
 /* ---------- LAB: FLEXBOX ---------- */
@@ -2335,7 +2451,13 @@ renderRoadmap();
     $('#flex-gap-val').textContent = st.gap+'px';
     codeEl.innerHTML = '<span style="color:var(--text-3)">.container {</span>\n  display: <span style="color:var(--violet)">flex</span>;\n  flex-direction: <span style="color:var(--cyan)">'+st.direction+'</span>;\n  flex-wrap: <span style="color:var(--cyan)">'+st.wrap+'</span>;\n  justify-content: <span style="color:var(--cyan)">'+st.justify+'</span>;\n  align-items: <span style="color:var(--cyan)">'+st.align+'</span>;\n  gap: <span style="color:var(--amber)">'+st.gap+'px</span>;\n<span style="color:var(--text-3)">}</span>';
   };
-  $$('#flex-lab .seg').forEach(seg => seg.querySelectorAll('.seg-btn').forEach(b => b.addEventListener('click', () => { seg.querySelectorAll('.seg-btn').forEach(x => x.classList.remove('active')); b.classList.add('active'); st[seg.dataset.prop]=b.dataset.val; render(); })));
+  $$('#flex-lab .seg').forEach(seg => seg.querySelectorAll('.seg-btn').forEach(b => {
+    b.setAttribute('aria-pressed', b.classList.contains('active') ? 'true' : 'false');
+    b.addEventListener('click', () => {
+      seg.querySelectorAll('.seg-btn').forEach(x => { x.classList.remove('active'); x.setAttribute('aria-pressed','false'); });
+      b.classList.add('active'); b.setAttribute('aria-pressed','true'); st[seg.dataset.prop]=b.dataset.val; render();
+    });
+  }));
   $('#flex-justify').addEventListener('change', e => { st.justify=e.target.value; render(); });
   $('#flex-align').addEventListener('change', e => { st.align=e.target.value; render(); });
   $('#flex-gap').addEventListener('input', e => { st.gap=+e.target.value; render(); });
@@ -2362,7 +2484,13 @@ renderRoadmap();
   $('#grid-rows').addEventListener('input', e => { st.rows=+e.target.value; render(); });
   $('#grid-gap').addEventListener('input', e => { st.gap=+e.target.value; render(); });
   $('#grid-justify').addEventListener('change', e => { st.justify=e.target.value; render(); });
-  $$('#grid-lab .seg').forEach(seg => seg.querySelectorAll('.seg-btn').forEach(b => b.addEventListener('click', () => { seg.querySelectorAll('.seg-btn').forEach(x => x.classList.remove('active')); b.classList.add('active'); st.colmode=b.dataset.val; render(); })));
+  $$('#grid-lab .seg').forEach(seg => seg.querySelectorAll('.seg-btn').forEach(b => {
+    b.setAttribute('aria-pressed', b.classList.contains('active') ? 'true' : 'false');
+    b.addEventListener('click', () => {
+      seg.querySelectorAll('.seg-btn').forEach(x => { x.classList.remove('active'); x.setAttribute('aria-pressed','false'); });
+      b.classList.add('active'); b.setAttribute('aria-pressed','true'); st.colmode=b.dataset.val; render();
+    });
+  }));
   render();
 })();
 
@@ -2463,11 +2591,31 @@ renderRoadmap();
 /* ---------- MOBILE SIDEBAR DRAWER ---------- */
 (() => {
   const sb = $('#sidebar'), btn = $('#menu-btn'), backdrop = $('#sidebar-backdrop');
-  const open = () => { sb.classList.add('open'); backdrop.classList.add('open'); btn.setAttribute('aria-expanded','true'); };
-  const close = () => { sb.classList.remove('open'); backdrop.classList.remove('open'); btn.setAttribute('aria-expanded','false'); };
+  const narrow = window.matchMedia('(max-width: 960px)');
+  const syncVisibility = () => {
+    if (narrow.matches && !sb.classList.contains('open')) sb.setAttribute('aria-hidden', 'true');
+    else sb.removeAttribute('aria-hidden');
+  };
+  const open = () => {
+    sb.classList.add('open'); backdrop.classList.add('open'); btn.setAttribute('aria-expanded','true');
+    btn.setAttribute('aria-label', 'Close navigation menu'); sb.removeAttribute('aria-hidden');
+    document.body.classList.add('overlay-open');
+    setTimeout(() => focusables(sb)[0]?.focus(), 30);
+  };
+  const close = (returnFocus=false) => {
+    sb.classList.remove('open'); backdrop.classList.remove('open'); btn.setAttribute('aria-expanded','false');
+    btn.setAttribute('aria-label', 'Open navigation menu'); document.body.classList.remove('overlay-open');
+    syncVisibility(); if (returnFocus) btn.focus();
+  };
   btn.addEventListener('click', () => sb.classList.contains('open') ? close() : open());
   backdrop.addEventListener('click', close);
   sb.addEventListener('click', (e) => { if (e.target.closest('.side-link')) close(); });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && sb.classList.contains('open')) close(true);
+    else if (sb.classList.contains('open')) trapFocus(sb, e);
+  });
+  narrow.addEventListener?.('change', syncVisibility);
+  syncVisibility();
 })();
 
 /* ---------- DEV ENVIRONMENT: TERMINAL / IDE / GIT / AI ---------- */
@@ -3129,14 +3277,18 @@ const AI_WORKFLOW = [
 /* ---------- SEARCH INDEX + COMMAND PALETTE (content-aware) ---------- */
 (() => {
   const backdrop = $('#cmdk-backdrop'), input = $('#cmdk-input'), results = $('#cmdk-results'), closeBtn = $('#cmdk-close'), trigger = $('#search-trigger');
+  let lastFocus = null;
   const SECTIONS = [['hero','Overview','globe'],['roadmap','Roadmap','tree'],['browser','The Browser','browser'],['core','Core Web Technologies','code'],['frameworks','Frameworks','grid'],['stack','Stack Map','layers'],['tooling','Tooling Ecosystem','tool'],['architecture','Architecture','layout'],['performance','Performance Engineering','gauge'],['security','Website Security','shield'],['accessibility','Accessibility Engineering','a11y'],['testing','Frontend Testing','test'],['data','API & Data Fetching','data'],['state','State Management','layers'],['design-systems','Design Systems','design'],['forms','Forms','form'],['seo','SEO & Metadata','search'],['deployment','Deployment & Hosting','rocket'],['monitoring','Monitoring & Debugging','bug'],['i18n','Internationalization','translate'],['careers','Career Paths','full'],['labs','Interactive Labs','tool'],['patterns','Production Patterns','grid'],['terminal','Terminal / CLI','code'],['ide','VS Code / IDE','layout'],['git','GitHub & Git','book'],['ai','AI-Assisted Development','layers'],['resources','Resource Hub','book']];
   const LABS_IDX = [['flex-lab','Flexbox playground','tool'],['grid-lab','CSS Grid generator','grid'],['eventloop-lab','Event loop simulator','gauge'],['spec-lab','CSS specificity calculator','code']];
+  const REFERENCES_IDX = [['/browser/rendering-pipeline/','Browser rendering pipeline','Foundations'],['/javascript/event-loop/','JavaScript event loop','Foundations'],['/frameworks/react/','React reference','Application Engineering'],['/accessibility/focus-management/','Focus management','Production Engineering'],['/performance/core-web-vitals/','Core Web Vitals','Production Engineering'],['/security/content-security-policy/','Content Security Policy','Production Engineering']];
 
   // build the index: sections + tech (with searchable body) + labs + patterns
   const INDEX = [];
   SECTIONS.forEach(([id,name,icon]) => INDEX.push({ group:'Sections', name, sub:'#'+id, icon, body:name, action:()=>goSection(id) }));
-  TECH_IDS.forEach(id => { const t=TECH[id]; INDEX.push({ group:'Technologies', name:t.name, sub:catLabel(t.cat), icon:'layers', body:(t.summary+' '+(t.what||'')+' '+(t.when||[]).join(' ')+' '+catLabel(t.cat)).toLowerCase(), action:()=>{ goSection('stack'); setTimeout(()=>openDrawer(id), 300); } }); });
+  const aliases = { js:'javascript ecmascript', ts:'typescript typed javascript', a11y:'accessibility wcag aria', csp:'content security policy', cwv:'core web vitals lcp inp cls', ci:'continuous integration' };
+  TECH_IDS.forEach(id => { const t=TECH[id]; INDEX.push({ group:'Technologies', name:t.name, sub:catLabel(t.cat), icon:'layers', body:(t.summary+' '+(t.what||'')+' '+(t.when||[]).join(' ')+' '+catLabel(t.cat)+' '+(aliases[id]||'')).toLowerCase(), action:()=>{ goSection('stack'); setTimeout(()=>openDrawer(id), 300); } }); });
   LABS_IDX.forEach(([id,name,icon]) => INDEX.push({ group:'Labs', name, sub:'/labs', icon, body:name+' interactive lab', action:()=>{ goSection('labs'); setTimeout(()=>{ const t=document.getElementById(id); if(t) t.scrollIntoView({behavior:'smooth'}); }, 300); } }));
+  REFERENCES_IDX.forEach(([url,name,domain]) => INDEX.push({ group:'References', name, sub:domain, icon:'book', body:(name+' '+domain).toLowerCase(), action:()=>{ location.href=url; } }));
   PATTERNS.forEach(p => INDEX.push({ group:'Patterns', name:p.name, sub:p.desc, icon:'grid', body:(p.name+' '+p.desc).toLowerCase(), action:()=>goSection('patterns') }));
   INDEX.push({ group:'Actions', name:'Toggle theme', sub:'dark / light', icon:'palette', shortcut:'⌘T', action:toggleTheme });
   INDEX.push({ group:'Actions', name:'About Frontend Index', sub:'project info', icon:'globe', action:()=>openAbout() });
@@ -3164,20 +3316,28 @@ const AI_WORKFLOW = [
       results.append(el('div', { class:'cmdk-group-label' }, gname));
       items.forEach(it => {
         const my=gi++;
-        const item = el('div', { class:'cmdk-item'+(my===selectedIdx?' selected':''), 'data-idx':my },
+        const item = el('div', { class:'cmdk-item'+(my===selectedIdx?' selected':''), id:'cmdk-option-'+my, role:'option', 'aria-selected':my===selectedIdx?'true':'false', 'data-idx':my },
           el('div', { class:'item-icon', html: ICONS[it.icon]||ICONS.code }),
           el('div', { class:'item-text' }, el('div', { class:'item-name', html: hl(it.name, q) }), el('div', { class:'item-sub' }, it.sub)),
           it.shortcut ? el('div', { class:'item-shortcut' }, it.shortcut) : null);
         item.addEventListener('click', () => exec(it));
-        item.addEventListener('mouseenter', () => { selectedIdx=my; $$('.cmdk-item').forEach(x=>x.classList.toggle('selected', +x.dataset.idx===selectedIdx)); });
+        item.addEventListener('mouseenter', () => { selectedIdx=my; $$('.cmdk-item').forEach(x=>{ const selected=+x.dataset.idx===selectedIdx; x.classList.toggle('selected', selected); x.setAttribute('aria-selected', selected?'true':'false'); }); input.setAttribute('aria-activedescendant', 'cmdk-option-'+selectedIdx); });
         results.append(item);
       });
     });
-    if (!filtered.length) results.append(el('div', { style:'padding:24px;text-align:center;color:var(--text-3);font-size:13px' }, 'No results found'));
+    if (!filtered.length) { input.removeAttribute('aria-activedescendant'); results.append(el('div', { style:'padding:24px;text-align:center;color:var(--text-3);font-size:13px' }, 'No results found')); }
+    else input.setAttribute('aria-activedescendant', 'cmdk-option-'+selectedIdx);
   }
   function filter(raw) { const q=(raw||'').trim().toLowerCase(); filtered = !q ? INDEX : INDEX.map(it=>({it,s:score(it,q)})).filter(x=>x.s>0).sort((a,b)=>b.s-a.s).map(x=>x.it); selectedIdx=0; render(q); }
-  function open(){ backdrop.classList.add('open'); input.value=''; filter(''); setTimeout(()=>input.focus(),50); }
-  function close(){ backdrop.classList.remove('open'); }
+  function open(){
+    if (drawer.classList.contains('open')) closeDrawer();
+    lastFocus=document.activeElement; backdrop.classList.add('open'); backdrop.setAttribute('aria-hidden','false');
+    input.setAttribute('aria-expanded','true'); setPageInert(true); input.value=''; filter(''); setTimeout(()=>input.focus(),50);
+  }
+  function close(){
+    backdrop.classList.remove('open'); backdrop.setAttribute('aria-hidden','true'); input.setAttribute('aria-expanded','false');
+    input.removeAttribute('aria-activedescendant'); setPageInert(false); if (lastFocus?.focus) lastFocus.focus();
+  }
   function exec(it){ close(); if (it.action) it.action(); }
 
   trigger.addEventListener('click', open);
@@ -3191,8 +3351,9 @@ const AI_WORKFLOW = [
     else if (e.key==='Escape' && backdrop.classList.contains('open')) close();
     else if (backdrop.classList.contains('open')) {
       const items=$$('.cmdk-item');
-      if (e.key==='ArrowDown'){ e.preventDefault(); selectedIdx=(selectedIdx+1)%items.length; render(input.value.trim().toLowerCase()); results.querySelector('.selected')?.scrollIntoView({block:'nearest'}); }
-      else if (e.key==='ArrowUp'){ e.preventDefault(); selectedIdx=(selectedIdx-1+items.length)%items.length; render(input.value.trim().toLowerCase()); results.querySelector('.selected')?.scrollIntoView({block:'nearest'}); }
+      if (e.key==='Tab') trapFocus($('.cmdk'), e);
+      else if (e.key==='ArrowDown' && items.length){ e.preventDefault(); selectedIdx=(selectedIdx+1)%items.length; render(input.value.trim().toLowerCase()); results.querySelector('.selected')?.scrollIntoView({block:'nearest'}); }
+      else if (e.key==='ArrowUp' && items.length){ e.preventDefault(); selectedIdx=(selectedIdx-1+items.length)%items.length; render(input.value.trim().toLowerCase()); results.querySelector('.selected')?.scrollIntoView({block:'nearest'}); }
       else if (e.key==='Enter'){ e.preventDefault(); if (filtered[selectedIdx]) exec(filtered[selectedIdx]); }
     }
   });
@@ -3203,13 +3364,16 @@ let openAbout;
 (() => {
   const backdrop=$('#about-backdrop'), trigger=$('#about-trigger'), closeBtn=$('#about-close'), footerLink=$('#footer-about');
   let last=null;
-  openAbout = () => { last=document.activeElement; backdrop.classList.add('open'); setTimeout(()=>closeBtn.focus(),50); };
-  const close = () => { backdrop.classList.remove('open'); if (last&&last.focus) last.focus(); };
+  openAbout = () => {
+    if (drawer.classList.contains('open')) closeDrawer();
+    last=document.activeElement; backdrop.classList.add('open'); backdrop.setAttribute('aria-hidden','false'); setPageInert(true); setTimeout(()=>closeBtn.focus(),50);
+  };
+  const close = () => { backdrop.classList.remove('open'); backdrop.setAttribute('aria-hidden','true'); setPageInert(false); if (last&&last.focus) last.focus(); };
   trigger.addEventListener('click', openAbout);
   closeBtn.addEventListener('click', close);
   backdrop.addEventListener('click', e => { if (e.target===backdrop) close(); });
   footerLink?.addEventListener('click', e => { e.preventDefault(); openAbout(); });
-  document.addEventListener('keydown', e => { if (e.key==='Escape' && backdrop.classList.contains('open')) close(); });
+  document.addEventListener('keydown', e => { if (e.key==='Escape' && backdrop.classList.contains('open')) close(); else if (backdrop.classList.contains('open')) trapFocus($('.about-popover'), e); });
 })();
 
 /* ---------- HASH ROUTING (deep links) ---------- */
@@ -3218,8 +3382,28 @@ function handleHash() {
   if (h.startsWith('#tech/')) { const id=h.slice(6); if (TECH[id]) { const s=document.getElementById('stack'); if(s) s.scrollIntoView(); setTimeout(()=>openDrawer(id,false), 200); } }
 }
 window.addEventListener('hashchange', () => { const h=location.hash; if (h.startsWith('#tech/') && TECH[h.slice(6)] && drawerOpenId!==h.slice(6)) openDrawer(h.slice(6), false); });
+// Arrow-key support and a single tab stop for every tablist.
+$$('[role="tablist"]').forEach(tablist => {
+  const syncTabs = () => {
+    const tabs = $$('[role="tab"]', tablist);
+    tabs.forEach((tab, index) => tab.setAttribute('tabindex', tab.getAttribute('aria-selected') === 'true' || (!tabs.some(item => item.getAttribute('aria-selected') === 'true') && index === 0) ? '0' : '-1'));
+    return tabs;
+  };
+  syncTabs();
+  tablist.addEventListener('click', syncTabs);
+  tablist.addEventListener('keydown', event => {
+    const tabs = syncTabs(); const current = tabs.indexOf(document.activeElement); if (current < 0) return;
+    let next = current;
+    if (event.key === 'ArrowRight' || event.key === 'ArrowDown') next = (current + 1) % tabs.length;
+    else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') next = (current - 1 + tabs.length) % tabs.length;
+    else if (event.key === 'Home') next = 0;
+    else if (event.key === 'End') next = tabs.length - 1;
+    else return;
+    event.preventDefault(); tabs[next].focus(); tabs[next].click();
+  });
+});
 // global ESC closes drawer
-document.addEventListener('keydown', e => { if (e.key==='Escape' && drawer.classList.contains('open')) closeDrawer(); });
+document.addEventListener('keydown', e => { if (e.key==='Escape' && drawer.classList.contains('open')) closeDrawer(); else if (drawer.classList.contains('open')) trapFocus(drawer, e); });
 // restore deep link on load
 if (location.hash.startsWith('#tech/')) setTimeout(handleHash, 400);
 

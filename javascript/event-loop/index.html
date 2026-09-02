@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>JavaScript Event Loop — Frontend Index</title>
+  <meta name="description" content="A practical mental model for tasks, microtasks, rendering opportunities, and responsive JavaScript in the browser.">
+  <link rel="canonical" href="https://frontendindex.com/javascript/event-loop/">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta name="theme-color" content="#08080a">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Frontend Index">
+  <meta property="og:title" content="JavaScript Event Loop — Frontend Index">
+  <meta property="og:description" content="A practical mental model for tasks, microtasks, rendering opportunities, and responsive JavaScript in the browser.">
+  <meta property="og:url" content="https://frontendindex.com/javascript/event-loop/">
+  <meta property="og:image" content="https://frontendindex.com/assets/social-preview.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Frontend Index — a visual reference system for modern frontend engineering">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="JavaScript Event Loop — Frontend Index">
+  <meta name="twitter:description" content="A practical mental model for tasks, microtasks, rendering opportunities, and responsive JavaScript in the browser.">
+  <meta name="twitter:image" content="https://frontendindex.com/assets/social-preview.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles/reference.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["TechArticle","LearningResource"],"@id":"https://frontendindex.com/javascript/event-loop/#article","headline":"JavaScript Event Loop","description":"A practical mental model for tasks, microtasks, rendering opportunities, and responsive JavaScript in the browser.","dateModified":"2026-09-02","mainEntityOfPage":"https://frontendindex.com/javascript/event-loop/","author":{"@type":"Person","name":"De'Andre Perry","url":"https://github.com/deandreperry"},"isPartOf":{"@type":"WebSite","@id":"https://frontendindex.com/#website","name":"Frontend Index"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Frontend Index","item":"https://frontendindex.com/"},{"@type":"ListItem","position":2,"name":"Foundations","item":"https://frontendindex.com/#labs"},{"@type":"ListItem","position":3,"name":"JavaScript Event Loop","item":"https://frontendindex.com/javascript/event-loop/"}]}]}</script>
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to content</a>
+  <header class="site-head">
+    <div class="site-head-inner">
+      <a class="brand" href="/"><span class="mark" aria-hidden="true">⌁</span>Frontend Index</a>
+      <a class="back" href="/#labs">Return to the interactive index →</a>
+    </div>
+  </header>
+  <main id="content" tabindex="-1">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Frontend Index</a><span aria-hidden="true">/</span><span>Foundations</span><span aria-hidden="true">/</span><span aria-current="page">JavaScript Event Loop</span></nav>
+    <div class="eyebrow">Foundations</div>
+    <h1>JavaScript Event Loop</h1>
+    <p class="lede">A practical mental model for tasks, microtasks, rendering opportunities, and responsive JavaScript in the browser.</p>
+    <div class="reviewed">Last reviewed: September 2026</div>
+    <article class="entry">
+      <section class="panel"><h2>What it is</h2><p>The event loop coordinates queued work for an agent, including tasks, microtasks, and browser rendering opportunities. JavaScript execution is run-to-completion within each job, while browser APIs schedule later work.</p></section>
+      <section class="panel"><h2>Mental model</h2><p>Run one task, drain eligible microtasks, give the browser an opportunity to render, then continue. Exact scheduling has specification details and browser constraints, so treat the model as a debugging tool rather than a timing guarantee.</p></section>
+      <section class="panel"><h2>Why it exists</h2><p>The browser needs to coordinate script, input, networking, timers, and rendering without allowing arbitrary concurrent access to the same JavaScript state.</p></section>
+      
+      <section class="panel">
+        <h2>When to use it</h2>
+        <ul><li>Reasoning about Promise callbacks and timers</li><li>Diagnosing long tasks and delayed input</li><li>Designing work that yields to the browser</li></ul>
+      </section>
+      
+      <section class="panel">
+        <h2>When not to use it</h2>
+        <ul><li>Do not use the simplified queue model to promise exact wall-clock timing</li><li>Do not treat microtasks as a way to hide unbounded work</li></ul>
+      </section>
+      
+      
+      <section class="panel">
+        <h2>Production considerations</h2>
+        <ul><li>Break up long main-thread work</li><li>Avoid recursively growing microtask chains</li><li>Use workers for suitable CPU-intensive work</li></ul>
+      </section>
+      <section class="panel"><h2>Accessibility implications</h2><p>Long tasks can delay keyboard, pointer, and assistive-technology interactions. Responsiveness is an accessibility concern as well as a performance concern.</p></section>
+      <section class="panel"><h2>Performance implications</h2><p>Large tasks block input and rendering. Scheduling smaller units of work can improve responsiveness, but adds coordination overhead.</p></section>
+      <section class="panel"><h2>Example · javascript</h2><pre><code>console.log(&#39;A&#39;);
+setTimeout(() =&gt; console.log(&#39;task&#39;), 0);
+Promise.resolve().then(() =&gt; console.log(&#39;microtask&#39;));
+console.log(&#39;B&#39;);</code></pre></section>
+      <section class="panel"><h2>Primary documentation</h2><ul class="source-list"><li><a href="https://html.spec.whatwg.org/multipage/webappapis.html#event-loops" target="_blank" rel="noopener noreferrer">WHATWG HTML — Event loops</a></li><li><a href="https://developer.mozilla.org/en-US/docs/Web/API/HTML_DOM_API/Microtask_guide/In_depth" target="_blank" rel="noopener noreferrer">MDN — In-depth microtask guide</a></li></ul></section>
+      <section class="panel"><h2>Related Frontend Index entries</h2><div class="related"><a href="/#eventloop-lab">Open the event-loop lab</a><a href="/browser/rendering-pipeline/">Browser rendering pipeline</a></div></section>
+    </article>
+  </main>
+  <footer>Maintained by De'Andre Perry · Frontend Index is an independent visual reference for modern frontend engineering.</footer>
+</body>
+</html>
