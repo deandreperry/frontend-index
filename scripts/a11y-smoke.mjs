@@ -15,6 +15,8 @@ requireSnippet('role="listbox" aria-label="Search results"', 'Search results lis
 requireSnippet('aria-controls="sidebar"', 'Mobile menu does not expose its controlled region.');
 requireSnippet('trapFocus', 'Overlay focus containment is missing.');
 requireSnippet('setPageInert(true)', 'Modal background is not made inert.');
+requireSnippet('--type-body-sm: 15px;', 'Readable body-copy type scale is missing.');
+requireSnippet('--type-body-sm: 15.5px;', 'Mobile body-copy type scale is missing.');
 
 const inputIds = [...html.matchAll(/<(?:input|select|textarea)\b[^>]*\bid="([^"]+)"[^>]*>/gi)].map(match => match[1]);
 for (const id of inputIds) {

@@ -920,6 +920,214 @@ html[data-theme="light"] .hero-viz .graph-node-body.satellite { filter: var(--gr
   .ai-loop-arrow { transform: rotate(90deg); padding: 4px 0; }
 }
 
+/* ============ READABLE TYPE SCALE ============ */
+/* Keep dense diagrams compact, but give navigation, controls, and reading copy
+   a consistent legibility floor across desktop and small screens. */
+:root {
+  --type-caption: 12px;
+  --type-label: 13px;
+  --type-ui: 14.5px;
+  --type-body-sm: 15px;
+  --type-body: 17px;
+  --type-lede: 19px;
+}
+
+.brand-version,
+.search-trigger .kbd,
+.side-section-title,
+.roadmap-step .step-label,
+.roadmap-card h3 .drill,
+.pipeline-stage .stage-sub,
+.pipeline-detail h4 .kbd-tag,
+.lab-header .lab-tag,
+.lab-control label,
+.lab-control .control-label,
+.lab-control .seg-btn,
+.framework-card .fw-meta,
+.drill-hint,
+.stack-meta,
+.stack-tooltip .tip-cat,
+.stack-tooltip .tip-cta,
+.glass-card .card-num,
+.eventloop-zone .zone-title,
+.spec-pill .sp-label,
+.metric .m-label,
+.metric .m-trend,
+.domain-pillar .dp-kicker,
+.domain-tag,
+.cmdk-group-label,
+.cmdk-item .item-shortcut,
+.cmdk-footer,
+.about-sub,
+.about-stat .as-label,
+.about-sc-row .kbd-pair span,
+.drawer-cat,
+.drawer-maturity,
+.drawer-section h4,
+.drawer-bookmark .bm-btn,
+.domain-explorer-head p,
+.reference-status,
+.footer h5,
+.dev-h,
+.terminal-head .tag,
+.terminal-effect .ef-label,
+.terminal-cat .cat-label,
+.vsc-titlebar .vsc-tag,
+.vsc-exp-title,
+.vsc-overlay .vo-title,
+.vsc-statusbar,
+.vsc-shortcut .kbd-key,
+.git-stage .gs-name,
+.git-narr h4 .gn-tag,
+.gv-row .gv-mark,
+.gv-commit .gv-author,
+.gv-branch .gv-bbox .gv-blabel,
+.gv-pr .gv-pr-meta,
+.gv-pr .gv-pr-status,
+.gv-pr .gv-pr-ci span,
+.git-controls .ctrl-status,
+.ai-panel .ai-tagline,
+.ai-workflow .aw-title,
+.ai-workflow .aw-title .aw-cycle-label,
+.aw-step .aw-num,
+.aw-step .aw-agent,
+.ai-deep-title,
+.ai-deep-title .agent-pill,
+.ai-deep-title .ai-deep-meta,
+.ai-loop-step .alstep-num,
+.ai-use-card .auc-tag,
+.ai-pattern-card .ap-num {
+  font-size: var(--type-caption);
+}
+
+.hero-eyebrow,
+.section-eyebrow,
+.roadmap-step .step-circle,
+.tag,
+.pipeline-stage .stage-name,
+.lab-control select,
+.lab-control input[type="text"],
+.grid-cell,
+.framework-card .fw-trait,
+.stack-chip,
+.eventloop-item,
+.eventloop-log,
+.career-card .ct-tagline,
+.resource-card .res-sub,
+.domain-card span,
+.about-sc-row,
+.about-foot,
+.about-foot .btn-sm,
+.drawer-related .rel-chip,
+.terminal-head .path,
+.terminal-effect,
+.cmd-chip,
+.vsc-titlebar .vsc-tab,
+.vsc-file,
+.vsc-editor,
+.vsc-overlay,
+.vsc-shortcut .sk-desc,
+.git-narr .gn-cmd,
+.gv-row,
+.gv-commit,
+.gv-branch,
+.gv-merge-graph,
+.ai-tab,
+.aw-step .aw-sub,
+.aw-cycle,
+.ai-loop-step .alstep-sub,
+.ai-loop-cycle,
+.ai-session-head,
+.ai-session-body,
+.ai-pattern-card .ap-step {
+  font-size: var(--type-label);
+}
+
+.skip-link,
+.brand,
+.top-nav a,
+.search-trigger,
+.side-link,
+.btn,
+.tech-tab,
+.lab-header .lab-title,
+.lab-control select,
+.lab-control input[type="text"],
+.lab-code,
+.folder-tree,
+.stack-tooltip,
+.cmdk-input,
+.cmdk-item,
+.drawer-code,
+.drawer-links a,
+.domain-card strong,
+.footer ul a,
+.terminal-body,
+.terminal-meta .tm-name,
+.terminal-meta .tm-desc,
+.vsc-shortcut .sk-name,
+.git-narr p,
+.gv-pr .gv-pr-title,
+.ai-panel .ai-position,
+.ai-trait,
+.aw-step .aw-name,
+.ai-loop-step .alstep-name,
+.ai-use-card h4,
+.ai-pattern-card h4,
+.ai-avoid-card h4 {
+  font-size: var(--type-ui);
+}
+
+.roadmap-card p,
+.pipeline-detail p,
+.feature-card p,
+.framework-card .fw-desc,
+.glass-card p,
+.glass-card .card-list-item,
+.career-card .ct-desc,
+.pattern-info p,
+.domain-pillar p,
+.domain-topic p,
+.domain-check p,
+.resource-card .res-name,
+.about-body p,
+.drawer-when .when-item,
+.drawer-section p,
+.footer .footer-blurb,
+.ai-use-card p,
+.ai-pattern-card .ap-desc,
+.ai-avoid-card p {
+  font-size: var(--type-body-sm);
+  line-height: 1.65;
+}
+
+.section-head p { font-size: var(--type-body); }
+.hero p.lede { font-size: var(--type-lede); }
+
+@media (max-width: 600px) {
+  :root {
+    --type-caption: 12.5px;
+    --type-label: 13.5px;
+    --type-ui: 15px;
+    --type-body-sm: 15.5px;
+    --type-body: 17px;
+    --type-lede: 19px;
+  }
+  .hero h1 { font-size: clamp(38px, 10.5vw, 44px); }
+  .container, .hero-inner { padding-inline: 20px; }
+  .section-head { margin-bottom: 40px; }
+  .roadmap-node { grid-template-columns: 44px minmax(0, 1fr); gap: 12px; }
+  .roadmap-node:not(:last-child)::after { left: 21px; }
+  .roadmap-step .step-label { display: none; }
+  .roadmap-card { padding: 20px; }
+}
+@media (max-width: 360px) {
+  .brand { font-size: 0; }
+  .container, .hero-inner { padding-inline: 16px; }
+  .roadmap-node { grid-template-columns: 36px minmax(0, 1fr); gap: 8px; }
+  .roadmap-node:not(:last-child)::after { left: 17px; }
+}
+
 </style>
 </head>
 <body>
